@@ -58,3 +58,7 @@ Route::delete('/task/{id}', function ($id) {
 
     return redirect('/');
 });
+
+Route::get('/test', function () {
+    return middleware('cors')->response()->json(['success' =>'tests']);
+});
