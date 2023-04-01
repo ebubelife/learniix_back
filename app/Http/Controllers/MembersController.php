@@ -60,6 +60,7 @@ class MembersController extends Controller
             ],
             [
                 "email.required"=>"Please enter a valid email address",
+                "email.unique"=>"That email address is in use already",
                 "phone.required"=>"Please enter a valid phone number",
             ]
              
