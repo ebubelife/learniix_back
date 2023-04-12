@@ -44,8 +44,7 @@ class MembersController extends Controller
 
     public function store(Request $request)
     {
-        //
-        $name = $request->input('firstName');
+       
 
         try{
 
@@ -90,6 +89,12 @@ class MembersController extends Controller
         $random_string = substr(str_shuffle($characters), 0, 6);
         $user->affiliate_id = $random_string;
 
+        $checkEmailValid = $this->checkEmailValid($user->email);
+        $checkEmailExists = $this->checkEmailExists($user->email);
+        $checkPhoneExists = $this->checkPhoneExists($user->phone);
+
+        if($checkEmailValid && !$checkEmailExists ){
+
         $user->save();
 
         // Generate a new API token for the user...
@@ -97,14 +102,77 @@ class MembersController extends Controller
 
         return response()->json(['message'=>'success'],200);
 
+        }
+        else if(!$checkEmailValid){
+
+            return response()->json(['message'=>'Please use a valid email'],405);
+
+
+        }
+
+        else if($checkEmailExists){
+
+            return response()->json(['message'=>'That email is in use already, please try another'],405);
+
+
+        }
+
+        else if( $checkPhoneExists){
+
+            return response()->json(['message'=>'That phone number is in use already, please try another'],405);
+
+
+        }
+
           
         }
         catch(\Exception $e){
-            return response()->json(['message'=>'failed', 'error'=>$e,'ff'=> $name],400);
+            return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
 
 
         }
 
+    }
+
+    public function login(Request $request){
+
+        try{
+        $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $user = Members::where('email', $request->email)->first();
+
+        if (!$user ) {
+             return response()->json(['message'=>'That email doesn\'t exist.'],405);
+        }
+        else if(!Hash::check($request->password, $user->password)){
+            return response()->json(['message'=>'That password is wrong.'],405);
+
+        }
+
+       
+       
+
+        if($user["email_verification_status"]=="0"){
+           // return response()->json(['message'=>'Account not verified. Please click the button below to get a verification code.'],401);
+
+        }
+       
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Successfully logged in.',
+            'user_details' => $user,
+            'access_token' => $token
+        ]);
+    }catch(Exception $e){
+
+        return response()->json(['message' => $e->getMessage()],500);
+    }
+    
     }
 
     //validate email address
@@ -116,7 +184,45 @@ public function checkEmailValid($email){
         // email is not valid
       return false;
       }
+    }
+      
+
+        //Check if email is already in use by another user
+
+    public function checkEmailExists($email)
+    {
+      
+        $user = Members::where('email', $email)->first();
+    
+        if ($user) {
+            return true;
+           // return response()->json(['exists' => true]);
+        } else {
+            return false;
+           // return response()->json(['exists' => false]);
+        }
+    }
+    
+     //Check if phone is already in use by another user
+    
+
+
+
+
+public function checkPhoneExists($email)
+{
+  
+    $user = Members::where('phone', $email)->first();
+
+    if ($user) {
+        return true;
+       // return response()->json(['exists' => true]);
+    } else {
+        return false;
+       // return response()->json(['exists' => false]);
+    }
 }
+
 
 
     /**

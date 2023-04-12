@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MembersController;
+use App\Http\Controllers\VendorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,15 @@ Route::controller(MembersController::class)->group(function(){
     Route::post('verify_email_otp', 'verify_email_otp');
     Route::post('send_email', 'send_email');
     Route::get('test','test');
+    Route::post('addVendor','createVendor');
+   // Route::middleware('auth:sanctum')-> post('set_transaction_pin','set_transaction_pin');
+   
+   // Route::get('test_api','test_api');
+});
+
+Route::controller(VendorsController::class)->group(function(){
+  
+    Route::post('vendors/create','store');
    // Route::middleware('auth:sanctum')-> post('set_transaction_pin','set_transaction_pin');
    
    // Route::get('test_api','test_api');
