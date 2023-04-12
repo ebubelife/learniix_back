@@ -24,7 +24,7 @@ class Members extends Migration
             $table->boolean('email_verified')->default(false);
             $table->string('password');
             $table->string('phone')->unique();
-            $table->string('phone_code');
+            $table->string('phone_code')->nullable();
             $table->boolean('phone_verified')->default(false);
             $table->boolean('is_vendor')->default(false);
             $table->string('affiliate_id');

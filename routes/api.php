@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MembersController;
-use App\Http\Controllers\VendorsController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +42,13 @@ Route::controller(VendorsController::class)->group(function(){
    
    // Route::get('test_api','test_api');
 });
+
+Route::controller(ProductsController::class)->group(function(){
+  
+    Route::post('products/add','store');
+   // Route::middleware('auth:sanctum')-> post('set_transaction_pin','set_transaction_pin');
+   
+   // Route::get('test_api','test_api');
+});
+
+
