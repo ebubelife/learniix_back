@@ -116,7 +116,14 @@ class ProductsController extends Controller
      */
     public function show(Products $products)
     {
-        //
+      // Use the all() method to retrieve all products from the database
+    $products = Products::all();
+
+    // Return a JSON response containing the retrieved products
+    return response()->json($products);
+
+
+
     }
 
     /**

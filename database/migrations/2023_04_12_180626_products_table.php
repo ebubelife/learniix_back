@@ -27,6 +27,8 @@ class ProductsTable extends Migration
             $table->longText('productSalesPageLink');
             $table->string('ProductTYLink');
             $table->string('productJVLink');
+            $table->boolean('approved')->default(false);
+            $table->timestamp('approved_at')->nullable();
             
             $table->timestamps();
         });

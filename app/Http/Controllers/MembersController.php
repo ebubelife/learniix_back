@@ -134,6 +134,8 @@ class MembersController extends Controller
 
     }
 
+    
+
     public function login(Request $request){
 
         try{
@@ -257,6 +259,13 @@ public function checkPhoneExists($email)
     public function update(Request $request, Members $members)
     {
         //
+        // Find the product with the given ID
+    $product = Members::find(1);
+
+    // Update the product with the new data
+   $product->is_vendor = false;
+
+    return json_encode($product);
     }
 
     /**
