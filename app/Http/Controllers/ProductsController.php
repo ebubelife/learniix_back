@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Products;
 use Illuminate\Http\Request;
+use App\Models\Members;
+use App\Models\Vendors;
+
 
 class ProductsController extends Controller
 {
@@ -118,6 +121,19 @@ class ProductsController extends Controller
     {
       // Use the all() method to retrieve all products from the database
     $products = Products::all();
+
+    for($i=0; $i < count($products); $i++){
+        $vendor_data1 = Members::find($products[$i]->vendor_id);
+       // $vendor_data2 = Vendors::find($products[$i]->vendor_id);
+        $vendor_data2 = Vendors::where('vendor_id', $products[$i]->vendor_id)->first();
+
+        $products[$i]["vendor_data1"] = response()->json($vendor_data1);
+        $products[$i]["vendor_data2"] = response()->json($vendor_data2);
+
+
+        
+
+    }
 
     // Return a JSON response containing the retrieved products
     return response()->json($products);

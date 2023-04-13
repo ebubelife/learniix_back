@@ -260,10 +260,11 @@ public function checkPhoneExists($email)
     {
         //
         // Find the product with the given ID
-    $product = Members::find(1);
+    $data = Members::find(1);
 
     // Update the product with the new data
-   $product->is_vendor = false;
+    $data->is_vendor = false;
+    $data->save();
 
     return json_encode($product);
     }
