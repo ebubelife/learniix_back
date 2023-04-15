@@ -130,6 +130,9 @@ class ProductsController extends Controller
         $products[$i]["vendor_data1"] = response()->json($vendor_data1);
         $products[$i]["vendor_data2"] = response()->json($vendor_data2);
 
+        $products[$i]["image_path"] = storage_path('app/public/' . $products[$i]["image_image"]);
+ 
+
 
         
 
