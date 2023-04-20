@@ -236,6 +236,27 @@ public function checkPhoneExists($email)
     public function show(Members $members)
     {
         //
+        $members = Members::all();
+        return response()->json($members);
+    }
+
+    public function getSingleResult(Request $request){
+
+        try{
+            $request->validate([
+                'id' => 'required|string',
+                
+            ]);
+    
+            $user = Members::where('id', $request->id)->first();
+    
+            if (!$user ) {
+                 return response()->json(['message'=>'That user doesn\'t exist.'],405);
+            }else{
+                return response()->json(['user_data'=>$user],200);
+            }
+          
+
     }
 
     /**

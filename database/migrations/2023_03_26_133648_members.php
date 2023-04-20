@@ -28,6 +28,9 @@ class Members extends Migration
             $table->boolean('phone_verified')->default(false);
             $table->boolean('is_vendor')->default(false);
             $table->string('affiliate_id');
+            $table->string('bank_account_name')->nullable();
+            $table->string('bank')->nullable();
+            $table->string('bank_account_number')->nullable();;
             
             $table->timestamps();
         });

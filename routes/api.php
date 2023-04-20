@@ -57,3 +57,11 @@ Route::controller(ProductsController::class)->group(function(){
 });
 
 
+Route::controller(BanksController::class)->group(function(){
+  
+    Route::post('banks/add','store');
+    Route::get('banks/view','show');
+  
+});
+
+
