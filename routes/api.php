@@ -32,9 +32,15 @@ Route::controller(MembersController::class)->group(function(){
     Route::get('test','test');
     Route::post('addVendor','createVendor');
     Route::post('update/isvendor','update');
-    Route::post('view/user', 'view_user');
+    //Route::get('view/user/{id}', 'view_user');
     Route::get('view/all', 'show');
 
+    Route::get('view/user/{id}', function ($id) {
+        $user = Members::find($id);
+    
+        return response()->json($user);
+    });
+   
   
    // Route::middleware('auth:sanctum')-> post('set_transaction_pin','set_transaction_pin');
    
