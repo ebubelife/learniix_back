@@ -6,6 +6,7 @@ use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\BanksController;
+use App\Models\Members;
 
 /*
 |--------------------------------------------------------------------------
