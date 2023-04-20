@@ -240,11 +240,11 @@ public function checkPhoneExists($email)
         return response()->json($members);
     }
 
-    public function getSingleResult(Request $request){
+    public function view_user(Request $request){
 
         try{
             $request->validate([
-                'id' => 'required|string',
+                'id' => 'required',
                 
             ]);
     
