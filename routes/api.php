@@ -32,8 +32,8 @@ Route::controller(MembersController::class)->group(function(){
     Route::get('test','test');
     Route::post('addVendor','createVendor');
     Route::post('update/isvendor','update');
-    Route::post('view_user', 'view_user');
-    Route::get('view_all', 'show');
+    Route::post('view/user', 'view_user');
+    Route::get('view/all', 'show');
 
   
    // Route::middleware('auth:sanctum')-> post('set_transaction_pin','set_transaction_pin');

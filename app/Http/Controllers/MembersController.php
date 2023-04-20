@@ -242,7 +242,7 @@ public function checkPhoneExists($email)
 
     public function view_user(Request $request){
 
-        try{
+      
             $request->validate([
                 'id' => 'required',
                 
