@@ -294,10 +294,10 @@ public function checkPhoneExists($email)
              return response()->json(['message'=>'That user doesn\'t exist.'],405);
         }else{
 
-            $data->firstName = $request->firstName;
-            $data->lastName = $request->lastName;
-            $data->phone = $request->phone;
-            $data->save();
+            $user->firstName = $request->firstName;
+            $user->lastName = $request->lastName;
+            $user->phone = $request->phone;
+            $user->save();
            
         }
       
