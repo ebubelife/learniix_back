@@ -16,7 +16,7 @@ class Members extends Migration
         //
 
         Schema::create('members', function (Blueprint $table) {
-            $table->id()->unique();;
+            $table->id()->unique();
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email')->unique();
@@ -30,7 +30,7 @@ class Members extends Migration
             $table->string('affiliate_id');
             $table->string('bank_account_name')->nullable();
             $table->string('bank')->nullable();
-            $table->string('bank_account_number')->nullable();;
+            $table->string('bank_account_number')->nullable();
             
             $table->timestamps();
         });
