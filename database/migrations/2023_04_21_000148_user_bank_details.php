@@ -14,7 +14,7 @@ class UserBankDetails extends Migration
     public function up()
     {
         //
-        Schema::create('members', function (Blueprint $table) {
+        Schema::table('members', function (Blueprint $table) {
         $table->id()->unique();
         $table->string('bank_account_name')->nullable();
         $table->string('bank')->nullable();
