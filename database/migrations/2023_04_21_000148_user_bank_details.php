@@ -15,12 +15,12 @@ class UserBankDetails extends Migration
     {
         //
         Schema::table('members', function (Blueprint $table) {
-        $table->id()->unique();
+       
         $table->string('bank_account_name')->nullable();
         $table->string('bank')->nullable();
         $table->string('bank_account_number')->nullable();
         
-        $table->timestamps();
+      
         });
     }
 
