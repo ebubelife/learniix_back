@@ -285,9 +285,10 @@ public function checkPhoneExists($email)
             'firstName' => 'required|string',
             'lastName' => 'required|string',
             'phone' => 'required|string',
+            'bankAccountName' => 'string',
+            'bankAccountNumber' => 'string',
             
         ]);
-
         $user = Members::where('id', $request->id)->first();
 
         if (!$user ) {
@@ -297,6 +298,8 @@ public function checkPhoneExists($email)
             $user->firstName = $request->firstName;
             $user->lastName = $request->lastName;
             $user->phone = $request->phone;
+            $user->bank_account_name = $request->bankAccountName;
+            $user->bank_account_number = $request->bankAccountNumber;
             $user->save();
            
         }
