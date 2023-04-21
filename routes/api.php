@@ -41,6 +41,8 @@ Route::controller(MembersController::class)->group(function(){
     
         return response()->json($user);
     });
+
+    Route::post('member/update','update');
    
   
    // Route::middleware('auth:sanctum')-> post('set_transaction_pin','set_transaction_pin');

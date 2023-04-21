@@ -279,15 +279,31 @@ public function checkPhoneExists($email)
      */
     public function update(Request $request, Members $members)
     {
-        //
-        // Find the product with the given ID
-    $data = Members::find(1);
+       
+        $request->validate([
+            'id' => 'required',
+            'firstName' => 'required|string',
+            'lastName' => 'required|string',
+            'phone' => 'required|string',
+            
+        ]);
 
-    // Update the product with the new data
-    $data->is_vendor = false;
-    $data->save();
+        $user = Members::where('id', $request->id)->first();
 
-    return json_encode($product);
+        if (!$user ) {
+             return response()->json(['message'=>'That user doesn\'t exist.'],405);
+        }else{
+
+            $data->firstName = $request->firstName;
+            $data->lastName = $request->lastName;
+            $data->phone = $request->phone;
+            $data->save();
+           
+        }
+      
+ 
+
+       
     }
 
     /**
