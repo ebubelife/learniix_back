@@ -21,7 +21,7 @@ class UserBankDetails extends Migration
         $table->string('bank_account_number')->nullable();
         
         $table->timestamps();
-        })
+        });
     }
 
     /**
