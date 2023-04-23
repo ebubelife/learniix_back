@@ -13,7 +13,7 @@ class CreateSalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create("sales", function (Blueprint $table) {
             $table->id();
             $table->string('vendor_id')->nullable();
             $table->string('affiliate_id')->nullable();
@@ -21,6 +21,7 @@ class CreateSalesTable extends Migration
             $table->string('product_price')->nullable();
             $table->string('commission')->nullable();
             $table->string('tx_id')->nullable();
+           
             $table->timestamps();
         });
     }
