@@ -21,6 +21,11 @@ class CreateSalesTable extends Migration
             $table->string('product_price')->nullable();
             $table->string('commission')->nullable();
             $table->string('tx_id')->nullable();
+            $table->longText('customer_name')->nullable();
+            $table->string('customer_email')->nullable();
+            $table->string('customer_phone')->nullable();
+            $table->boolean('refunded')->nullable();
+            $table->string('cashback_id')->nullable();
            
             $table->timestamps();
         });
