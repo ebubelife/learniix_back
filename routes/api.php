@@ -78,7 +78,7 @@ Route::controller(ProductsController::class)->group(function(){
    Route::get('view/product/{id}', function ($id) {
     $user = Products::find($id);
 
-    $user->image = asset('https://zenithstake.syncight.com/storage/images/product_images/' . $user->image)
+    $user->image = asset('https://zenithstake.syncight.com/storage/images/product_images/' . $user->image);
 
     return response()->json($user);
 });
