@@ -7,6 +7,8 @@ use App\Http\Controllers\MembersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\BanksController;
 use App\Models\Members;
+use App\Models\Vendors;
+use App\Models\Products;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +59,12 @@ Route::controller(VendorsController::class)->group(function(){
    // Route::middleware('auth:sanctum')-> post('set_transaction_pin','set_transaction_pin');
    
    // Route::get('test_api','test_api');
+
+   Route::get('view/vendor/{id}', function ($id) {
+    $user = Vendors::find($id);
+
+    return response()->json($user);
+});
 });
 
 Route::controller(ProductsController::class)->group(function(){
@@ -66,6 +74,12 @@ Route::controller(ProductsController::class)->group(function(){
    // Route::middleware('auth:sanctum')-> post('set_transaction_pin','set_transaction_pin');
    
    // Route::get('test_api','test_api');
+
+   Route::get('view/product/{id}', function ($id) {
+    $user = Products::find($id);
+
+    return response()->json($user);
+});
 });
 
 
