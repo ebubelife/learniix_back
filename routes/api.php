@@ -6,9 +6,11 @@ use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\BanksController;
+use App\Http\Controllers\SalesController;
 use App\Models\Members;
 use App\Models\Vendors;
 use App\Models\Products;
+use App\Models\Sales;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +91,18 @@ Route::controller(BanksController::class)->group(function(){
   
     Route::post('banks/add','store');
     Route::get('banks/view','show');
+  
+});
+
+Route::controller(SalesController::class)->group(function(){
+  
+    Route::post('sales/add','store');
+    Route::get('sales/view','show');
+    Route::get('view/sale/{id}', function ($id) {
+        $sale = Sales::find($id);
+    
+        return response()->json($sale);
+    });
   
 });
 
