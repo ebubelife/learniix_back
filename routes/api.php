@@ -106,8 +106,19 @@ Route::controller(SalesController::class)->group(function(){
 
     Route::get('view/user_sales_count/{id}', function ($id) {
         $sales_by_user = Sales::where('affiliate_id', $id)->get();
+
+        $total_sales = 0;
+
+        foreach( $sales_by_user as $sale){
+
+            $commision = intval($sale->$commission);
+            $product_price = intval($sale->$product_price);
+
+            $income = ($commision/100)*$product_price ;
+            $total_sales  =  $total_sales  + $income;
+        }
        
-        return response()->json(["count"=>count( $sales_by_user ), "aff"=>$id]);
+        return response()->json(["count"=>count( $sales_by_user ), "aff"=>$id, "total_sales"=>strval($total_sales)]);
     });
 
     
