@@ -41,7 +41,7 @@ class SalesController extends Controller
         try{
 
 
-        $request->validate([
+            $validated = $request->validate([
             'vendor_id' => 'required|string',
             'affiliate_id' => 'required|string',
             'product_id' => 'required|string',
@@ -54,15 +54,18 @@ class SalesController extends Controller
            
         ]);
 
-            $user->vendor_id = $request->vendor_id;
-            $user->affiliate_id = $request->affiliate_id;
-            $user->product_id = $request->product_id;
-            $user->product_price = $request->product_price;
-            $user->commission = $request->commission;
-            $user->tx_id = $request->tx_id;
-            $user->customer_name = $request->customer_name;
-            $user->customer_email = $request->customer_email;
-            $user->customer_phone = $request->customer_phone;
+             $user = new Sales();
+
+            
+            $user->affiliate_id =  $validated = ["affiliate_id"];
+            $user->product_id =  $validated = ["product_id"];
+            $user->product_price =  $validated = ["product_price"];
+            $user->commission =  $validated = ["commission"];
+            $user->tx_id =  $validated = ["tx_id"];
+            $user->customer_name =  $validated = ["customer_name"];
+            $user->customer_email =  $validated = ["customer_email"];
+            $user->customer_phone =  $validated = ["customer_phone"];
+            $user->vendor_id =  $validated = ["vendor_id"];
             $user->save();
 
     }
