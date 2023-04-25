@@ -57,15 +57,15 @@ class SalesController extends Controller
              $user = new Sales();
 
             
-            $user->affiliate_id =  $validated = ["affiliate_id"];
-            $user->product_id =  $validated = ["product_id"];
-            $user->product_price =  $validated = ["product_price"];
-            $user->commission =  $validated = ["commission"];
-            $user->tx_id =  $validated = ["tx_id"];
-            $user->customer_name =  $validated = ["customer_name"];
-            $user->customer_email =  $validated = ["customer_email"];
-            $user->customer_phone =  $validated = ["customer_phone"];
-            $user->vendor_id =  $validated = ["vendor_id"];
+            $user->affiliate_id =  $validated["affiliate_id"];
+            $user->product_id =  $validated["product_id"];
+            $user->product_price =  $validated["product_price"];
+            $user->commission =  $validated["commission"];
+            $user->tx_id =  $validated["tx_id"];
+            $user->customer_name =  $validated["customer_name"];
+            $user->customer_email =  $validated["customer_email"];
+            $user->customer_phone =  $validated["customer_phone"];
+            $user->vendor_id =  $validated["vendor_id"];
             $user->save();
 
     }
