@@ -111,8 +111,8 @@ Route::controller(SalesController::class)->group(function(){
 
         foreach( $sales_by_user as $sale){
 
-            $commision = intval($sale->$commission);
-            $product_price = intval($sale->$product_price);
+            $commision = intval($sale->commission);
+            $product_price = intval($sale->product_price);
 
             $income = ($commision/100)*$product_price ;
             $total_sales  =  $total_sales  + $income;
