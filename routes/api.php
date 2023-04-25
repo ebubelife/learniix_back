@@ -115,7 +115,7 @@ Route::controller(SalesController::class)->group(function(){
         }
 
     
-        return response()->json("total_sales"=>$total_sales);
+        return response()->json($total_sales);
     });
   
 });
