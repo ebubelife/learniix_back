@@ -107,8 +107,10 @@ Route::controller(SalesController::class)->group(function(){
     Route::get('view/user_sales_count/{id}', function ($id) {
         $sales_by_user = Sales::where('affiliate_id', $id)->get();
        
-        return response()->json(count( $sales_by_user ));
+        return response()->json(["count"=>count( $sales_by_user ), "aff"=>$id]);
     });
+
+    
   
 });
 
