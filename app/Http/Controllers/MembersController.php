@@ -85,7 +85,7 @@ class MembersController extends Controller
         $user->password = Hash::make($validated['password']);
 
         //generate affiliate id
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $random_string = substr(str_shuffle($characters), 0, 6);
         $user->affiliate_id = $random_string;
 
