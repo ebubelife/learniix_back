@@ -76,7 +76,7 @@ Route::get('vendors/view', function () {
         $user = Members::find($vendors[$i]['vendor_id']);
 
         $vendors[$i]['vendor_details'] = $user;
-        $vendors[$i]["image_path"] = asset('https://zenithstake.syncight.com/storage/images/product_images/' . $vendors[$i]["image"]);
+        $vendors[$i]["image_path"] = asset('https://zenithstake.syncight.com/storage/images/vendor_images/' . $vendors[$i]["image"]);
 
     }
 
