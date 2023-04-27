@@ -145,9 +145,9 @@ Route::controller(SalesController::class)->group(function(){
     
         for($i=0; $i < count($top_affiliates); $i++){
     
-            $user = Members::find($top_affiliates[$i]['id']);
+            $user = Members::find($top_affiliates[$i]['affiliate_id']);
     
-            $vendors[$i]['affiliate_details'] = $user;
+            $top_affiliates[$i]['affiliate_details'] = $user;
           //$vendors[$i]["image_path"] = asset('https://zenithstake.syncight.com/storage/images/vendor_images/' . $vendors[$i]["image"]);
     
         }
