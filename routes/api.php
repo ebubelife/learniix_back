@@ -84,6 +84,8 @@ Route::get('vendors/view', function () {
 });
 
 
+
+
 });
 
 Route::controller(ProductsController::class)->group(function(){
@@ -136,6 +138,21 @@ Route::controller(SalesController::class)->group(function(){
         }
        
         return response()->json(["count"=>count( $sales_by_user ), "aff"=>$id, "total_sales"=>strval($total_sales)]);
+    });
+
+    Route::get('top_affiliate/view/{vendor_id}', function () {
+        $top_affiliates = Sales::where('affiliate_id', $id)->get();
+    
+        for($i=0; $i < count($top_affiliates); $i++){
+    
+            $user = Members::find($top_affiliates[$i]['id']);
+    
+            $vendors[$i]['affiliate_details'] = $user;
+          //$vendors[$i]["image_path"] = asset('https://zenithstake.syncight.com/storage/images/vendor_images/' . $vendors[$i]["image"]);
+    
+        }
+    
+        return response()->json($vendors);
     });
 
     
