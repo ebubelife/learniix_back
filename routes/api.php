@@ -141,7 +141,7 @@ Route::controller(SalesController::class)->group(function(){
     });
 
     Route::get('top_affiliate/view/{vendor_id}', function ($vendor_id) {
-        $top_affiliates = Sales::where('affiliate_id', intval($vendor_id))->get();
+        $top_affiliates = Sales::where('affiliate_id', $vendor_id)->get();
     
         for($i=0; $i < count($top_affiliates); $i++){
     
