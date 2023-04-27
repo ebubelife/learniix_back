@@ -71,6 +71,14 @@ Route::controller(VendorsController::class)->group(function(){
 Route::get('vendors/view', function () {
     $vendors = Vendors::all();
 
+    for($i=0; $i < count($vendors); $i++){
+
+        $user = Members::find($vendors[$i]['vendor_id']);
+
+        $vendors[$i]['vendor_details'] = $user;
+
+    }
+
     return response()->json($vendors);
 });
 
