@@ -117,10 +117,12 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $products)
+    public function show($count)
     {
       // Use the all() method to retrieve all products from the database
-    $products = Products::all();
+
+    if($count){
+    $products = Products::take($count)->get();
 
     for($i=0; $i < count($products); $i++){
         $vendor_data1 = Members::find($products[$i]->vendor_id);
@@ -140,6 +142,34 @@ class ProductsController extends Controller
 
     // Return a JSON response containing the retrieved products
     return response()->json($products);
+
+}
+
+else{
+
+    $products = Products::take($count)->get();
+
+    for($i=0; $i < count($products); $i++){
+        $vendor_data1 = Members::find($products[$i]->vendor_id);
+       // $vendor_data2 = Vendors::find($products[$i]->vendor_id);
+        $vendor_data2 = Vendors::where('vendor_id', $products[$i]->vendor_id)->first();
+
+        $products[$i]["vendor_data1"] = response()->json($vendor_data1);
+        $products[$i]["vendor_data2"] = response()->json($vendor_data2);
+
+        $products[$i]["image_path"] = asset('https://zenithstake.syncight.com/storage/images/product_images/' . $products[$i]["image"]);
+ 
+
+
+        
+
+    }
+
+    // Return a JSON response containing the retrieved products
+    return response()->json($products);
+
+
+}
 
 
 
