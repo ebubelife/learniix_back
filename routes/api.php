@@ -152,7 +152,7 @@ Route::controller(SalesController::class)->group(function(){
     
         }
     
-        return response()->json($vendors);
+        return response()->json( $top_affiliates);
     });
 
     
