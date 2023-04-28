@@ -322,14 +322,14 @@ public function checkPhoneExists($email)
        
     }
 
-    public function send_mail_code(Request $request, Members $members){
+    public function send_mail_code(Request $request){
 
         $request->validate([
             'email' => 'required|string',
 
         ]);
 
-        $user=  checkEmailExists( $request->email);
+        $user =  checkEmailExists( $request->email);
 
         if($user){
 
