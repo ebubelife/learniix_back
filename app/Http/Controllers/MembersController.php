@@ -30,7 +30,7 @@ class MembersController extends Controller
         //
     }
 
-    public function testemail(){
+    public function test_email(){
 
         Mail::to('ebubeemeka19@gmail.com')->send(new MyEmail());
     }

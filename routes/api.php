@@ -37,6 +37,7 @@ Route::controller(MembersController::class)->group(function(){
     Route::get('test','test');
     Route::post('addVendor','createVendor');
     Route::post('update/isvendor','update');
+    Route::post('email/test','test_email');
     //Route::get('view/user/{id}', 'view_user');
     Route::get('view/all', 'show');
 
