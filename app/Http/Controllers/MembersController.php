@@ -338,7 +338,11 @@ public function checkPhoneExists($email)
 
             $user->email_code = $emailCode ;
             $firstName = $user->firstName;
-            Mail::to($request->email)->send(new RecoverAccountMail(  $emailCode,$firstName  ));
+
+            if(Mail::to($request->email)->send(new RecoverAccountMail(  $emailCode,$firstName  ))){
+                return response()->json(['message'=>'We\'ve sent you an email to help you recover your password'],200);
+
+            }
         }
 
 
