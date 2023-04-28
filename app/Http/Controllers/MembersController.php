@@ -344,6 +344,11 @@ public function checkPhoneExists($email)
 
             }
         }
+        else{
+
+            return response()->json(['message'=>'That email doesn\'t exist in our records'],405);
+
+        }
 
 
     }
