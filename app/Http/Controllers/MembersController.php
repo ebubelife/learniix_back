@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Members;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\MyEmail;
+use Illuminate\Support\Facades\Mail;
 
 class MembersController extends Controller
 {
@@ -26,6 +28,11 @@ class MembersController extends Controller
     public function create()
     {
         //
+    }
+
+    public function testemail(){
+
+        Mail::to('ebubeemeka19@gmail.com')->send(new MyEmail());
     }
 
     /**
