@@ -329,7 +329,7 @@ public function checkPhoneExists($email)
 
         ]);
 
-        $user =  checkEmailExists( $request->email);
+        $user =  $this->checkEmailExists( $request->email);
 
         if($user){
 
