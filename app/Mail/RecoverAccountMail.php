@@ -17,10 +17,11 @@ class RecoverAccountMail extends Mailable
      * @return void
      */
     public $emailCode;
+    public $firstName;
     public function __construct($emailCode)
     {
         //
-        $this->emailCode = $emailCode;
+        $this->firstName = $firstName;
     }
 
     /**
@@ -34,7 +35,8 @@ class RecoverAccountMail extends Mailable
 
         $message = 'This is an example email sent from Laravel.';
         return $this->view('test_email', ['message' => $message])
-                    ->with('myVariable', $this->emailCode)
+                    ->with('emailCode', $this->emailCode)
+                    ->with('firstName', $this->firstName)
                     ->from('sender@example.com')
                     ->subject('Account recovery');
     }

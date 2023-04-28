@@ -36,6 +36,8 @@ class MembersController extends Controller
         Mail::to('ebubeemeka19@gmail.com')->send(new RecoverAccountMail("1234"));
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -205,7 +207,7 @@ public function checkEmailValid($email){
         $user = Members::where('email', $email)->first();
     
         if ($user) {
-            return true;
+            return $user;
            // return response()->json(['exists' => true]);
         } else {
             return false;
@@ -213,6 +215,9 @@ public function checkEmailValid($email){
         }
     }
     
+
+      
+        
      //Check if phone is already in use by another user
     
 
@@ -315,6 +320,28 @@ public function checkPhoneExists($email)
  
 
        
+    }
+
+    public function sendEmailCode(Request $request, Members $members){
+
+        $request->validate([
+            'email' => 'required|string',
+
+        ]);
+
+        $user=  checkEmailExists( $request->email);
+
+        if($user){
+
+             //generate 4 digit email otp
+             $emailCode = $random_number = rand(100000, 999999);
+
+            $user->email_code = $emailCode ;
+            $firstName = $user->firstName;
+            Mail::to($request->email)->send(new RecoverAccountMail( $firstName , $emailCode ));
+        }
+
+
     }
 
     /**
