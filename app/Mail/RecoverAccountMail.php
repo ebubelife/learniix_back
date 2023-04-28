@@ -20,7 +20,7 @@ class RecoverAccountMail extends Mailable
     public function __construct($emailCode)
     {
         //
-        $this->$emailCode = $emailCode;
+        $this->emailCode = $emailCode;
     }
 
     /**
