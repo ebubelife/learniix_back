@@ -338,7 +338,7 @@ public function checkPhoneExists($email)
 
             $user->email_code = $emailCode ;
             $firstName = $user->firstName;
-            Mail::to($request->email)->send(new RecoverAccountMail( $firstName , $emailCode ));
+            Mail::to($request->email)->send(new RecoverAccountMail(  $emailCode,$firstName  ));
         }
 
 
