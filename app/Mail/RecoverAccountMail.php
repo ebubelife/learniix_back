@@ -18,7 +18,7 @@ class RecoverAccountMail extends Mailable
      */
     public $emailCode;
     public $firstName;
-    public function __construct($emailCode)
+    public function __construct($emailCode,$firstName)
     {
         //
         $this->firstName = $firstName;
