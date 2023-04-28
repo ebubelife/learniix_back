@@ -6,6 +6,7 @@ use App\Models\Members;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\MyEmail;
+use App\Mail\RecoverAccountMail;
 use Illuminate\Support\Facades\Mail;
 
 class MembersController extends Controller
@@ -32,7 +33,7 @@ class MembersController extends Controller
 
     public function test_email(){
 
-        Mail::to('ebubeemeka19@gmail.com')->send(new MyEmail());
+        Mail::to('ebubeemeka19@gmail.com')->send(new RecoverAccountMail("1234"));
     }
 
     /**

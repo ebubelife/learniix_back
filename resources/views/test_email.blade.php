@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Email</title>
+	<title>Account Recovery</title>
 </head>
 <body>
-	<h1>Hello!</h1>
-	<p>This is an example email sent from Laravel.</p>
+	<h1>Hello Ebube</h1>
+	<p>You requested for a code to recover your password</p>
+	<p>Here is your code: {{ $myVariable }}</p>
 </body>
 </html>
