@@ -390,6 +390,50 @@ public function checkPhoneExists($email)
 
     }
 
+    public function change_password(Request $request){
+
+
+        $request->validate([
+            'password' => 'required|string',
+            'email' => 'required|string',
+
+        ]);
+
+        $user = Members::where('email', $request->email)
+     
+         ->first();
+
+        if($user){
+
+
+
+            $user->password = Hash::make($request->password);
+           
+           if( $user->save()){
+               //generate 4 digit email otp
+
+        return response()->json(['message'=>'Your password has been successfully changed! You can login now.'],200);
+
+           }
+           else{
+
+            return response()->json(['message'=>'Could not complete operation'],405);
+    
+            }
+
+
+     
+
+        }
+        else{
+
+        return response()->json(['message'=>'Sorry! Could not complete operation.'],405);
+
+        }
+
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *
