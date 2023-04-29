@@ -366,12 +366,15 @@ public function checkPhoneExists($email)
 
         $request->validate([
             'code' => 'required|string',
+            'email' => 'required|string',
 
         ]);
 
-        $user_code = Members::where('email_code', $request->code)->first();
+        $user_code_exists = Members::where('email_code', $request->code)
+                             ->where('email', $request->email)
+                              ->first();
 
-        if($user_code){
+        if($user_code_exists){
 
              //generate 4 digit email otp
 
