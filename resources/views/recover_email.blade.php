@@ -18,7 +18,7 @@
 
 	<p style="margin-top:20px; color:red">If you're not the one who made this request and you're not aware of it, disregard this message.</p>
 
-	<p style="margin-top:20px; color:#dcdcdc">© zenithstake.com 2023</p>
+	<p style="margin-top:20px; color:#B2BEB5">© zenithstake.com 2023</p>
 
 </div>
 </body>
