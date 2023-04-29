@@ -361,6 +361,31 @@ public function checkPhoneExists($email)
 
     }
 
+    public function verify_code(Request $request){
+
+
+        $request->validate([
+            'code' => 'required|string',
+
+        ]);
+
+        $user_code = Members::where('email_code', $request->code)->first();
+
+        if($user_code){
+
+             //generate 4 digit email otp
+
+             return response()->json(['message'=>'The code was successfully verified'],200);
+          
+        }
+        else{
+
+            return response()->json(['message'=>'Sorry! Could not verify that code.'],405);
+
+        }
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *

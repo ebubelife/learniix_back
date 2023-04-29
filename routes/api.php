@@ -49,6 +49,10 @@ Route::controller(MembersController::class)->group(function(){
     });
 
     Route::post('member/update','update');
+
+    Route::post('account/verify_code','verify_code');
+
+    
    
   
    // Route::middleware('auth:sanctum')-> post('set_transaction_pin','set_transaction_pin');
