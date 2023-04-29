@@ -8,13 +8,10 @@
 	<img src="https://www.zenithstake.com/images/logo.png" alt="logo" height="80" width="270" />
 
 
-	<h2>Hi  {{ $firstName }}, </h2>
-	<p>We have just received a request to reset the password of your account on <b>2023-04-03 08:31:35 PM.</b></p>
+	<h3>Hi  {{ $firstName }}, </h3>
+	<p style="margin-top:20px; color:red">You requested a password reset, please copy your account recovery code below</p>
 
-	<p>Requested From-  IP Address: <b>192.210.85.220</b> using <b>Firefox</b> on <b>Windows 10</b></p>
-
-	<p style="margin-top:20px;">Copy your account recovery code below:</p>
-	<h2 style="color:#5B2C6F">{{ $emailCode }}</h2>
+		<h3 style="color:#5B2C6F">{{ $emailCode }}</h3>
 
 	<p style="margin-top:20px; color:red">If you're not the one who made this request and you're not aware of it, disregard this message.</p>
 
