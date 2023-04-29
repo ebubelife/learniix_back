@@ -5,7 +5,7 @@
 </head>
 <body>
 	<div style="padding:10px; border:1px solid #cccccc; text-align:center; font-size:20px;">
-	<img src="https://www.zenithstake.com/images/logo.png" alt="logo" />
+	<img src="https://www.zenithstake.com/images/logo.png" alt="logo" height="100" width="300" />
 
 
 	<h1>Hi  {{ $firstName }}, </h1>
