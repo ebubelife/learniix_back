@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Models\Task;
+use App\Http\Controllers\MembersController;
 use Illuminate\Http\Request;
 
 /**
@@ -61,4 +62,10 @@ Route::delete('/task/{id}', function ($id) {
 
 Route::get('/test', function () {
     return middleware('cors')->response()->json(['success' =>'tests']);
+});
+
+Route::controller(MembersController::class)->group(function(){
+
+    Route::get('test_email','test_email_view');
+
 });

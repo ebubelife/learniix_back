@@ -33,7 +33,12 @@ class MembersController extends Controller
 
     public function test_email(){
 
-        Mail::to('ebubeemeka19@gmail.com')->send(new RecoverAccountMail("1234"));
+        Mail::to('ebubeemeka19@gmail.com')->send(new RecoverAccountMail("1234","Ebube"));
+    }
+
+    public function test_email_view(){
+        $data = ['emailCode' => '123456', 'firstName'=>'Bob'];
+        return view('test_email', $data);
     }
 
 
