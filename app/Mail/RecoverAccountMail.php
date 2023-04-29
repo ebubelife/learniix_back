@@ -37,7 +37,7 @@ class RecoverAccountMail extends Mailable
       
 
         $message = 'This is an example email sent from Laravel.';
-        return $this->view('test_email', ['message' => $message])
+        return $this->view('recover_email', ['message' => $message])
                     ->with(['emailCode'=> $this->emailCode, 'firstName'=>$this->firstName])
                    
                     ->from('sender@example.com')
