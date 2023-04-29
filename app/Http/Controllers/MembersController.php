@@ -33,11 +33,14 @@ class MembersController extends Controller
 
     public function test_email(){
 
-        Mail::to('ebubeemeka19@gmail.com')->send(new RecoverAccountMail("1234","Ebube"));
+        $logo = asset('https://zenithstake.syncight.com/storage/images/general/logo.png');
+
+        Mail::to('ebubeemeka19@gmail.com')->send(new RecoverAccountMail("1234","Ebube", $logo));
     }
 
     public function test_email_view(){
-        $data = ['emailCode' => '123456', 'firstName'=>'Bob'];
+        $logo = asset('https://zenithstake.syncight.com/storage/images/general/logo.png');
+        $data = ['emailCode' => '123456', 'firstName'=>'Bob',"logo"=> $logo];
         return view('test_email', $data);
     }
 
