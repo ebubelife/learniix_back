@@ -51,6 +51,7 @@ Route::controller(MembersController::class)->group(function(){
     Route::post('member/update','update');
 
     Route::post('account/verify_code','verify_code');
+    Route::post('account/change_password','change_password');
 
     
    
