@@ -4,8 +4,8 @@
 	<title>Account Recovery</title>
 </head>
 <body>
-	<div style="padding:10px; border:1px solid #cccccc; text-align:center; font-size:20px;">
-	<img src="https://www.zenithstake.com/images/logo.png" alt="logo" height="100" width="300" />
+	<div style="padding:10px; border:1px solid #cccccc; text-align:center; font-size:17px;">
+	<img src="https://www.zenithstake.com/images/logo.png" alt="logo" height="80" width="270" />
 
 
 	<h1>Hi  {{ $firstName }}, </h1>
@@ -18,7 +18,7 @@
 
 	<p style="margin-top:20px; color:red">If you're not the one who made this request and you're not aware of it, disregard this message.</p>
 
-	<p style="margin-top:20px; color:red">© zenithstake.com 2023</p>
+	<p style="margin-top:20px; color:#cccccc">© zenithstake.com 2023</p>
 
 </div>
 </body>
