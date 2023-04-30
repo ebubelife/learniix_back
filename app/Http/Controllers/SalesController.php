@@ -47,7 +47,7 @@ class SalesController extends Controller
             'product_id' => 'required|string',
             'product_price' => 'required|string',
             'commission' => 'required|string',
-           // 'tx_id' => 'required|string',
+             'tx_id' => 'required|string',
             'customer_name' => 'required|string',
             'customer_email' => 'required|string',
             'customer_phone' => 'required|string',
@@ -68,7 +68,7 @@ class SalesController extends Controller
             $user->vendor_id =  $validated["vendor_id"];
             $characters = '0123456789abcdefghijklmnopqrstuvwxyz' ;
             $random_string = substr(str_shuffle($characters), 0, 8);
-            $user->tx_id = $random_string;
+            $user->tx_id = $validated["tx_id"];
             $user->save();
 
     }
