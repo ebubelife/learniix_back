@@ -115,6 +115,8 @@ class MembersController extends Controller
 
         $user->save();
 
+        $lastInsertedId = $user->id;
+
         // Generate a new API token for the user...
         $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -123,7 +125,7 @@ class MembersController extends Controller
         }
         else if(!$checkEmailValid){
 
-            return response()->json(['message'=>'Please use a valid email'],405);
+            return response()->json(['message'=>'Please use a valid email','user_id'=>$lastInsertedId ],405);
 
 
         }
