@@ -60,10 +60,16 @@ class TransactionsController extends Controller
         $tx ->tx_type = $validated['tx_type'];
         $tx ->user_id =  $validated['user_id'];
 
-        $tx->save();
+       if($tx->save())
+       return response()->json(['message'=>'Transaction successfully saved'],200);
+    
+
+       else
+       return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
+    
 
        
-       
+
     
              
         }
