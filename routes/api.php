@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\MembersController;
+use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\BanksController;
 use App\Http\Controllers\SalesController;
