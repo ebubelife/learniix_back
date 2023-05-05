@@ -36,6 +36,45 @@ class TransactionsController extends Controller
     public function store(Request $request)
     {
         //
+
+
+        try{
+
+           
+
+            $validated = $request->validate([
+                'tx_ref' => 'required|string',
+                'tx_type' => 'required|string',
+                'user_id'=>  'required|string',
+               
+               
+            ],
+           
+        );
+    
+       
+   
+        
+        $tx= new Transactions();
+        $tx ->tx_ref = $validated['tx_ref'];
+        $tx ->tx_type = $validated['tx_type'];
+        $tx ->user_id =  $validated['user_id'];
+
+        $tx->save();
+
+       
+       
+    
+             
+        }
+        catch(\Exception $e){
+            return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
+    
+    
+        }
+    
+
+
     }
 
     /**
