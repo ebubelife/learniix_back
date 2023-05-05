@@ -86,6 +86,7 @@ class MembersController extends Controller
         $user = new Members();
         $user->firstName = $validated['firstName'];
         $user->lastName = $validated['lastName'];
+        $user->is_payed = "true";
       
         $user->phone = $validated['phone'];
         $user->email = $validated['email'];
