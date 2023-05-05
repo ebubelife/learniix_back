@@ -120,12 +120,12 @@ class MembersController extends Controller
         // Generate a new API token for the user...
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['message'=>'success'],200);
+        return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
 
         }
         else if(!$checkEmailValid){
 
-            return response()->json(['message'=>'Please use a valid email','user_id'=>$lastInsertedId ],405);
+            return response()->json(['message'=>'Please use a valid email'],405);
 
 
         }
