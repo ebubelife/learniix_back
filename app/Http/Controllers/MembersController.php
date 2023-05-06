@@ -381,10 +381,9 @@ public function checkPhoneExists($email)
              $emailCode = $user->email_code;
              $firstName = $user->firstName;
 
-          
 
             if(Mail::to($request->email)->send(new ConfirmEmail( $emailCode,$firstName  ))){
-                return response()->json(['message'=>'We\'ve sent you an email to help you recover your password'],200);
+                return response()->json(['message'=>'Please enter the confirmation code to verify your email','code'=>$emailCode],200);
 
             }
         }
@@ -394,6 +393,38 @@ public function checkPhoneExists($email)
 
         }
 
+
+    }
+
+    public function verify_email_with_code(Request $request){
+
+
+        $request->validate([
+            'code' => 'required|string',
+            'email' => 'required|string',
+
+        ]);
+
+        $user_code_exists = Members::where('email_code', $request->code)
+                             ->where('email', $request->email)
+                              ->first();
+
+        if($user_code_exists){
+
+             //generate 4 digit email otp
+
+             $user_code_exists->email_verified = true;
+
+             $user_code_exists->save();
+
+             return response()->json(['message'=>'The email  was successfully verified'],200);
+          
+        }
+        else{
+
+            return response()->json(['message'=>'Sorry! Could not verify that code.'],405);
+
+        }
 
     }
 
