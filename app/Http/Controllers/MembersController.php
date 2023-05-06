@@ -353,7 +353,7 @@ public function checkPhoneExists($email)
             $user->save();
 
             if(Mail::to($request->email)->send(new RecoverAccountMail(  $emailCode,$firstName  ))){
-                return response()->json(['message'=>'We\'ve sent you an email to help you recover your password'],200);
+                return response()->json(['message'=>'We\'ve sent you an email to help you recover your password'],100);
 
             }
         }
