@@ -56,6 +56,12 @@ Route::controller(MembersController::class)->group(function(){
         return response()->json($user);
     });
 
+    Route::delete('account/remove/{id}', function ($id) {
+        $user = Members::destroy($id);
+
+        return response()->json(["message" => "successfully deletd"]);
+    });
+
     Route::post('member/update','update');
 
     Route::post('account/verify_code','verify_code');
