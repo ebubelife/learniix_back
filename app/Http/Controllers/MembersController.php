@@ -379,7 +379,7 @@ public function checkPhoneExists($email)
 
              //generate 4 digit email otp
              $emailCode = $user->email_code;
-             $firstName = $user->firstName
+             $firstName = $user->firstName;
 
           
 
