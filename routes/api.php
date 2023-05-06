@@ -63,6 +63,10 @@ Route::controller(MembersController::class)->group(function(){
 
     Route::post('account/confirm_email','send_mail_verify_code');
 
+    Route::post('account/verify_email',' verify_email_with_code');
+
+   
+
     
    
   
