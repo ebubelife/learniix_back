@@ -122,7 +122,19 @@ class MembersController extends Controller
         // Generate a new API token for the user...
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
+        $send_verification_email = $this->send_mail_verify_code($user->email);
+
+        if($send_verification_email){
+            return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
+
+        }
+        else{
+
+            return response()->json(['message'=>'Could not verify the validity of that email','user_id'=>$lastInsertedId ],405);
+
+        }
+
+       
 
         }
         else if(!$checkEmailValid){
@@ -366,14 +378,11 @@ public function checkPhoneExists($email)
 
     }
 
-    public function send_mail_verify_code(Request $request){
+    public function send_mail_verify_code($email){
 
-        $request->validate([
-            'email' => 'required|string',
+       
 
-        ]);
-
-        $user =  $this->checkEmailExists( $request->email);
+        $user =  $this->checkEmailExists( $email);
 
         if($user){
 
@@ -382,14 +391,14 @@ public function checkPhoneExists($email)
              $firstName = $user->firstName;
 
 
-            if(Mail::to($request->email)->send(new ConfirmEmail( $emailCode,$firstName  ))){
-                return response()->json(['message'=>'Please enter the confirmation code to verify your email','code'=>$emailCode],100);
+            if(Mail::to($email)->send(new ConfirmEmail( $emailCode,$firstName  ))){
+                return true;
 
             }
         }
         else{
 
-            return response()->json(['message'=>'That email doesn\'t exist in our records'],405);
+            return false;
 
         }
 
