@@ -379,10 +379,11 @@ public function checkPhoneExists($email)
 
              //generate 4 digit email otp
              $emailCode = $user->email_code;
+             $firstName = $user->firstName
 
           
 
-            if(Mail::to($request->email)->send(new ConfirmEmail(  $emailCode,$firstName  ))){
+            if(Mail::to($request->email)->send(new ConfirmEmail( $emailCode,$firstName  ))){
                 return response()->json(['message'=>'We\'ve sent you an email to help you recover your password'],200);
 
             }
