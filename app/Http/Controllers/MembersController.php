@@ -122,9 +122,9 @@ class MembersController extends Controller
         // Generate a new API token for the user...
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        $send_verification_email = $this->send_mail_verify_code($user->email);
+        $send_verification_email = $this->send_mail_verify_code($user->email,$user->firstName );
 
-        if($send_verification_email){
+        if($send_verification_email == true){
             return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
 
         }
@@ -378,29 +378,23 @@ public function checkPhoneExists($email)
 
     }
 
-    public function send_mail_verify_code($email){
+    public function send_mail_verify_code($email, $firstName){
 
        
 
-        $user =  $this->checkEmailExists( $email);
+     
 
-        if($user){
+       
 
-             //generate 4 digit email otp
-             $emailCode = $user->email_code;
-             $firstName = $user->firstName;
+            
 
 
             if(Mail::to($email)->send(new ConfirmEmail( $emailCode,$firstName  ))){
                 return true;
 
             }
-        }
-        else{
-
-            return false;
-
-        }
+      
+     
 
 
     }
