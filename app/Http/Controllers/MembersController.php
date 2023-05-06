@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\MyEmail;
 use App\Mail\RecoverAccountMail;
+use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\Mail;
 
 class MembersController extends Controller
@@ -352,6 +353,36 @@ public function checkPhoneExists($email)
             $user->save();
 
             if(Mail::to($request->email)->send(new RecoverAccountMail(  $emailCode,$firstName  ))){
+                return response()->json(['message'=>'We\'ve sent you an email to help you recover your password'],200);
+
+            }
+        }
+        else{
+
+            return response()->json(['message'=>'That email doesn\'t exist in our records'],405);
+
+        }
+
+
+    }
+
+    public function send_mail_verify_code(Request $request){
+
+        $request->validate([
+            'email' => 'required|string',
+
+        ]);
+
+        $user =  $this->checkEmailExists( $request->email);
+
+        if($user){
+
+             //generate 4 digit email otp
+             $emailCode = $user->email_code;
+
+          
+
+            if(Mail::to($request->email)->send(new ConfirmEmail(  $emailCode,$firstName  ))){
                 return response()->json(['message'=>'We\'ve sent you an email to help you recover your password'],200);
 
             }
