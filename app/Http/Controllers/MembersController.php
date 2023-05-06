@@ -124,15 +124,10 @@ class MembersController extends Controller
 
         $send_verification_email = $this->send_mail_verify_code($user->email,$user->email_code,$user->firstName );
 
-        if($send_verification_email){
+      
             return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
 
-        }
-        else{
-
-            return response()->json(['message'=>'Could not verify the validity of that email','user_id'=>$lastInsertedId ],405);
-
-        }
+   
 
        
 
