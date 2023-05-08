@@ -67,7 +67,7 @@ class MembersController extends Controller
 
         try{
 
-            $validated = $request->validate([
+            $validated = Validator::make($request->all(), [
                 'firstName' => 'required|string',
                 'lastName' => 'required|string',
                 'phone' => 'required|string',
