@@ -9,6 +9,8 @@ use App\Mail\MyEmail;
 use App\Mail\RecoverAccountMail;
 use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+
 
 class MembersController extends Controller
 {
