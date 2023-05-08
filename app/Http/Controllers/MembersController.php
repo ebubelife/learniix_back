@@ -105,12 +105,12 @@ if ($validated->fails()) {
 }
 
         $user = new Members();
-        $user->firstName = $validated->firstName;
-        $user->lastName = $validated->lastName;
+        $user->firstName = $validated["firstName"];
+        $user->lastName = $validated["lastName"];
         $user->is_payed = "true";
       
-        $user->phone = $validated->phone;
-        $user->email = $validated->email;
+        $user->phone = $validated["phone"];
+        $user->email = $validated["email"];
 
         $checkEmailValid = $this->checkEmailValid($user->email);
 
@@ -122,7 +122,7 @@ if ($validated->fails()) {
         $user->email_verified = false;
       
       
-        $user->password = Hash::make($validated->password);
+        $user->password = Hash::make($validated["password"]);
 
         //generate affiliate id
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
