@@ -69,7 +69,7 @@ class MembersController extends Controller
 
        
 
-            $validated = Validator::make($request->all(), [
+        $validated = $request->validate([
                 'firstName' => 'required|string',
                 'lastName' => 'required|string',
                 'phone' => 'required|string',
