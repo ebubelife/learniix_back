@@ -86,7 +86,7 @@ class MembersController extends Controller
              
         );
 
-        $validator->stopOnFirstFailure();
+        $validated->stopOnFirstFailure();
 
 if ($validator->fails()) {
     $errors = $validator->errors();
