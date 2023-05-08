@@ -74,15 +74,11 @@ class MembersController extends Controller
                 'lastName' => 'required|string',
                 'phone' => 'required|string',
                
-                'email' => 'required|string|email|unique:members,email|max:255',
+                'email' => 'required|string|email|max:255',
                 'password' => 'required|string|min:8',
               
             ],
-            [
-                "email.required"=>"Please enter a valid email address",
-                "email.unique"=>"That email address is in use already",
-                "phone.required"=>"Please enter a valid phone number",
-            ]
+          
              
         );
 
