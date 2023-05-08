@@ -88,14 +88,14 @@ class MembersController extends Controller
 
         $validated->stopOnFirstFailure();
 
-if ($validator->fails()) {
-    $errors = $validator->errors();
+if ($validated->fails()) {
+    $errors = $validated->errors();
     $firstError = $errors->first();
 
     return response()->json([
         'message' => $firstError,
         'error' => [
-            'validator' => $validator->getMessageBag(),
+            'validator' => $validated->getMessageBag(),
             'response' => null,
             'status' => 422,
             'errorBag' => 'default',
