@@ -86,6 +86,24 @@ class MembersController extends Controller
              
         );
 
+        $validator->stopOnFirstFailure();
+
+if ($validator->fails()) {
+    $errors = $validator->errors();
+    $firstError = $errors->first();
+
+    return response()->json([
+        'message' => $firstError,
+        'error' => [
+            'validator' => $validator->getMessageBag(),
+            'response' => null,
+            'status' => 422,
+            'errorBag' => 'default',
+            'redirectTo' => null,
+        ],
+    ], 422);
+}
+
         $user = new Members();
         $user->firstName = $validated->firstName;
         $user->lastName = $validated->lastName;
