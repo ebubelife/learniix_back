@@ -67,7 +67,7 @@ class MembersController extends Controller
     {
        
 
-        try{
+       
 
             $validated = Validator::make($request->all(), [
                 'firstName' => 'required|string',
@@ -171,15 +171,7 @@ if ($validator->fails()) {
             return response()->json(['message'=>'That phone number is in use already, please try another'],405);
 
 
-        }
-
-          
-        }
-        catch(\Exception $e){
-            return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
-
-
-        }
+       
 
     }
 
