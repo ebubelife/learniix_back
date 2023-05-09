@@ -178,11 +178,17 @@ class MembersController extends Controller
        
        
 
-        if($user["email_verification_status"]=="0"){
-           // return response()->json(['message'=>'Account not verified. Please click the button below to get a verification code.'],401);
+        if($user->email_verified==0){
+            return response()->json(['message'=>'Account not verified. Please click the button below to get a verification code.'],405);
+
+        }
+
+        if($user->is_payed=="false" || $user->is_payed==null){
+            return response()->json(['message'=>'You haven\t completed your registration'],406);
 
         }
        
+        if($user->email_verified==1 && $user->is_payed=="true"){
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -191,6 +197,8 @@ class MembersController extends Controller
             'user_details' => $user,
             'access_token' => $token
         ]);
+    }
+
     }catch(Exception $e){
 
         return response()->json(['message' => $e->getMessage()],500);
