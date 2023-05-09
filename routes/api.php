@@ -65,7 +65,7 @@ Route::controller(MembersController::class)->group(function(){
 
 
     Route::get('users/all/update_payed_status', function () {
-        Members::query()->update(['is_payed' => true]);
+       // Members::query()->update(['is_payed' => ]);
         return response()->json(["message" => "successfully updated"]);
     });
 
