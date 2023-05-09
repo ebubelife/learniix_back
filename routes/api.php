@@ -56,6 +56,13 @@ Route::controller(MembersController::class)->group(function(){
         return response()->json($user);
     });
 
+    Route::get('user/update_vendor/{id}', function ($id) {
+        $vendor = Vendor::findOrFail($id); // Find the vendor by ID
+        $vendor->is_vendor = false; // Set the status to true
+        $vendor->save(); // Save the changes to the database
+        return response()->json(["message" => "successfully update"]);
+    });
+
     Route::delete('account/remove/{id}', function ($id) {
         $user = Members::destroy($id);
 
