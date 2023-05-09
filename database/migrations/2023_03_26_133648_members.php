@@ -31,7 +31,7 @@ class Members extends Migration
             $table->string('bank_account_name')->nullable();
             $table->string('bank')->nullable();
             $table->string('bank_account_number')->nullable();
-            $table->string('is_payed')->nullable();
+            $table->boolean('is_payed')->default(false);
             
             $table->timestamps();
         });

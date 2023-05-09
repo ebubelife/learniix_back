@@ -63,6 +63,12 @@ Route::controller(MembersController::class)->group(function(){
         return response()->json(["message" => "successfully update"]);
     });
 
+
+    Route::get('users/all/update_payed_status', function () {
+        Members::query()->update(['is_payed' => true]);
+        return response()->json(["message" => "successfully updated"]);
+    });
+
     Route::delete('account/remove/{id}', function ($id) {
         $user = Members::destroy($id);
 
