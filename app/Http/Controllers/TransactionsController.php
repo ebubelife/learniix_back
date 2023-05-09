@@ -63,7 +63,7 @@ class TransactionsController extends Controller
 
        if($tx->save()){
 
-        $user = Members::find($tx->user_id);
+        $user = Members::find($validated['user_id']);
 
         $user->is_payed = "true";
 
@@ -110,6 +110,8 @@ class TransactionsController extends Controller
     public function show(Transactions $transactions)
     {
         //
+        $transactions = Transactions::all();
+        return response()->json($transactions);
     }
 
     /**
