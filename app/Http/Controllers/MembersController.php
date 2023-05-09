@@ -165,7 +165,9 @@ class MembersController extends Controller
             'password' => 'required|string',
         ]);
 
-        $user = Members::where('email', $request->email)->first();
+        $user = Members::where('email', $request->email)
+        ->where('is_payed', "true")
+        ->first();
 
         if (!$user ) {
              return response()->json(['message'=>'That email doesn\'t exist.'],405);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transactions;
+use App\Models\Members;
 use Illuminate\Http\Request;
 
 class TransactionsController extends Controller
@@ -60,12 +61,29 @@ class TransactionsController extends Controller
         $tx ->tx_type = $validated['tx_type'];
         $tx ->user_id =  $validated['user_id'];
 
-       if($tx->save())
-       return response()->json(['message'=>'Transaction successfully saved'],200);
+       if($tx->save()){
+
+        $user = Members::find($user_id);
+
+        $user->is_payed = "true";
+
+        if($user->save()){
+            return response()->json(['message'=>'Transaction successfully saved'],200);
+
+        }
+        else{
+            return response()->json(['message'=>'An error occured, please contact support', 'error'=>$e],405);
+    
+        }
+
+       
+
+       }
+      
     
 
        else
-       return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
+       return response()->json(['message'=>'An error occured, please contact support', 'error'=>$e],405);
     
 
        
