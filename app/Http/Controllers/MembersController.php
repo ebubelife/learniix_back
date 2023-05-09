@@ -112,7 +112,7 @@ class MembersController extends Controller
         $checkEmailExists = $this->checkEmailExists($user->email);
         $checkPhoneExists = $this->checkPhoneExists($user->phone);
 
-        if($checkEmailValid && !$checkEmailExists ){
+        if($checkEmailValid && !$checkEmailExists && !$checkPhoneExists ){
 
         $user->save();
 
@@ -235,10 +235,10 @@ public function checkEmailValid($email){
 
 
 
-public function checkPhoneExists($email)
+public function checkPhoneExists($phone)
 {
   
-    $user = Members::where('phone', $email)->first();
+    $user = Members::where('phone', $phone)->first();
 
     if ($user) {
         return true;
