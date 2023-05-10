@@ -63,7 +63,7 @@ class TransactionsController extends Controller
 
        if($tx->save()){
 
-        $user = Members::find($validated['user_id']);
+        $user = Members::where('id', $request->user_id)->first();
 
         $user->is_payed = "true";
 

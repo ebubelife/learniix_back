@@ -166,7 +166,7 @@ class MembersController extends Controller
         ]);
 
         $user = Members::where('email', $request->email)
-        ->where('is_payed', "true")
+       // ->where('is_payed', "true")
         ->first();
 
         if (!$user ) {
