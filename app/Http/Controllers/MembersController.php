@@ -207,12 +207,14 @@ class MembersController extends Controller
             'user_details' => $user,
             'access_token' => $token
         ]);
-   // }
+   //
+
+}*/
 
     }catch(Exception $e){
 
         return response()->json(['message' => $e->getMessage()],500);
-    }*/
+    }
 
 
     
