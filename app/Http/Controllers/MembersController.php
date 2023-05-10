@@ -177,20 +177,28 @@ class MembersController extends Controller
 
         }
 
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Successfully logged in.',
+            'user_details' => $user,
+            'access_token' => $token
+        ]);
+
        
        
 
         if($user->email_verified==0){
-            return response()->json(['message'=>'Your email is yet to be verified. Please verify your email.'],403);
+          //  return response()->json(['message'=>'Your email is yet to be verified. Please verify your email.'],403);
 
         }
 
         if($user->is_payed=="false" || $user->is_payed==null){
-            return response()->json(['message'=>'You haven\t completed your registration'],406);
+           // return response()->json(['message'=>'You haven\t completed your registration'],406);
 
         }
        
-        if($user->email_verified==1 && $user->is_payed=="true"){
+       /* if($user->email_verified==1 && $user->is_payed=="true"){
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -199,12 +207,14 @@ class MembersController extends Controller
             'user_details' => $user,
             'access_token' => $token
         ]);
-    }
+   // }
 
     }catch(Exception $e){
 
         return response()->json(['message' => $e->getMessage()],500);
-    }
+    }*/
+
+
     
     }
 
