@@ -181,12 +181,12 @@ class MembersController extends Controller
        
 
         if($user->email_verified==0){
-            return response()->json(['message'=>'Your email is yet to be verified. Please verify your email.',"user_id"=>$user->id,"email"=>$user->email],403);
+            return response()->json(['message'=>'Your email is yet to be verified. Please verify your email.','user_id'=>$user->id,'email'=>$user->email],403);
 
         }
 
         if($user->is_payed=="false" || $user->is_payed==null){
-            return response()->json(['message'=>'You haven\t completed your registration',"user_id"=>$user->id],406);
+            return response()->json(['message'=>'You haven\t completed your registration','user_id'=>$user->id],406);
 
         }
        
