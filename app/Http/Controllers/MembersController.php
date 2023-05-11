@@ -437,7 +437,7 @@ public function checkPhoneExists($phone)
         }
         else{
 
-            return response()->json(['message'=>'Sorry! Could not verify that code.'],405);
+            return response()->json(['message'=>'Sorry! Could not verify that code. '.$request->email." ".$request->code],405);
 
         }
 
