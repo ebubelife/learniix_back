@@ -427,9 +427,12 @@ public function checkPhoneExists($phone)
 
              $user_code_exists->email_verified = true;
 
-             $user_code_exists->save();
+            if( $user_code_exists->save()){
+                return response()->json(['message'=>'The email  was successfully verified'],200);
 
-             return response()->json(['message'=>'The email  was successfully verified'],200);
+            }
+
+            
           
         }
         else{
