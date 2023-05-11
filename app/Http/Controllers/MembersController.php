@@ -188,11 +188,11 @@ class MembersController extends Controller
        
        
 
-        if($user->email_verified==0){
+        if($user->email_verified==false){
           //  return response()->json(['message'=>'Your email is yet to be verified. Please verify your email.'],403);
 
           //if the email isnt verified yet, send an email to the user
-           $this->send_mail_verify_code(f, $user->email_code, $user->firstName);
+           $this->send_mail_verify_code($email, $user->email_code, $user->firstName);
 
         }
 
