@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Transactions;
 use App\Models\Members;
 use Illuminate\Http\Request;
+use App\Mail\ConfirmEmail;
+use Illuminate\Support\Facades\Mail;
 
 class TransactionsController extends Controller
 {
@@ -68,6 +70,19 @@ class TransactionsController extends Controller
         $user->is_payed = "true";
 
         if($user->save()){
+
+            //if transaction is successful and tx type is VENDOR_REG send email to vendor to verify email
+
+            if($validated['tx_type'] == 'VENDOR_REG' || $validated['tx_type'] == 'AFFILIATE_REG' ){
+                  
+            if(Mail::to($user->email)->send(new ConfirmEmail( $user->email_code,$user->firstName))){
+
+                return true;
+
+            }
+
+            }
+
             return response()->json(['message'=>'Transaction successfully saved'],200);
 
         }
