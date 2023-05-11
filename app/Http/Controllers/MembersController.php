@@ -458,7 +458,8 @@ public function checkPhoneExists($phone)
 
         if($user_code_exists){
 
-             //generate 4 digit email otp
+            $user_code_exists->email_verified = true;
+
 
              return response()->json(['message'=>'The code was successfully verified'],200);
           
