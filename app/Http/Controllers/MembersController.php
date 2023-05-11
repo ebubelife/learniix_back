@@ -183,7 +183,7 @@ class MembersController extends Controller
             //  return response()->json(['message'=>'Your email is yet to be verified. Please verify your email.'],403);
   
             //if the email isnt verified yet, send an email to the user
-             $this->send_mail_verify_code($email, $user->email_code, $user->firstName);
+             $this->send_mail_verify_code($user->email, $user->email_code, $user->firstName);
   
           }
 
