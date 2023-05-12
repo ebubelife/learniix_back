@@ -32,6 +32,11 @@ class Members extends Migration
             $table->string('bank')->nullable();
             $table->string('bank_account_number')->nullable();
             $table->string('is_payed')->nullable();
+
+            $table->string('total_aff_sales_cash')->default("0.00");
+            $table->string('total_aff_sales')->default("0.00");
+            $table->string('total_vendor_sales_cash')->default("0.00");
+            $table->string('total_vendor_sales')->default("0.00");
             
             $table->timestamps();
         });
