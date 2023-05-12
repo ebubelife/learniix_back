@@ -207,7 +207,7 @@ Route::controller(SalesController::class)->group(function(){
 
        
     
-        return response()->json($sale);
+        return response()->json($vendor_sales);
     });
 
     
