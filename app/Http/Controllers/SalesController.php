@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sales;
+use App\Models\Members;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
@@ -54,23 +55,61 @@ class SalesController extends Controller
            
         ]);
 
-             $user = new Sales();
+             $sale = new Sales();
 
             
-            $user->affiliate_id =  $validated["affiliate_id"];
-            $user->product_id =  $validated["product_id"];
-            $user->product_price =  $validated["product_price"];
-            $user->commission =  $validated["commission"];
+             $sale->affiliate_id =  $validated["affiliate_id"];
+             $sale->product_id =  $validated["product_id"];
+             $sale->product_price =  $validated["product_price"];
+             $sale->commission =  $validated["commission"];
         
-            $user->customer_name =  $validated["customer_name"];
-            $user->customer_email =  $validated["customer_email"];
-            $user->customer_phone =  $validated["customer_phone"];
-            $user->vendor_id =  $validated["vendor_id"];
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyz' ;
-            $random_string = substr(str_shuffle($characters), 0, 8);
-            $user->tx_id = $validated["tx_id"];
+             $sale->customer_name =  $validated["customer_name"];
+             $sale->customer_email =  $validated["customer_email"];
+             $sale->customer_phone =  $validated["customer_phone"];
+             $sale->vendor_id =  $validated["vendor_id"];
+
+
+           /// $characters = '0123456789abcdefghijklmnopqrstuvwxyz' ;
+            //$random_string = substr(str_shuffle($characters), 0, 8);
+            $sale->tx_id = $validated["tx_id"];
+            $sale->save();
+
+            //calculate total affiliate sales column and add
+
+
+            $user = Members::where('affiliate_id', $validated["affiliate_id"])->first();
+
+            $commission_int = intval($validated["commission"]);
+            $price_int = intval($validated["product_price"]);
+            $total_aff_sales = intval($user->total_aff_sales_cash);
+            $total_aff_sales_num = intval($user->total_aff_sales);
+
+            $user->total_aff_sales_cash = (($commission_int/100) * $price_int)  + $total_aff_sales;
+            $user->total_aff_sales = $total_aff_sales_num + 1;
+
             $user->save();
 
+
+            //calculate total vendor salles column
+
+
+            $user = Members::where('vendor_id', $validated["vendor_id"])->first();
+
+            $commission_int = intval($validated["commission"]);
+            $price_int = intval($validated["product_price"]);
+
+            $aff_commision = (($commission_int/100) * $price_int);
+            $zenithstake_commision = ((10/100) * $price_int);
+
+            $vendor_comission = ($price_int - $aff_commision) - $zenithstake_commision
+
+            $total_vendor_sales = intval($user->total_vendpr_sales_cash);
+            $total_vendor_sales_num = intval($user->totalvendor_sales);
+
+            $user->total_vendor_sales_cash = $vendor_comission + $total_aff_sales;
+            $user->total_vendor_sales = $total_vendor_sales_num + 1;
+
+            $user->save();
     }
     catch(\Exception $e){
         return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
