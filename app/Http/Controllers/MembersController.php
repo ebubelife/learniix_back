@@ -76,6 +76,7 @@ class MembersController extends Controller
                
                 'email' => 'required|string|email|max:255',
                 'password' => 'required|string|min:8',
+                'is_payed'=> 'required|string'
               
             ],
           
@@ -86,7 +87,7 @@ class MembersController extends Controller
         $user = new Members();
         $user->firstName = $validated["firstName"];
         $user->lastName = $validated["lastName"];
-        $user->is_payed = "false";
+        $user->is_payed = $validated["is_payed"];
       
         $user->phone = $validated["phone"];
         $user->email = $validated["email"];
