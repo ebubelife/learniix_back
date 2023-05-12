@@ -85,12 +85,12 @@ class MembersController extends Controller
 
 
         $user = new Members();
-        $user->firstName = $validated["firstName"];
-        $user->lastName = $validated["lastName"];
+        $user->firstName = ($validated["firstName"]);
+        $user->lastName = ($validated["lastName"]);
         $user->is_payed = $validated["is_payed"];
       
         $user->phone = $validated["phone"];
-        $user->email = $validated["email"];
+        $user->email = strtolower($validated["email"]);
 
         $checkEmailValid = $this->checkEmailValid($user->email);
 
