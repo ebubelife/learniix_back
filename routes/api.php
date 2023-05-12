@@ -205,7 +205,21 @@ Route::controller(SalesController::class)->group(function(){
     Route::get('view/vendor/sales/{vendor_id}', function ($vendor_id) {
         $vendor_sales = Sales::where('vendor_id', $vendor_id)->get();
 
-       
+        $total_sales = 0;
+
+        foreach( $vendor_sales as $sale){
+
+            $price = intval($sale->product_price);
+            $product_price = intval($sale->product_price);
+
+            $aff_commission = ($commision/100)*$product_price ;
+
+            $vendor_income = $price - $aff_commission;
+
+            $total_sales  =  $total_sales  +  $vendor_income;
+        }
+
+        
     
         return response()->json($vendor_sales);
     });
