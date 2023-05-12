@@ -93,7 +93,7 @@ class SalesController extends Controller
             //calculate total vendor salles column
 
 
-            $user = Members::where('vendor_id', $validated["vendor_id"])->first();
+            $user = Members::where('id', $validated["vendor_id"])->first();
 
             $commission_int = intval($validated["commission"]);
             $price_int = intval($validated["product_price"]);
