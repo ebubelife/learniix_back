@@ -202,7 +202,7 @@ Route::controller(SalesController::class)->group(function(){
 
     //vendor sales
 
-    Route::get('view/vendor/sales/{id}', function ($id) {
+    Route::get('view/vendor/sales/{vendor_id}', function ($vendor_id) {
         $vendor_sales = Sales::where('vendor_id', $vendor_id)->get();
 
        
