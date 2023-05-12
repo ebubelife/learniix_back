@@ -37,6 +37,7 @@ class Members extends Migration
             $table->string('total_aff_sales')->default("0.00");
             $table->string('total_vendor_sales_cash')->default("0.00");
             $table->string('total_vendor_sales')->default("0.00");
+            $table->string('unpaid_balance')->default("0.00");
             
             $table->timestamps();
         });
