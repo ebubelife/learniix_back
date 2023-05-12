@@ -211,7 +211,7 @@ Route::controller(SalesController::class)->group(function(){
 
             $price = intval($sale->product_price);
             $product_price = intval($sale->product_price);
-            $commisssion = intval($sale->commission);
+            $commision = intval($sale->commission);
 
             $aff_commission = ($commision/100)*$product_price ;
 
