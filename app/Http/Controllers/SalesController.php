@@ -84,8 +84,8 @@ class SalesController extends Controller
             $total_aff_sales = intval($user->total_aff_sales_cash);
             $total_aff_sales_num = intval($user->total_aff_sales);
 
-            $user->total_aff_sales_cash = (($commission_int/100) * $price_int)  + $total_aff_sales;
-            $user->total_aff_sales = $total_aff_sales_num + 1;
+            $user->total_aff_sales_cash = strval((($commission_int/100) * $price_int)  + $total_aff_sales);
+            $user->total_aff_sales = strval($total_aff_sales_num + 1);
 
             $user->save();
 
@@ -106,8 +106,10 @@ class SalesController extends Controller
             $total_vendor_sales = intval($user->total_vendpr_sales_cash);
             $total_vendor_sales_num = intval($user->total_vendor_sales);
 
-            $user->total_vendor_sales_cash = $vendor_comission + $total_aff_sales;
-            $user->total_vendor_sales = $total_vendor_sales_num + 1;
+            $user->total_vendor_sales_cash = strval($vendor_comission + $total_aff_sales);
+            $user->total_vendor_sales = strval($total_vendor_sales_num + 1);
+
+
 
             $user->save();
     }
