@@ -104,7 +104,7 @@ class SalesController extends Controller
             $vendor_comission = ($price_int - $aff_commision) - $zenithstake_commision;
 
             $total_vendor_sales = intval($user->total_vendpr_sales_cash);
-            $total_vendor_sales_num = intval($user->tota_lvendor_sales);
+            $total_vendor_sales_num = intval($user->total_vendor_sales);
 
             $user->total_vendor_sales_cash = $vendor_comission + $total_aff_sales;
             $user->total_vendor_sales = $total_vendor_sales_num + 1;
