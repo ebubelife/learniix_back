@@ -242,7 +242,7 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
                 
                 $affiliate = Sales::where('affiliate_id', $sales[$i]->affiliate_id)->get();
 
-                $sales[$i]['affiliate_details']->$affiliate;
+                $sales[$i]['affiliate_details'] = $affiliate;
 
 
             }
