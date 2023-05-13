@@ -253,7 +253,33 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
            
             }
 
-    return response()->json($sales);
+            //loop through and check array. Filter duplicate items and get count of duplicate items
+
+          
+            $countById = array();
+
+            // Loop through the array and count items with the same id
+            foreach ($sales as $item) {
+            $id = $item["id"];
+            if (isset($countById[$id])) {
+                $countById[$id]++;
+            } else {
+                $countById[$id] = 1;
+            }
+            }
+
+            // Output array with counts added
+            $outputArr = array();
+            foreach ($sales as $item) {
+            $id = $item["id"];
+            $count = $countById[$id];
+            if ($count > 1) {
+                $item["count"] = $count;
+            }
+            $outputArr[] = $item;
+            }
+
+            return response()->json($outputArr);
 
 
 
