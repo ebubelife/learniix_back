@@ -375,7 +375,7 @@ public function checkPhoneExists($phone)
         if($user){
 
              //generate 4 digit email otp
-             $emailCode = $random_number = rand(100000, 999999);
+             $emailCode = $random_number = rand(1000, 9999);
 
             $user->email_code = $emailCode ;
             $firstName = $user->firstName;
