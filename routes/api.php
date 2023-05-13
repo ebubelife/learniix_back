@@ -236,7 +236,7 @@ Route::controller(SalesController::class)->group(function(){
 
 Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 
-    $sales = Sales::where('vendor_id', $vendor_id)->limit(2)->get();
+    $sales = Sales::where('vendor_id', $vendor_id)->limit(200)->get();
     
             for($i=0; $i<count($sales); $i++){
                 
@@ -250,11 +250,7 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
                     $sales[$i]->affiliate_details = "kdsjbc";
                 }
 
-               
-
-
-
-
+           
             }
 
     return response()->json($sales);
