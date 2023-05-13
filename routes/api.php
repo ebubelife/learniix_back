@@ -94,10 +94,11 @@ Route::controller(MembersController::class)->group(function(){
    
    // Route::get('test_api','test_api');
 });
+//Vendors queries
 
 Route::controller(VendorsController::class)->group(function(){
 
-
+    
  
   
     Route::post('vendors/create','store');
@@ -168,6 +169,8 @@ Route::controller(SalesController::class)->group(function(){
         return response()->json($sale);
     });
 
+    
+
     Route::get('view/user_sales_count/{id}', function ($id) {
         $sales_by_user = Sales::where('affiliate_id', $id)->get();
 
@@ -229,4 +232,15 @@ Route::controller(SalesController::class)->group(function(){
   
 });
 
+//get vendor affiliates
+
+Route::get('view/affiliates/{vendor_id}', function ($id) {
+
+    $sales = Sales::where('vendor_id', $vendor_id)->get();
+
+    return response()->json(sales);
+
+
+
+});
 
