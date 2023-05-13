@@ -253,31 +253,43 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
            
             }
 
-            //loop through and check array. Filter duplicate items and get count of duplicate items
-
-          
-            $countById = array();
-
-            // Loop through the array and count items with the same id
-            foreach ($sales as $item) {
-            $id = $item["affiliate_id"];
-            if (isset($countById[$id])) {
-                $countById[$id]++;
-            } else {
-                $countById[$id] = 1;
-            }
-            }
-
-            // Output array with counts added
-            $outputArr = array();
-            foreach ($sales as $item) {
-            $id = $item["affiliate_id"];
-            $count = $countById[$id];
-            if ($count > 1) {
-                $item["count"] = $count;
-            }
-            $outputArr[] = $item;
-            }
+            // Input array
+$arr = array(
+    array("id"=>1, "firstName"=>"John"),
+    array("id"=>2, "firstName"=>"Jane"),
+    array("id"=>1, "firstName"=>"Bob"),
+    array("id"=>3, "firstName"=>"Alice"),
+    array("id"=>1, "firstName"=>"Jack"),
+    array("id"=>2, "firstName"=>"Jill")
+  );
+  
+  // Initialize an associative array to keep track of counts
+  $countById = array();
+  
+  // Loop through the array and count items with the same id
+  foreach ($arr as $item) {
+    $id = $item["id"];
+    if (isset($countById[$id])) {
+      $countById[$id]++;
+    } else {
+      $countById[$id] = 1;
+    }
+  }
+  
+  // Output array with counts added
+  $outputArr = array();
+  foreach ($arr as $item) {
+    $id = $item["id"];
+    $count = $countById[$id];
+    if ($count > 1) {
+      $item["count"] = $count;
+    }
+    $outputArr[] = $item;
+  }
+  
+  // Output the result
+  print_r($outputArr);
+  
 
             return response()->json($outputArr);
 
