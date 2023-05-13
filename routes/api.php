@@ -238,7 +238,7 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 
     $sales = Sales::where('vendor_id', $vendor_id)->get();
 
-    return response()->json(sales);
+    return response()->json($sales);
 
 
 
