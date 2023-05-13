@@ -245,8 +245,9 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
                 if($affiliate){
                     $sales[$i]->affiliate_details = $affiliate;
 
-                }else{
-                    unset($sales[$i]);
+                }else
+                {
+                    $sales[$i]->affiliate_details = "kdsjbc";
                 }
 
                
