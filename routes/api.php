@@ -260,7 +260,7 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 
             // Loop through the array and count items with the same id
             foreach ($sales as $item) {
-            $id = $item["id"];
+            $id = $item["affiliate_id"];
             if (isset($countById[$id])) {
                 $countById[$id]++;
             } else {
@@ -271,7 +271,7 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
             // Output array with counts added
             $outputArr = array();
             foreach ($sales as $item) {
-            $id = $item["id"];
+            $id = $item["affiliate_id"];
             $count = $countById[$id];
             if ($count > 1) {
                 $item["count"] = $count;
