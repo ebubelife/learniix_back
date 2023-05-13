@@ -234,7 +234,7 @@ Route::controller(SalesController::class)->group(function(){
 
 //get vendor affiliates
 
-Route::get('view/affiliates/{vendor_id}', function ($id) {
+Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 
     $sales = Sales::where('vendor_id', $vendor_id)->get();
 
