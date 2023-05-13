@@ -238,11 +238,11 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 
     $sales = Sales::where('vendor_id', $vendor_id)->limit(2)->get();
     
-            foreach($sales as $sale){
+            for($i=0; $i<count($sales); $i++){
                 
-                $affiliate = Sales::where('affiliate_id', $sale->affiliate_id)->get();
+                $affiliate = Sales::where('affiliate_id', $sales[$i]->affiliate_id)->get();
 
-                $sales[$sale]['affiliate_details']->$affiliate;
+                $sales[$i]['affiliate_details']->$affiliate;
 
 
             }
