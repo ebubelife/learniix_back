@@ -262,10 +262,10 @@ $arr = $sales;
   // Loop through the array and count items with the same id
   foreach ($arr as $item) {
     $id = $item->affiliate_id;
-    if (isset($countById[$id])) {
-      $countById[$id]++;
+    if (isset($countById->$id)) {
+      $countById->$id++;
     } else {
-      $countById[$id] = 1;
+      $countById->$id = 1;
     }
     $countById = array();
   }
@@ -274,7 +274,7 @@ $arr = $sales;
   $outputArr = array();
   foreach ($arr as $item) {
     $id = $item->affiliate_id;
-    $count = $countById[$id];
+    $count = $countById->$id;
     if ($count > 1) {
       $item->count = $count;
     }
