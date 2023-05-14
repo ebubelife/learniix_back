@@ -149,6 +149,21 @@ Route::controller(ProductsController::class)->group(function(){
 
     return response()->json($user);
 });
+
+//get products from vendors
+
+Route::get('view/vendor_products/{vendor_id}', function ($vendor_id) {
+
+    $vendor_products = Products::where('vendor_id', $vendor_id)->get();
+
+    return response()->json($vendor_products);
+
+
+});
+
+
+
+
 });
 
 
