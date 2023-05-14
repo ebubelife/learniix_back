@@ -272,7 +272,7 @@ $arr = $sales;
 foreach ($arr as $item) {
   $id = $item["id"];
   $name = $item["affiliate_id"];
-  $key = $id . "-" . $name;
+  $key =  $name;
   if (isset($countByName[$key])) {
     $countByName[$key]++;
   } else {
@@ -285,7 +285,7 @@ $outputArr = array();
 foreach ($arr as $item) {
   $id = $item["id"];
   $name = $item["affiliate_id"];
-  $key = $id . "-" . $name;
+  $key = $name;
   $count = $countByName[$key];
   if ($count > 1) {
     $item["count"] = $count;
