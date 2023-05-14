@@ -264,25 +264,40 @@ $arr = array(
   );
   
   // Initialize an associative array to keep track of counts
-  $countById = array();
-  
-  // Loop through the array and count items with the same id
-  foreach ($arr as $item) {
-    $id = $item["id"];
-    if (isset($countById[$id])) {
-      $countById[$id]++;
-    } else {
-      $countById[$id] = 1;
-    }
-  }
-  
+$countByName = array();
 
-                       
-            $arr = $countById;
-            
+$arr = $sales;
+
+// Loop through the array and count items with the same id and name
+foreach ($arr as $item) {
+  $id = $item["id"];
+  $name = $item["firstName"];
+  $key = $id . "-" . $name;
+  if (isset($countByName[$key])) {
+    $countByName[$key]++;
+  } else {
+    $countByName[$key] = 1;
+  }
+}
+
+// Output array with counts added
+$outputArr = array();
+foreach ($arr as $item) {
+  $id = $item["id"];
+  $name = $item["firstName"];
+  $key = $id . "-" . $name;
+  $count = $countByName[$key];
+  if ($count > 1) {
+    $item["count"] = $count;
+  }
+  $outputArr[] = $item;
+}
+
+
+          
            
 
-            return response()->json($arr);
+            return response()->json($outputArr);
 
 
 });
