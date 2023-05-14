@@ -256,64 +256,10 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
            
             }
 
-            // Input array
-$arr = array(
-    array("id"=>1, "firstName"=>"John"),
-    array("id"=>2, "firstName"=>"Jane"),
-    array("id"=>1, "firstName"=>"Bob"),
-    array("id"=>3, "firstName"=>"Alice"),
-    array("id"=>1, "firstName"=>"Jack"),
-    array("id"=>2, "firstName"=>"Jill")
-  );
-  
-  // Initialize an associative array to keep track of counts
-$countByName = array();
-
-$arr = $sales;
-
-// Loop through the array and count items with the same id and name
-foreach ($arr as $item) {
-  $id = $item["id"];
-  $name = $item["affiliate_id"];
-  $key =  $name;
-  if (isset($countByName[$key])) {
-    $countByName[$key]++;
-  } else {
-    $countByName[$key] = 1;
-  }
-}
-
-// Output array with counts added
-$outputArr = array();
-foreach ($arr as $item) {
-  $id = $item["id"];
-  $name = $item["affiliate_id"];
-  $key = $name;
-  $count = $countByName[$key];
-  if ($count > 1) {
-    $item["count"] = $count;
-  }
-
-
-
-  if (!in_array($item["affiliate_id"], $outputArr)) {
-    $outputArr[] = $item;
-  }
-
- 
-}
-
-
-
-
-
-// Call the function and print the result
-
-
-          
+   
            
 
-            return response()->json($outputArr);
+            return response()->json($sales);
 
 
 });
