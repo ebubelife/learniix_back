@@ -236,25 +236,12 @@ Route::controller(SalesController::class)->group(function(){
 
 Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 
-    $sales = Sales::where('vendor_id', $vendor_id)
-            ->selectRaw('affiliate_id,  COUNT(*) as count')
-            ->groupBy('affiliate_id')
-            ->limit(200)->get();
-    
-            for($i=0; $i<count($sales); $i++){
-                
-                $affiliate = Members::where('affiliate_id', $sales[$i]->affiliate_id)->first();
-
-                if($affiliate){
-                    $sales[$i]->affiliate_details = $affiliate;
-
-                }else
-                {
-                    unset($sales[$i]);
-                }
-
-           
-            }
+    $sales = Sales::join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
+    ->where('sales.vendor_id', $vendor_id)
+    ->selectRaw('sales.affiliate_id, COUNT(*) as count, members.*')
+    ->groupBy('sales.affiliate_id')
+    ->limit(200)
+    ->get();
 
    
            
