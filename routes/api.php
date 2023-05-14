@@ -259,33 +259,10 @@ $arr = $sales;
   // Initialize an associative array to keep track of counts
   
   
-  // Loop through the array and count items with the same id
-  foreach ($arr as $item) {
-    $id = $item->affiliate_id;
-    if (isset($countById[$id])) {
-      $countById[$id]++;
-    } else {
-      $countById[$id] = 1;
-    }
-    $countById = array();
-  }
-  
-  // Output array with counts added
-  $outputArr = array();
-  foreach ($arr as $item) {
-    $id = $item->affiliate_id;
-    $count = $countById[$id];
-    if ($count > 1) {
-      $item["count"] = $count;
-    }
-    $outputArr[] = $item;
-    $countById = array();
-  }
-  
 
   
 
-            return response()->json($outputArr);
+            return response()->json($sales);
 
 
 
