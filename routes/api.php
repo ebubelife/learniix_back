@@ -290,14 +290,26 @@ foreach ($arr as $item) {
   if ($count > 1) {
     $item["count"] = $count;
   }
+
+  if(isset($outputArr[]))
   $outputArr[] = $item;
 }
+
+$unique_array = array();
+foreach ($outputArr as $key => $value) {
+  if (!in_array($value, $unique_array)) {
+    $unique_array[$key] = $value;
+  }
+}
+
+
+// Call the function and print the result
 
 
           
            
 
-            return response()->json($outputArr);
+            return response()->json($unique_array);
 
 
 });
