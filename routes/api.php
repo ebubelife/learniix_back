@@ -295,12 +295,7 @@ foreach ($arr as $item) {
   $outputArr[] = $item;
 }
 
-$unique_array = array();
-foreach ($outputArr as $key => $value) {
-  if (!in_array($value["affiliate_id"], $unique_array)) {
-    $unique_array[$key] = $value;
-  }
-}
+
 
 
 
@@ -310,7 +305,7 @@ foreach ($outputArr as $key => $value) {
           
            
 
-            return response()->json($unique_array);
+            return response()->json($countByName);
 
 
 });
