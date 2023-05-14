@@ -291,8 +291,13 @@ foreach ($arr as $item) {
     $item["count"] = $count;
   }
 
+  if($item["a"])
 
-  $outputArr[] = $item;
+  if (!in_array($item["affiliate_id"], $outputArr)) {
+    $unique_array[$key] = $value;
+  }
+
+ 
 }
 
 
