@@ -297,7 +297,7 @@ foreach ($arr as $item) {
           
            
 
-            return response()->json($countByName);
+            return response()->json($outputArr);
 
 
 });
