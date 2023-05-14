@@ -297,7 +297,7 @@ foreach ($arr as $item) {
 
 $unique_array = array();
 foreach ($outputArr as $key => $value) {
-  if (!in_array($value, $unique_array)) {
+  if (!in_array($value["affiliate_id"], $unique_array)) {
     $unique_array[$key] = $value;
   }
 }
