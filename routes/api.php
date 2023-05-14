@@ -291,9 +291,9 @@ foreach ($arr as $item) {
     $item["count"] = $count;
   }
 
-  if(isset($outputArr[]))
+
   $outputArr[] = $item;
-}
+
 
 $unique_array = array();
 foreach ($outputArr as $key => $value) {
