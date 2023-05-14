@@ -239,7 +239,7 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
     $sales = Sales::where('vendor_id', $vendor_id)
             ->selectRaw('affiliate_id, COUNT(*) as count')
             ->groupBy('affiliate_id')
-            limit(200)->get();
+            ->limit(200)->get();
     
             for($i=0; $i<count($sales); $i++){
                 
