@@ -291,7 +291,7 @@ foreach ($arr as $item) {
     $item["count"] = $count;
   }
 
-  if(isset($outputArr[]))
+
   $outputArr[] = $item;
 }
 
