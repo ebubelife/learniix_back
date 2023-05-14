@@ -254,16 +254,35 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
             }
 
             // Input array
-$arr = $sales;
+$arr = array(
+    array("id"=>1, "firstName"=>"John"),
+    array("id"=>2, "firstName"=>"Jane"),
+    array("id"=>1, "firstName"=>"Bob"),
+    array("id"=>3, "firstName"=>"Alice"),
+    array("id"=>1, "firstName"=>"Jack"),
+    array("id"=>2, "firstName"=>"Jill")
+  );
   
   // Initialize an associative array to keep track of counts
+  $countById = array();
   
+  // Loop through the array and count items with the same id
+  foreach ($arr as $item) {
+    $id = $item["id"];
+    if (isset($countById[$id])) {
+      $countById[$id]++;
+    } else {
+      $countById[$id] = 1;
+    }
+  }
   
 
-  
+                       
+            $arr = $countById;
+            
+           
 
-            return response()->json($sales);
-
+            return response()->json($arr);
 
 
 });
