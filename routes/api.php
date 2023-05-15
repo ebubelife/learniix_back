@@ -184,6 +184,12 @@ Route::controller(SalesController::class)->group(function(){
         return response()->json($sale);
     });
 
+    //get sales from affiliate with dates filter
+
+    Route::get('view/sales/affiliate','show_affiliate_sales_from_date');
+
+    
+
     
 
     Route::get('view/user_sales_count/{id}', function ($id) {

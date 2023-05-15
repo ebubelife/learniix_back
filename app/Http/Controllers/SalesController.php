@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sales;
 use App\Models\Members;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class SalesController extends Controller
 {
@@ -141,6 +142,33 @@ class SalesController extends Controller
           //
           $sales = Sales::all();
           return response()->json($sales);
+    }
+
+
+    public function show_affiliate_sales_from_date(Request $request){
+
+        $validated = $request->validate([
+            'affiliate_id' => 'required|string',
+            'from_date' => 'required|string',
+            'to_date' => 'required|string',
+           
+           
+        ]);
+
+      /*  $sale = new Sales();
+
+            
+        $sale->affiliate_id =  $validated["affiliate_id"];
+        $sale->from_date =  $validated["from_date"];
+        $sale->to_date =  $validated["to_date"];*/
+
+        $from = $validated["from_date"];
+        $to = $validated["to_date"];
+        $sales_by_user = Sales::where('id', $affiliate_id)
+                        ->where('created_at', '>=', Carbon::parse($from))
+                        ->where('created_at', '<=', Carbon::parse($to))
+                        ->get();
+
     }
 
     /**
