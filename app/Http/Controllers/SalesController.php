@@ -164,9 +164,9 @@ class SalesController extends Controller
 
         $from = $validated["from_date"];
         $to = $validated["to_date"];
-        $sales_by_user = Sales::where('id', $validated["affiliate_id"])
-                        ->where('created_at', '>=', Carbon::parse($from))
-                        ->where('created_at', '<=', Carbon::parse($to))
+        $sales_by_user = Sales::where('affiliate_id', $validated["affiliate_id"])
+                       // ->where('created_at', '>=', Carbon::parse($from))
+                      //  ->where('created_at', '<=', Carbon::parse($to))
                         ->get();
 
 
