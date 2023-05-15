@@ -172,7 +172,7 @@ class SalesController extends Controller
         $to = $validated["to_date"];
 
         if($validated["selected_products"] == ''){
-            $sales_by_user = Sales::where('affiliate_id', $validated["affiliate_id"])
+            $sales_by_user = Sales::where('affiliate_id', "25vfgo")
             ->where('created_at', '>=', Carbon::parse($from))
             ->where('created_at', '<=', Carbon::parse($to))
             ->get();
@@ -182,7 +182,7 @@ class SalesController extends Controller
             $sales_by_user = Sales::where('affiliate_id', $validated["affiliate_id"])
             ->where('created_at', '>=', Carbon::parse($from))
             ->where('created_at', '<=', Carbon::parse($to))
-          //  ->where('product_id', $validated["selected_product"])
+            ->where('product_id', $validated["selected_product"])
             ->get();
 
         }
