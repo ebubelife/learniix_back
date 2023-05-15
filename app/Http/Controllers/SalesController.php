@@ -173,7 +173,7 @@ class SalesController extends Controller
                         ->get();
 
 
-                        return response()->json($sales_by_user);
+                        return response()->json("message"=>$sales_by_user, "to"=>$to, "from"=>$from);
 
         }
         catch(\Exception $e){
