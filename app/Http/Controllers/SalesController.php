@@ -167,7 +167,7 @@ class SalesController extends Controller
 
         $from = json_decode($validated["from_date"]);
         $to = json_decode($validated["to_date"]);
-        $sales_by_user = Sales::where('affiliate_id', $validated["affiliate_id"])
+        $sales_by_user = Sales::where('affiliate_id', "25vfgo")
                         ->where('created_at', '>=', Carbon::parse($from))
                         ->where('created_at', '<=', Carbon::parse($to))
                         ->get();
