@@ -162,6 +162,9 @@ class SalesController extends Controller
         $sale->from_date =  $validated["from_date"];
         $sale->to_date =  $validated["to_date"];*/
 
+
+        try{
+
         $from = json_decode($validated["from_date"]);
         $to = json_decode($validated["to_date"]);
         $sales_by_user = Sales::where('affiliate_id', $validated["affiliate_id"])
@@ -171,6 +174,14 @@ class SalesController extends Controller
 
 
                         return response()->json($sales_by_user);
+
+        }
+        catch(\Exception $e){
+            return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
+    
+    
+        }
+
     }
 
     /**
