@@ -169,6 +169,8 @@ class SalesController extends Controller
                         ->where('created_at', '<=', Carbon::parse($to))
                         ->get();
 
+
+                        return response()->json($sales_by_user);
     }
 
     /**

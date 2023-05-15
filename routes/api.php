@@ -186,7 +186,7 @@ Route::controller(SalesController::class)->group(function(){
 
     //get sales from affiliate with dates filter
 
-    Route::get('view/sales/affiliate','show_affiliate_sales_from_date');
+    Route::post('view/sales/affiliate','show_affiliate_sales_from_date');
 
     
 
