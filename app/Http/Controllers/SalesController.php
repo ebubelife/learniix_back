@@ -147,13 +147,7 @@ class SalesController extends Controller
 
     public function show_affiliate_sales_from_date(Request $request){
 
-        $validated = $request->validate([
-            'affiliate_id' => 'required|string',
-            'from_date' => 'required|string',
-            'to_date' => 'required|string',
-           
-           
-        ]);
+      
 
       /*  $sale = new Sales();
 
@@ -164,6 +158,14 @@ class SalesController extends Controller
 
 
         try{
+
+            $validated = $request->validate([
+                'affiliate_id' => 'required|string',
+                'from_date' => 'required|string',
+                'to_date' => 'required|string',
+               
+               
+            ]);
 
         $from = json_decode($validated["from_date"]);
         $to = json_decode($validated["to_date"]);
