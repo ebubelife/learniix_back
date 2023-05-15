@@ -170,23 +170,26 @@ class SalesController extends Controller
 
         $from = $validated["from_date"];
         $to = $validated["to_date"];
-        $selected_product = $validated["selected_product"];
 
-      //  if($selected_product == ""){
-            $sales_by_user = Sales::where('affiliate_id',$validated["affiliate_id"])
+        if($validated["selected_products"] == ''){
+            $sales_by_user = Sales::where('affiliate_id', "25vfgo")
             ->where('created_at', '>=', Carbon::parse($from))
             ->where('created_at', '<=', Carbon::parse($to))
             ->get();
 
-    //   }
+        }else{
 
-          
+            $sales_by_user = Sales::where('affiliate_id', $validated["affiliate_id"])
+            ->where('created_at', '>=', Carbon::parse($from))
+            ->where('created_at', '<=', Carbon::parse($to))
+            ->where('product_id', $validated["selected_product"])
+            ->get();
 
-      //  }
+        }
       
 
 
-                        return response()->json(["message"=>$sales_by_user, "to"=>$to, "sel"=>$selected_product]);
+                        return response()->json(["message"=>$sales_by_user, "to"=>$to, "from"=>$from]);
 
         }
         catch(\Exception $e){
