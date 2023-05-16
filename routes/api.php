@@ -51,13 +51,13 @@ Route::controller(MembersController::class)->group(function(){
     //Route::get('view/user/{id}', 'view_user');
     Route::get('view/all', 'show');
 
-    Route::get('view/affiliates', function ($id) {
+    Route::get('view/affiliates', function () {
         $affiliates = Members::where('is_vendor', false)->get();
     
         return response()->json( $affiliates);
     });
 
-    Route::get('view/vendors', function ($id) {
+    Route::get('view/vendors', function () {
         $vendors = Members::where('is_vendor', true)->get();
     
         return response()->json( $vendors);
