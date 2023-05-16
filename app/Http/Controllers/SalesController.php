@@ -139,7 +139,8 @@ class SalesController extends Controller
     public function show(Sales $sales)
     {
         $sales = Sales::join('products', 'sales.product_id', '=', 'products.id')
-        ->select('sales.*', 'products.productName', 'products.productPrice') // Include the desired columns from the products table
+        ->join('members', 'products.vendor_id', '=', 'members.id')
+        ->select('sales.*', 'products.name as product_name', 'products.price', 'members.firstName as affiliate_name')
         ->get();
 
     return response()->json($sales);
