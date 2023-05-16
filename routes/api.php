@@ -12,6 +12,7 @@ use App\Models\Members;
 use App\Models\Vendors;
 use App\Models\Products;
 use App\Models\Sales;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -197,6 +198,34 @@ Route::controller(SalesController::class)->group(function(){
         $sale = Sales::find($id);
     
         return response()->json($sale);
+    });
+
+
+    //get affiliate_sales in last 24 hours
+
+    Route::get('sales/today/view/{affiliate_id}', function ($affiliate_id) {
+        $startDateTime = Carbon::now()->subDay(); // Get the date and time 24 hours ago
+        $endDateTime = Carbon::now(); // Get the current date and time
+    
+        $sales = Sales::where('affiliate_id', $affiliate_id)
+            ->whereBetween('created_at', [$startDateTime, $endDateTime])
+            ->get();
+    
+        return response()->json($sales);
+    });
+
+
+    //get vendor sales in last 24 hours
+
+    Route::get('sales/today/view/{vendor_id}', function ($vendor_id) {
+        $startDateTime = Carbon::now()->subDay(); // Get the date and time 24 hours ago
+        $endDateTime = Carbon::now(); // Get the current date and time
+    
+        $sales = Sales::where('vendor_id', $vendor_id)
+            ->whereBetween('created_at', [$startDateTime, $endDateTime])
+            ->get();
+    
+        return response()->json($sales);
     });
 
     //get sales from affiliate with dates filter
