@@ -203,7 +203,7 @@ Route::controller(SalesController::class)->group(function(){
 
     //get affiliate_sales in last 24 hours
 
-    Route::get('sales/today/view/{affiliate_id}', function ($affiliate_id) {
+    Route::get('sales/today/affiliate/{affiliate_id}', function ($affiliate_id) {
         $startDateTime = Carbon::now()->subDay(); // Get the date and time 24 hours ago
         $endDateTime = Carbon::now(); // Get the current date and time
     
@@ -217,7 +217,7 @@ Route::controller(SalesController::class)->group(function(){
 
     //get vendor sales in last 24 hours
 
-    Route::get('sales/today/view/{vendor_id}', function ($vendor_id) {
+    Route::get('sales/today/vendor/{vendor_id}', function ($vendor_id) {
         $startDateTime = Carbon::now()->subDay(); // Get the date and time 24 hours ago
         $endDateTime = Carbon::now(); // Get the current date and time
     
