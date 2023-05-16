@@ -140,7 +140,7 @@ class SalesController extends Controller
     {
         $sales = Sales::join('products', 'sales.product_id', '=', 'products.id')
         ->join('members', 'products.vendor_id', '=', 'members.id')
-        ->select('sales.*', 'products.productName as product_name', 'products.productPrice', 'members.firstName as affiliate_name')
+        ->select('sales.*', 'products.productName as product_name', 'products.productPrice', 'members.firstName as affiliate_first_name','members.lastName as affiliate_last_name')
         ->get();
 
     return response()->json($sales);
