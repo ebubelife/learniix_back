@@ -188,7 +188,7 @@ Route::get('view/product/{id}', function ($id) {
 
     $product = Products::find($id);
 
-    return response()->json($roduct);
+    return response()->json($product);
 
 
 });
