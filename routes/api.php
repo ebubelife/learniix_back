@@ -159,11 +159,18 @@ Route::controller(ProductsController::class)->group(function(){
    // Route::get('test_api','test_api');
 
    Route::get('view/product/{id}', function ($id) {
-    $user = Products::find($id);
+    // Get the product by ID
+    $product = Product::find($id);
 
-    $user->image = asset('https://zenithstake.syncight.com/storage/images/product_images/' . $user->image);
+    if (!$product) {
+        return response()->json(['message' => 'Product not found'], 404);
+    }
 
-    return response()->json($user);
+    // Update the sales_page column
+    $product->productSalesPageLink = 'https://zenithstakesmac.com/smac';
+    $product->save();
+
+    return response()->json(['message' => 'Product sales page updated successfully']);
 });
 
 //get products from vendors
