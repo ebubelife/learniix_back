@@ -184,6 +184,15 @@ Route::get('view/vendor_products/{vendor_id}', function ($vendor_id) {
 
 });
 
+Route::get('view/product/{id}', function ($id) {
+
+    $product = Products::find($id);
+
+    return response()->json($roduct);
+
+
+});
+
 
 
 
