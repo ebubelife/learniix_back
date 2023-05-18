@@ -158,7 +158,7 @@ Route::controller(ProductsController::class)->group(function(){
    
    // Route::get('test_api','test_api');
 
-   Route::get('view/product/{id}', function ($id) {
+   Route::get('update/product/{id}', function ($id) {
     // Get the product by ID
     $product = Products::find($id);
 
