@@ -248,7 +248,7 @@ Route::controller(SalesController::class)->group(function(){
 
     Route::post('view/sales/affiliate','show_affiliate_sales_from_date');
 
-    Route::post('view/sales/vendor','  show_vendor_sales_from_date');
+    Route::post('view/sales/vendor','show_vendor_sales_from_date');
 
   
 
