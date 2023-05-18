@@ -203,6 +203,63 @@ class SalesController extends Controller
 
     }
 
+
+
+    public function show_vendor_sales_from_date(Request $request){
+
+      
+
+        /*  $sale = new Sales();
+  
+              
+          $sale->affiliate_id =  $validated["affiliate_id"];
+          $sale->from_date =  $validated["from_date"];
+          $sale->to_date =  $validated["to_date"];*/
+  
+  
+          try{
+  
+              $validated = $request->validate([
+                  'vendor_id' => 'required|string',
+                  'from_date' => 'required|string',
+                  'to_date' => 'required|string',
+                  'selected_product' => 'required|string',
+                 
+                 
+              ]);
+  
+          $from = $validated["from_date"];
+          $to = $validated["to_date"];
+  
+          if($validated["selected_product"] == 'all'){
+              $sales_by_user = Sales::where('vendor_id', $validated["vendor_id"])
+              ->where('created_at', '>=', Carbon::parse($from))
+              ->where('created_at', '<=', Carbon::parse($to))
+              ->get();
+  
+          }else{
+  
+            $sales_by_user = Sales::where('vendor_id', $validated["vendor_id"])
+              ->where('created_at', '>=', Carbon::parse($from))
+              ->where('created_at', '<=', Carbon::parse($to))
+              ->where('product_id', $validated["selected_product"])
+              ->get();
+  
+          }
+        
+  
+  
+                          return response()->json(["message"=>$sales_by_user, "to"=>$to, "from"=>$from]);
+  
+          }
+          catch(\Exception $e){
+              return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
+      
+      
+          }
+  
+      }
+  
     /**
      * Show the form for editing the specified resource.
      *
