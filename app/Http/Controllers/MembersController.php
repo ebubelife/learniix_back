@@ -400,7 +400,7 @@ public function checkPhoneExists($phone)
                 $user->bank_account_name = $request->bankAccountName;
                 $user->bank_account_number = $request->bankAccountNumber;
                 $user->bank = $request->bank;
-                $user->payment_reference_paystack = $api_data->data->recipient_code;
+                $user->payment_reference_paystack = $api_data["data"]["recipient_code"];
                 $user->save();
 
                }
@@ -408,7 +408,7 @@ public function checkPhoneExists($phone)
                else{
 
 
-                return response()->json(['message'=>'Sorry! We could not validate your bank details. Please ensure they are correct.'],405);
+                return response()->json(['message'=>'Sorry! We could not validate your bank details. Please ensure they are correct.', 'status'=>$api_data["status"]],405);
 
                }
                
