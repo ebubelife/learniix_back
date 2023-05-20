@@ -39,7 +39,7 @@ Route::controller(TransactionsController::class)->group(function(){
 
     Route::get('transactions/view/affiliate_payments', function () {
         $affiliate_payments = Transactions::where('tx_type', 'AFFILIATE_PAYMENT')
-        ->orderByDesc()
+        ->orderByDesc('created_at')
         ->get();
     
         return response()->json( $affiliate_payments);
@@ -47,7 +47,7 @@ Route::controller(TransactionsController::class)->group(function(){
 
     Route::get('transactions/view/vendor_payments', function () {
         $vendor_payments = Transactions::where('tx_type', 'VENDOR_PAYMENT')
-        ->orderByDesc()
+        ->orderByDesc('created_at')
         ->get();
     
         return response()->json( $vendor_payments);
@@ -74,7 +74,7 @@ Route::controller(MembersController::class)->group(function(){
 
     Route::get('view/affiliates', function () {
         $affiliates = Members::where('is_vendor', false)
-        ->orderByDesc()
+        ->orderByDesc('created_at')
         ->get();
     
         return response()->json( $affiliates);
@@ -82,7 +82,7 @@ Route::controller(MembersController::class)->group(function(){
 
     Route::get('view/vendors', function () {
         $vendors = Members::where('is_vendor', true)
-        ->orderByDesc()
+        ->orderByDesc('created_at')
         ->get();
     
         return response()->json( $vendors);
@@ -156,6 +156,8 @@ Route::controller(VendorsController::class)->group(function(){
 
 Route::get('vendors/view', function () {
     $vendors = Vendors::all();
+
+
 
     for($i=0; $i < count($vendors); $i++){
 
