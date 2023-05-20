@@ -32,7 +32,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(TransactionsController::class)->group(function(){
     Route::post('transaction/vendor/reg', 'store');
     Route::get('transactions/view/all', 'show');
-   // Route::get('transactions/add_product', 'store_product');
+   
+   // Route::get('transactions/view/affiliate_payments', 'store_product');
+
+    //retrieve affiliate payments
+
+    Route::get('transactions/view/affiliate_payments', function () {
+        $affiliate_payments = Transactions::where('txType', 'AFFILIATE_PAYMENT')->get();
+    
+        return response()->json( $affiliate_payments);
+    });
+
+    Route::get('transactions/view/vendor_payments', function () {
+        $vendor_payments = Transactions::where('txType', 'VENDOR_PAYMENT')->get();
+    
+        return response()->json( $vendor_payments);
+    });
 
 });
 
