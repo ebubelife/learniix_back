@@ -350,13 +350,66 @@ public function checkPhoneExists($phone)
              return response()->json(['message'=>'That user doesn\'t exist.'],405);
         }else{
 
-            $user->firstName = $request->firstName;
-            $user->lastName = $request->lastName;
-            $user->phone = $request->phone;
-            $user->bank_account_name = $request->bankAccountName;
-            $user->bank_account_number = $request->bankAccountNumber;
-            $user->bank = $request->bank;
-            $user->save();
+
+            //Set up curl to validate user account details and create payment code
+
+            $url = "https://api.paystack.co/transferrecipient";
+
+            //open connection
+          
+
+            $fields = [
+                'type' => "nuban",
+                'name' => $request->firstName ." ". $request->lastName,
+                'account_number' => $request->bankAccountNumber,
+                'bank_code' => $request->bank,
+                'currency' => "NGN"
+              ];
+            
+              $fields_string = http_build_query($fields);
+
+
+              //run curl
+
+              //open connection
+                $ch = curl_init();
+                
+                //set the url, number of POST vars, POST data
+                curl_setopt($ch,CURLOPT_URL, $url);
+                curl_setopt($ch,CURLOPT_POST, true);
+                curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    "Authorization: Bearer sk_live_9e99c504399b16cf066e5d5a3eb0edfeb2f7de06",
+                    "Cache-Control: no-cache",
+                ));
+                
+                //So that curl_exec returns the contents of the cURL; rather than echoing it
+                curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
+                
+                //execute post
+                $result = curl_exec($ch);
+               // echo $result;
+
+               if($result->status == true){
+
+                $user->firstName = $request->firstName;
+                $user->lastName = $request->lastName;
+                $user->phone = $request->phone;
+                $user->bank_account_name = $request->bankAccountName;
+                $user->bank_account_number = $request->bankAccountNumber;
+                $user->bank = $request->bank;
+                $user->payment_reference_paystack = $result->data->recipient_code;
+                $user->save();
+
+               }
+
+               else{
+
+
+                return response()->json(['message'=>'Sorry! We could not validate your bank details. Please ensure they are correct.'],405);
+
+               }
+               
            
         }
       
