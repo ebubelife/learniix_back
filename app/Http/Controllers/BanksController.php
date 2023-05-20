@@ -65,7 +65,7 @@ class BanksController extends Controller
     
        // $ban = json_decode($response, true);
 
-       return response()->json($response);
+       return $response;
     
         foreach ($banks as $bank) {
 
