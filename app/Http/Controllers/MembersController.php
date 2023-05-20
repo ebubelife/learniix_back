@@ -388,9 +388,11 @@ public function checkPhoneExists($phone)
                 
                 //execute post
                 $result = curl_exec($ch);
+
+                $api_data = json_decode($result, true);
                // echo $result;
 
-               if($result->status == true){
+               if($api_data->status == true){
 
                 $user->firstName = $request->firstName;
                 $user->lastName = $request->lastName;
@@ -398,7 +400,7 @@ public function checkPhoneExists($phone)
                 $user->bank_account_name = $request->bankAccountName;
                 $user->bank_account_number = $request->bankAccountNumber;
                 $user->bank = $request->bank;
-                $user->payment_reference_paystack = $result->data->recipient_code;
+                $user->payment_reference_paystack = $api_data->data->recipient_code;
                 $user->save();
 
                }
