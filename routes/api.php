@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(TransactionsController::class)->group(function(){
     Route::post('transaction/vendor/reg', 'store');
     Route::get('transactions/view/all', 'show');
+   // Route::get('transactions/add_product', 'store_product');
 
 });
 

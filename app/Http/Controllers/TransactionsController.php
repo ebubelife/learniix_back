@@ -36,6 +36,41 @@ class TransactionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function pay(Request $request){
+
+
+        try{
+
+           
+
+            $validated = $request->validate([
+                'tx_ref' => 'required|string',
+                'tx_type' => 'required|string',
+                'user_id'=>  'required|string',
+                'amount'=>  'required|string',
+                'status'=>  'required|string',
+               
+               
+            ],
+           
+        );
+    
+       
+
+    }
+    catch(\Exception $e){
+        return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
+
+
+
+
+
+
+
+    }
+
+
     public function store(Request $request)
     {
         //
@@ -49,6 +84,8 @@ class TransactionsController extends Controller
                 'tx_ref' => 'required|string',
                 'tx_type' => 'required|string',
                 'user_id'=>  'required|string',
+                'amount'=>  'required|string',
+                'status'=>  'required|string',
                
                
             ],
@@ -116,6 +153,8 @@ class TransactionsController extends Controller
 
     }
 
+
+    
     /**
      * Display the specified resource.
      *
