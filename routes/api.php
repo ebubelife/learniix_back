@@ -38,13 +38,17 @@ Route::controller(TransactionsController::class)->group(function(){
     //retrieve affiliate payments
 
     Route::get('transactions/view/affiliate_payments', function () {
-        $affiliate_payments = Transactions::where('txType', 'AFFILIATE_PAYMENT')->get();
+        $affiliate_payments = Transactions::where('tx_type', 'AFFILIATE_PAYMENT')
+        ->orderByDesc()
+        ->get();
     
         return response()->json( $affiliate_payments);
     });
 
     Route::get('transactions/view/vendor_payments', function () {
-        $vendor_payments = Transactions::where('txType', 'VENDOR_PAYMENT')->get();
+        $vendor_payments = Transactions::where('tx_type', 'VENDOR_PAYMENT')
+        ->orderByDesc()
+        ->get();
     
         return response()->json( $vendor_payments);
     });
@@ -69,13 +73,17 @@ Route::controller(MembersController::class)->group(function(){
     Route::get('view/all', 'show');
 
     Route::get('view/affiliates', function () {
-        $affiliates = Members::where('is_vendor', false)->get();
+        $affiliates = Members::where('is_vendor', false)
+        ->orderByDesc()
+        ->get();
     
         return response()->json( $affiliates);
     });
 
     Route::get('view/vendors', function () {
-        $vendors = Members::where('is_vendor', true)->get();
+        $vendors = Members::where('is_vendor', true)
+        ->orderByDesc()
+        ->get();
     
         return response()->json( $vendors);
     });
