@@ -408,7 +408,7 @@ public function checkPhoneExists($phone)
                else{
 
 
-                return response()->json(['message'=>'Sorry! We could not validate your bank details. Please ensure they are correct.', 'status'=>$api_data["status"]],405);
+                return response()->json(['message'=>'Sorry! We could not validate your bank details. Please ensure they are correct.  '.strval($api_data["status"]), 'status'=>$api_data["status"]],405);
 
                }
                
