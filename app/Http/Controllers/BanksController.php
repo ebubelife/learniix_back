@@ -69,16 +69,7 @@ class BanksController extends Controller
 
        $banks = json_decode($response);
     
-        foreach ($banks["data"] as $bank) {
-
-            $bank_list = new Banks();
-            $bank_list->bank = $bank->name;
-            $bank_list->code = $bank->code;
-
-            $bank_list->save();
-            
-            
-        }
+       return  count($banks["data"]);
     }
 
     /**
