@@ -69,7 +69,7 @@ class BanksController extends Controller
 
        $banks = json_decode($response);
     
-       return  count($banks["data"]);
+       return  count($banks->data);
     }
 
     /**
