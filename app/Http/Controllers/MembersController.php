@@ -341,6 +341,7 @@ public function checkPhoneExists($phone)
             'phone' => 'required|string',
             'bankAccountName' => 'string',
             'bankAccountNumber' => 'string',
+            'bank' => 'string',
             
         ]);
         $user = Members::where('id', $request->id)->first();
@@ -354,6 +355,7 @@ public function checkPhoneExists($phone)
             $user->phone = $request->phone;
             $user->bank_account_name = $request->bankAccountName;
             $user->bank_account_number = $request->bankAccountNumber;
+            $user->bank = $request->bank;
             $user->save();
            
         }
