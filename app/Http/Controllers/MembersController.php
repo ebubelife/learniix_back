@@ -392,7 +392,7 @@ public function checkPhoneExists($phone)
                 $api_data = json_decode($result, true);
                // echo $result;
 
-               if($api_data->status == true){
+               if($api_data["status"] == true){
 
                 $user->firstName = $request->firstName;
                 $user->lastName = $request->lastName;
