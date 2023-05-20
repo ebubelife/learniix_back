@@ -65,13 +65,17 @@ class BanksController extends Controller
     
        // $ban = json_decode($response, true);
 
-       return $response;
+       //return $response;
+
+       $banks = json_decode($response, true);
     
-        foreach ($banks as $bank) {
+        foreach ($banks->data as $bank) {
 
             $bank_list = new Banks();
-            $bank_list->bank = $bank;
-           // $bank_list->save();
+            $bank_list->bank = $bank->name;
+            $bank_list->code = $bank->code;
+
+            $bank_list->save();
             
             
         }
