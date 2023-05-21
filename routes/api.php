@@ -193,10 +193,10 @@ Route::controller(ProductsController::class)->group(function(){
     }
 
     // Update the sales_page column
-    $product->productSalesPageLink = 'https://zenithstakesmac.com/smac';
-    $product->vendor_id = "82";
+    $product->productSalesPageLink = 'https:/startupcode.com.ng';
+    $product->vendor_id = "54";
     $product->productCommission ="50";
-    $product->productName="SMAC Course";
+
     $product->save();
 
     return response()->json(['message' => 'Product sales page updated successfully']);
