@@ -373,10 +373,18 @@ Route::get('admin_sales/view', function () {
 
 
     }
-  
+
+     $startDateTime = Carbon::now()->subDay(); // Get the date and time 24 hours ago
+        $endDateTime = Carbon::now(); // Get the current date and time
+    
+        $sales_today = Sales::all()
+            ->whereBetween('created_at', [$startDateTime, $endDateTime])
+            ->get();
+
+    
 
 
-    return response()->json(["total_earnings"=>$total_sales,"sales"=>$sales]);
+    return response()->json(["total_earnings"=>$total_sales,"sales_today"=>count($sales_today)]);
 
 
 });
