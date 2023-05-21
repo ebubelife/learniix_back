@@ -195,7 +195,7 @@ Route::controller(ProductsController::class)->group(function(){
     // Update the sales_page column
     $product->productSalesPageLink = 'https://zenithstakesmac.com/smac';
     $product->vendor_id = "82";
-    $product->productCommission =50;
+    $product->productCommission ="50";
     $product->productName="SMAC Course";
     $product->save();
 
