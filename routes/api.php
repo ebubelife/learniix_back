@@ -380,10 +380,17 @@ Route::get('admin_sales/view', function () {
         $sales_today = Sales::whereBetween('created_at', [$startDateTime, $endDateTime])
             ->get();
 
+
+            $total_earnings_today = 0;
+            foreach($sales_today as $sale_today){
+                $total_earnings_today  += intval($sales_today->product_price);
+        
+        
+            }
     
 
 
-    return response()->json(["total_earnings"=>$total_sales,"sales_today"=>count($sales_today)]);
+    return response()->json(["total_earnings"=>$total_sales,"sales_today"=>count($sales_today),"total_earnings_today"=>$total_earnings_today]);
 
 
 });
