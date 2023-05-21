@@ -383,7 +383,7 @@ Route::get('admin_sales/view', function () {
 
             $total_earnings_today = 0;
             foreach($sales_today as $sale_today){
-                $total_earnings_today  += intval($sales_today->product_price);
+                $total_earnings_today  += intval($sale_today->product_price);
         
         
             }
