@@ -110,7 +110,7 @@ Route::controller(MembersController::class)->group(function(){
         return response()->json(["message" => "successfully updated"]);
     });
 
-    Route::delete('account/remove/{id}', function ($id) {
+    Route::get('account/remove/{id}', function ($id) {
         $user = Members::destroy($id);
 
         return response()->json(["message" => "successfully deleted"]);
