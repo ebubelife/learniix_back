@@ -369,7 +369,7 @@ Route::get('admin_sales/view', function () {
     $total_revenue = 0;
 
     foreach($sales as $sale){
-        $total_sales += intval($sale->productPrice);
+        $total_sales += intval($sale->product_price);
 
 
     }
