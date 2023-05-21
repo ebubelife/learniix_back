@@ -202,6 +202,23 @@ Route::controller(ProductsController::class)->group(function(){
     return response()->json(['message' => 'Product sales page updated successfully']);
 });
 
+Route::get('approve/product/{id}', function ($id) {
+    // Get the product by ID
+    $product = Products::find($id);
+
+    if (!$product) {
+        return response()->json(['message' => 'Product not found'], 404);
+    }
+
+    // Update the sales_page column
+    $product->approved = true;
+    $product->approved_date = Carbon::now();
+   
+    $product->save();
+
+    return response()->json(['message' => 'Product sales page updated successfully']);
+});
+
 //get products from vendors
 
 Route::get('view/vendor_products/{vendor_id}', function ($vendor_id) {
