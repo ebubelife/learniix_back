@@ -113,7 +113,7 @@ Route::controller(MembersController::class)->group(function(){
     Route::delete('account/remove/{id}', function ($id) {
         $user = Members::destroy($id);
 
-        return response()->json(["message" => "successfully deletd"]);
+        return response()->json(["message" => "successfully deleted"]);
     });
 
     Route::post('member/update','update');
@@ -354,11 +354,35 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
     ->limit(200)
     ->get();
 
-   
-           
 
             return response()->json($sales);
 
 
 });
+
+Route::get('admin_sales/view', function () {
+
+    $sales = Sales::all();
+
+    $total_sales = 0;
+
+    $total_revenue = 0;
+
+    foreach($sales as $sale){
+        $total_sales += $sale->productPrice;
+
+
+    }
+  
+
+
+    return response()->json(["total_earnings"=>$total_sales]);
+
+
+});
+
+
+
+
+
 
