@@ -376,7 +376,7 @@ Route::get('admin_sales/view', function () {
   
 
 
-    return response()->json(["total_earnings"=>$total_sales]);
+    return response()->json(["total_earnings"=>$total_sales,"sales"=>$sales]);
 
 
 });
