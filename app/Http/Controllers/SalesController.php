@@ -295,8 +295,8 @@ class SalesController extends Controller
               ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
               ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
              
-              ->where('created_at', '>=', Carbon::parse($from))
-              ->where('created_at', '<=', Carbon::parse($to))
+              ->where('sales.created_at', '>=', Carbon::parse($from))
+              ->where('sales.created_at', '<=', Carbon::parse($to))
               ->limit(200)
               ->get();
   
@@ -307,10 +307,11 @@ class SalesController extends Controller
             ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
             ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
            
-            ->where('created_at', '>=', Carbon::parse($from))
-            ->where('created_at', '<=', Carbon::parse($to))
+            ->where('sales.created_at', '>=', Carbon::parse($from))
+            ->where('sales.created_at', '<=', Carbon::parse($to))
+            ->where('sales.product_id', $validated["selected_product"])
             ->limit(200)
-              ->where('product_id', $validated["selected_product"])
+             
               ->get();
   
           }
