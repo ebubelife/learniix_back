@@ -37,24 +37,43 @@ class TransactionsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function pay(Request $request){
+    public function pay_affiliates(Request $request){
 
 
         try{
 
            
 
-            $validated = $request->validate([
-                'tx_ref' => 'required|string',
-                'tx_type' => 'required|string',
-                'user_id'=>  'required|string',
-                'amount'=>  'required|string',
-                'status'=>  'required|string',
-               
-               
-            ],
-           
-        );
+            $url = "https://api.paystack.co/transfer";
+
+            $fields = [
+              'source' => "balance",
+              'amount' => 100,
+              "reference" => time(),
+              'recipient' => "RCP_7phy1sl30cjs3ql",
+              'reason' => "Test Withdrawal"
+            ];
+          
+            $fields_string = http_build_query($fields);
+          
+            //open connection
+            $ch = curl_init();
+            
+            //set the url, number of POST vars, POST data
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,CURLOPT_POST, true);
+            curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+              "Authorization: Bearer sk_live_198ec66e1eb618aada7e03e819393231aca5dfb1",
+              "Cache-Control: no-cache",
+            ));
+            
+            //So that curl_exec returns the contents of the cURL; rather than echoing it
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
+            
+            //execute post
+            $result = curl_exec($ch);
+            echo $result;
     
        
 

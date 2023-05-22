@@ -53,6 +53,8 @@ Route::controller(TransactionsController::class)->group(function(){
         return response()->json( $vendor_payments);
     });
 
+    Route::post('pay/affiliate', 'pay_affiliates');
+
 });
 
 
