@@ -50,7 +50,7 @@ class TransactionsController extends Controller
               'source' => "balance",
               'amount' => 100,
               "reference" => time(),
-              'recipient' => "CP_kl98oq1n1mrxqyg",
+              'recipient' => "RCP_kl98oq1n1mrxqyg",
               'reason' => "Test Withdrawal"
             ];
           
