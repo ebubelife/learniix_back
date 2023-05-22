@@ -193,9 +193,9 @@ Route::controller(ProductsController::class)->group(function(){
     }
 
     // Update the sales_page column
-    $product->productSalesPageLink = 'https:/startupcode.com.ng';
-    $product->vendor_id = "54";
-    $product->productCommission ="50";
+    $product->productSalesPageLink = 'https://zenithstake.com/smac/smac';
+   // $product->vendor_id = "54";
+    //$product->productCommission ="50";
 
     $product->save();
 
