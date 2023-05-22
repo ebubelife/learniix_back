@@ -47,11 +47,11 @@ class TransactionsController extends Controller
             $url = "https://api.paystack.co/transfer";
 
             $fields = [
-              'source' => "balance",
-              'amount' => 100,
+              "source" => "balance",
+              "amount" => 100,
               "reference" => time(),
-              'recipient' => "RCP_kl98oq1n1mrxqyg",
-              'reason' => "Test Withdrawal"
+              "recipient" => "RCP_kl98oq1n1mrxqyg",
+              "reason" => "Test Withdrawal"
             ];
           
             $fields_string = http_build_query($fields);
