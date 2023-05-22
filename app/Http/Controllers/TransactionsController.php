@@ -48,7 +48,7 @@ class TransactionsController extends Controller
 
             $fields = [
               "source" => "balance",
-              "amount" => 100,
+              "amount" => 10000,
               "reference" => time(),
               "recipient" => "RCP_kl98oq1n1mrxqyg",
               "reason" => "Test Withdrawal"
