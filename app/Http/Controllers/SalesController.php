@@ -259,6 +259,74 @@ class SalesController extends Controller
           }
   
       }
+
+
+      public function show_vendor_sales_from_date_as_affiliates(Request $request){
+
+        //This method selects affiliates sales between dates and returns them according to count of sales 
+
+      
+
+        /*  $sale = new Sales();
+  
+              
+          $sale->affiliate_id =  $validated["affiliate_id"];
+          $sale->from_date =  $validated["from_date"];
+          $sale->to_date =  $validated["to_date"];*/
+  
+  
+          try{
+  
+              $validated = $request->validate([
+                  'vendor_id' => 'required|string',
+                  'from_date' => 'required|string',
+                  'to_date' => 'required|string',
+                  'selected_product' => 'required|string',
+                 
+                 
+              ]);
+  
+          $from = $validated["from_date"];
+          $to = $validated["to_date"];
+  
+          if($validated["selected_product"] == 'all'){
+              $sales_by_user = Sales::where('vendor_id', $validated["vendor_id"])
+              ->selectRaw('sales.affiliate_id, COUNT(*) as count, members.*')
+              ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
+              ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
+             
+              ->where('created_at', '>=', Carbon::parse($from))
+              ->where('created_at', '<=', Carbon::parse($to))
+              ->limit(200)
+              ->get();
+  
+          }else{
+  
+            $sales_by_user = Sales::where('vendor_id', $validated["vendor_id"])
+            ->selectRaw('sales.affiliate_id, COUNT(*) as count, members.*')
+            ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
+            ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
+           
+            ->where('created_at', '>=', Carbon::parse($from))
+            ->where('created_at', '<=', Carbon::parse($to))
+            ->limit(200)
+              ->where('product_id', $validated["selected_product"])
+              ->get();
+  
+          }
+        
+  
+  
+                          return response()->json(["message"=>$sales_by_user, "to"=>$to, "from"=>$from]);
+  
+          }
+          catch(\Exception $e){
+              return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
+      
+      
+          }
+  
+      }
   
     /**
      * Show the form for editing the specified resource.

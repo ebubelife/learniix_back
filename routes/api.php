@@ -313,11 +313,8 @@ Route::controller(SalesController::class)->group(function(){
 
     Route::post('view/sales/vendor','show_vendor_sales_from_date');
 
-  
+    Route::post('view/sales/vendor/as_affiliates','show_vendor_sales_from_date_as_affiliates');
 
-    
-
-    
 
     Route::get('view/user_sales_count/{id}', function ($id) {
         $sales_by_user = Sales::where('affiliate_id', $id)->get();
@@ -396,6 +393,8 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 
 
 });
+
+
 
 Route::get('admin_sales/view', function () {
 
