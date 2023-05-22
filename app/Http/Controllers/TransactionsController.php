@@ -73,7 +73,10 @@ class TransactionsController extends Controller
             
             //execute post
             $result = curl_exec($ch);
-            echo $result;
+           // echo $result;
+
+           return response()->json(['message'=>$result],405);
+
     
        
 
