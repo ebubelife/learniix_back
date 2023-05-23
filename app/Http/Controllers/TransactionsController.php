@@ -44,16 +44,14 @@ class TransactionsController extends Controller
 
            
 
-            $url = "https://api.flutterwave.com/v3/transfers";
+            $url = "https://api.paystack.co/transfer";
 
             $fields = [
-            //  "source" => "balance",
+              "source" => "balance",
               "amount" => 100,
               "reference" => time(),
-              "account_bank" => "033",
-              "account_number" => "2127100962",
-              "narration" => "Test Withdrawal",
-              "currency" => "NGN"
+              "recipient" => "RCP_kl98oq1n1mrxqyg",
+              "reason" => "Test Withdrawal"
             ];
           
             $fields_string = http_build_query($fields);
@@ -66,7 +64,7 @@ class TransactionsController extends Controller
             curl_setopt($ch,CURLOPT_POST, true);
             curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-              "Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X ",
+              "Authorization: Bearer sk_live_198ec66e1eb618aada7e03e819393231aca5dfb1",
               "Cache-Control: no-cache",
             ));
             
