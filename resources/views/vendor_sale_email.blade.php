@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Congratulations on your new sale!</title>
+	<title>Congratulations 🎉🥳 on your new sale!</title>
 </head>
 <body>
 	<div style="padding:10px; border:1px solid #cccccc;  border-radius:20px; font-size:16px;">
