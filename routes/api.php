@@ -273,6 +273,7 @@ Route::controller(BanksController::class)->group(function(){
 
 Route::controller(SalesController::class)->group(function(){
   
+    Route::post('sales/test_email','testemail');
     Route::post('sales/add','store');
     Route::get('sales/view','show');
     Route::get('view/sale/{id}', function ($id) {
