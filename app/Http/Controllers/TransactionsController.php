@@ -52,7 +52,7 @@ class TransactionsController extends Controller
               "reference" => time(),
               "account_bank" => "033",
               "account_number" => "2127100962",
-              "narration" => "Test Withdrawal"
+              "narration" => "Test Withdrawal",
               "currency" => "NGN"
             ];
           
