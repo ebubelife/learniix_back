@@ -25,13 +25,13 @@ class SalesController extends Controller
 
     public function testemail(){
 
-        if(Mail::to($user->email)->send(new AffiliateEmail( "kongonut@gmail.com"))){
+        if(Mail::to("kongonut@gmail.com")->send(new AffiliateEmail( "kongonut@gmail.com"))){
 
             return true;
 
         }
 
-        if(Mail::to($user->email)->send(new VendorEmail( "kongonut@gmail.com"))){
+        if(Mail::to("kongonut@gmail.com")->send(new VendorEmail( "kongonut@gmail.com"))){
 
             return true;
 
