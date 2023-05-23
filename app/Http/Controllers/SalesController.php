@@ -7,6 +7,10 @@ use App\Models\Members;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+use App\Mail\AffiliateEmail;
+use App\Mail\VendorEmail;
+use Illuminate\Support\Facades\Mail;
+
 class SalesController extends Controller
 {
     /**
@@ -17,6 +21,21 @@ class SalesController extends Controller
     public function index()
     {
         //
+    }
+
+    public function testemail(){
+
+        if(Mail::to($user->email)->send(new AffiliateEmail( $getAffiliate->email))){
+
+            return true;
+
+        }
+
+        if(Mail::to($user->email)->send(new VendorEmail( $getVendor->email))){
+
+            return true;
+
+        }
     }
 
     /**
@@ -121,7 +140,27 @@ class SalesController extends Controller
 
 
 
-            $user->save();
+           if( $user->save()){
+
+            $getAffiliate = Members::where('affiliate_id', $validated["affiliate_id"])->first();
+            $getVendor = Members::where('id', $validated["vendor_id"])->first();
+
+            //send email to affiliate
+
+            if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email))){
+
+                return true;
+
+            }
+
+            //send email to vendor
+
+            if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email))){
+
+                return true;
+
+            }
+           }
     }
     catch(\Exception $e){
         return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
