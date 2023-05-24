@@ -7,6 +7,7 @@ use App\Models\Members;
 use Illuminate\Http\Request;
 use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\Mail;
+use Flutterwave\Util\Currency;
 
 class TransactionsController extends Controller
 {
