@@ -39,7 +39,7 @@ class TransactionsController extends Controller
 
     public function pay_affiliates(Request $request){
 
-        $result = array();
+        $all_tx_result = array();
 
         try{
 
@@ -87,7 +87,9 @@ class TransactionsController extends Controller
             $result = curl_exec($ch);
            // echo $result;
 
-           $result[] = array("user"=>$unpaid_user->id,$result) ;
+           $single_tx_result = array("user"=>$unpaid_user->id,$result) ;
+
+           array_push($all_tx_result, $single_tx_result);
 
         }
 
