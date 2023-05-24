@@ -7,8 +7,6 @@ use App\Models\Members;
 use Illuminate\Http\Request;
 use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\Mail;
-use KingFlamez\Rave\Facades\Rave as Flutterwave;
-
 
 class TransactionsController extends Controller
 {
@@ -52,25 +50,10 @@ class TransactionsController extends Controller
               ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
               ->get();
 
-              $reference = Flutterwave::generateReference();
-
-              $data = [
-                  'account_bank'=> '044',
-                  'account_number'=> '0690000040',
-                  'amount' => 5500,
-                  'narration' => 'Payment for goods purchased',
-                  'currency' => 'NGN',
-                  'reference' => $reference
-              ];
-              
-              $transfer = Flutterwave::transfers()->initiate($data);
-              
-              dd($transfer);
 
 
 
-
-          /*  foreach( $unpaid_users as  $unpaid_user){
+            foreach( $unpaid_users as  $unpaid_user){
 
           
             $url = "https://api.flutterwave.com/v3/transfers";
@@ -101,24 +84,23 @@ class TransactionsController extends Controller
             ));
             
             //So that curl_exec returns the contents of the cURL; rather than echoing it
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);*/
+
+            $jsonData = json_encode($fields);
+
             $curl = curl_init();
             
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.flutterwave.com/v3/transfers', //don't change this
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => json_encode($fields),
-                CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X',
-                    'Content-Type: application/json'
-                ),
-                ));
+         
+                curl_setopt_array($curl, [
+                    CURLOPT_URL => 'https://api.flutterwave.com/v3/transfers',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => $jsonData,
+                    CURLOPT_HTTPHEADER => [
+                        'Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X',
+                        'Content-Type: application/json',
+                    ],
+                ]);
             
             //execute post
             $result = curl_exec($curl);
@@ -128,12 +110,9 @@ class TransactionsController extends Controller
 
            array_push($all_tx_result, $single_tx_result);
 
-        }*/
+        }
 
-          // return response()->json(['message'=> "done","tx_result"=>$all_tx_result],200);
-
-          return  $response;
-         
+           return response()->json(['message'=> "done","tx_result"=>$all_tx_result],200);
        
     }
     catch(\Exception $e){
