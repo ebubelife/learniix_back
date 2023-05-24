@@ -39,19 +39,27 @@ class TransactionsController extends Controller
 
     public function pay_affiliates(Request $request){
 
-
         try{
 
-           
+            //get affiliate
 
-            $url = "https://api.paystack.co/transfer";
+            $unpaid_users = Members::where("is_vendor",false)->get();
+
+            
+
+            foreach($unpaid_users as $unpaid_user){
+
+            if($unpaid_user->payment_reference_paystack != null && $unpaid_user->payment_reference != ""){
+    
+
+            $url = "https://api.flutterwave.com/v3/transfers";
 
             $fields = [
-              "source" => "balance",
-              "amount" => 100,
+              'source' => "balance",
+              "amount" => intval($unpaid_user->unpaid_balance),
               "reference" => time(),
-              "recipient" => "RCP_kl98oq1n1mrxqyg",
-              "reason" => "Test Withdrawal"
+              "recipient" => $unpaid_user->payment_reference_paystack,
+              "reason" => "Affiliate withdrawal Payment"
             ];
           
             $fields_string = http_build_query($fields);
@@ -64,7 +72,7 @@ class TransactionsController extends Controller
             curl_setopt($ch,CURLOPT_POST, true);
             curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-              "Authorization: Bearer sk_live_198ec66e1eb618aada7e03e819393231aca5dfb1",
+              "Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X",
               "Cache-Control: no-cache",
             ));
             
@@ -77,8 +85,10 @@ class TransactionsController extends Controller
 
            return response()->json(['message'=>$result],405);
 
+        }
+
     
-       
+    }
 
     }
     catch(\Exception $e){
