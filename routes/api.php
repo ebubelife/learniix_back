@@ -110,22 +110,16 @@ Route::controller(MembersController::class)->group(function(){
     Route::get('users/all/update_all_earnings', function () {
        // Members::query()->update(['is_payed' => ]);
 
-       $users = Members::all();
 
-       foreach($users as $user) {
 
-        $user->unpaid_balance = "0.00";
-        $user->unpaid_balance_vendor = "0.00";
+       Members::query()->update(['unpaid_balance' => "0.00"]);
+       Members::query()->update(['unpaid_balance_vendor' => "0.00"]);
+       Members::query()->update(['total_aff_sales_cash' => "0.00"]);
+       Members::query()->update(['total_aff_sales' => "0.00"]);
+       Members::query()->update(['total_vendor_sales_cash' => "0.00"]);
+       Members::query()->update(['total_vendor_sales' => "0.00"]);
 
-        $user->total_aff_sales_cas = "0.00";
-        $user->total_aff_sales = "0.00";
-
-        $user->total_vendor_sales_cash = "0.00";
-        $user->total_vendor_sales = "0.00";
-
-       
-       }
-        return response()->json(["message" => "successfully updated"]);
+       return response()->json(["message" => "successfully updated"]);
     });
 
     Route::get('account/remove/{id}', function ($id) {
