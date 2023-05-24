@@ -49,41 +49,12 @@ class TransactionsController extends Controller
 
             foreach($unpaid_users as $unpaid_user){
 
-            if($unpaid_user->payment_reference_paystack != null && $unpaid_user->payment_reference != ""){
+            if($unpaid_user->payment_reference_paystack != null && $unpaid_user->payment_reference != "" && (intval($unpaid_user->unpaid_balance) > 0) ){
     
 
-            $url = "https://api.flutterwave.com/v3/transfers";
+           
 
-            $fields = [
-              'source' => "balance",
-              "amount" => intval($unpaid_user->unpaid_balance),
-              "reference" => time(),
-              "recipient" => $unpaid_user->payment_reference_paystack,
-              "reason" => "Affiliate withdrawal Payment"
-            ];
-          
-            $fields_string = http_build_query($fields);
-          
-            //open connection
-            $ch = curl_init();
-            
-            //set the url, number of POST vars, POST data
-            curl_setopt($ch,CURLOPT_URL, $url);
-            curl_setopt($ch,CURLOPT_POST, true);
-            curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-              "Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X",
-              "Cache-Control: no-cache",
-            ));
-            
-            //So that curl_exec returns the contents of the cURL; rather than echoing it
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
-            
-            //execute post
-            $result = curl_exec($ch);
-           // echo $result;
-
-           return response()->json(['message'=>$result],405);
+           return response()->json(['message'=>$unpaid_users],405);
 
         }
 
