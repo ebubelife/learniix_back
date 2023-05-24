@@ -43,23 +43,18 @@ class TransactionsController extends Controller
 
             //get affiliate
 
-            $unpaid_users = Members::where("is_vendor",false)->get();
+            $unpaid_users = Members::where("is_vendor", false)
+                            ->where("payment_reference_paystack","!=",null)
+                            ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
+                            ->get();
 
-            
+            return response()->json(['message'=>$unpaid_users],405);
 
-            foreach($unpaid_users as $unpaid_user){
-
-          //  if($unpaid_user->payment_reference_paystack != null && $unpaid_user->payment_reference != ""  ){
-    
-
-           
-
-           return response()->json(['message'=>$unpaid_users],405);
-
-       /// }
 
     
     }
+
+   
 
     }
     catch(\Exception $e){
