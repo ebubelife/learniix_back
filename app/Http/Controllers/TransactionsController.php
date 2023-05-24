@@ -95,7 +95,7 @@ class TransactionsController extends Controller
                     CURLOPT_URL => 'https://api.flutterwave.com/v3/transfers',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => $jsonData,
+                  //  CURLOPT_POSTFIELDS => $jsonData,
                     CURLOPT_HTTPHEADER => [
                         'Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X',
                         'Content-Type: application/json',
