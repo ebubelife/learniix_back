@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        KingFlamez\Rave\RaveServiceProvider::class,
+       // KingFlamez\Rave\RaveServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -230,7 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Rave' => KingFlamez\Rave\Facades\Rave::class,
+       // 'Rave' => KingFlamez\Rave\Facades\Rave::class,
 
     ],
 
