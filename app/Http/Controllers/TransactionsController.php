@@ -60,9 +60,9 @@ class TransactionsController extends Controller
 
             $fields = [
               'account_bank' => "033",
-              "amount" => intval($unpaid_user->unpaid_balance),
+              "amount" => 100,
               "reference" => time(),
-              "account_number"=> $unpaid_user->account_number,
+              "account_number"=> "2127100962",
               "narration" => "Test transfer",
               "currency"=> "NGN",
             ];
@@ -96,7 +96,7 @@ class TransactionsController extends Controller
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => json_encode($fields ),
+                CURLOPT_POSTFIELDS => json_encode($fields),
                 CURLOPT_HTTPHEADER => array(
                     'Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X ',
                     'Content-Type: application/json'
