@@ -97,7 +97,7 @@ class TransactionsController extends Controller
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => $jsonData,
                     CURLOPT_HTTPHEADER => [
-                        'Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X',
+                        'Authorization: Bearer FLWSECK_TEST-85d7bdd92a96c2722020dadf14860a51-X',
                         'Content-Type: application/json',
                     ],
                 ]);
