@@ -49,14 +49,14 @@ class TransactionsController extends Controller
 
             foreach($unpaid_users as $unpaid_user){
 
-            if($unpaid_user->payment_reference_paystack != null && $unpaid_user->payment_reference != "" && (intval($unpaid_user->unpaid_balance) > 0) ){
+          //  if($unpaid_user->payment_reference_paystack != null && $unpaid_user->payment_reference != ""  ){
     
 
            
 
            return response()->json(['message'=>$unpaid_users],405);
 
-        }
+       /// }
 
     
     }
