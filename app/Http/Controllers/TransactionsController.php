@@ -50,10 +50,36 @@ class TransactionsController extends Controller
               ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
               ->get();
 
+              $data = [
+                "amount" => 100,
+                "currency" => Currency::NGN,
+                "tx_ref" => "TEST-".uniqid().time()."_PMCKDU_1",
+                "redirectUrl" => "https://www.example.com",
+                "additionalData" => [
+                    "account_details" => [
+                        "account_bank" => "033",
+                        "account_number" => "2127100962",
+                        "amount" => "100",
+                        "callback" => null
+                    ],
+                    "narration" => "Good Times in the making",
+                ],
+            ];
+            
+            $service = new Transfer();
+            $customerObj = $service->customer->create([
+                "full_name" => "Ebube Emeka",
+                "email" => "oebubeemeka19@gmail.com",
+                "phone" => "+2349030544003"
+            ]);
+            $data['customer'] = $customerObj;
+            $payload  = $service->payload->create($data);
+            $response = $service->initiate($payload);
 
 
 
-          //  foreach( $unpaid_users as  $unpaid_user){
+
+          /*  foreach( $unpaid_users as  $unpaid_user){
 
           
             $url = "https://api.flutterwave.com/v3/transfers";
@@ -84,7 +110,7 @@ class TransactionsController extends Controller
             ));
             
             //So that curl_exec returns the contents of the cURL; rather than echoing it
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);*/
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
             $curl = curl_init();
             
             curl_setopt_array($curl, array(
@@ -107,13 +133,13 @@ class TransactionsController extends Controller
             $result = curl_exec($curl);
            // echo $result;
 
-         //  $single_tx_result = array("user"=>$unpaid_user->id,$result) ;
+           $single_tx_result = array("user"=>$unpaid_user->id,$result) ;
 
-          // array_push($all_tx_result, $single_tx_result);
+           array_push($all_tx_result, $single_tx_result);
 
-      //  }
+        }*/
 
-           return  $result;
+           return response()->json(['message'=> "done","tx_result"=>$all_tx_result],200);
        
     }
     catch(\Exception $e){
