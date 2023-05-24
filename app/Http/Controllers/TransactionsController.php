@@ -66,7 +66,7 @@ class TransactionsController extends Controller
               "reason" => "Affiliate withdrawal Payment"
             ];
           
-            $fields_string = http_build_query($fields);
+         /*   $fields_string = http_build_query($fields);
           
             //open connection
             $ch = curl_init();
@@ -81,10 +81,27 @@ class TransactionsController extends Controller
             ));
             
             //So that curl_exec returns the contents of the cURL; rather than echoing it
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);*/
+            $curl = curl_init();
+            
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.flutterwave.com/v3/transfers', //don't change this
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => json_encode($fields ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer YOUR_SECRET KEY',
+                    'Content-Type: application/json'
+                ),
+                ));
             
             //execute post
-            $result = curl_exec($ch);
+            $result = curl_exec($curl);
            // echo $result;
 
            $single_tx_result = array("user"=>$unpaid_user->id,$result) ;
