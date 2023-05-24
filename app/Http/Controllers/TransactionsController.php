@@ -61,7 +61,7 @@ class TransactionsController extends Controller
             $fields = [
               'account_bank' => "033",
               "amount" => 100,
-              "reference" => time(),
+              "reference" => strval(time()),
               "account_number"=> "2127100962",
               "narration" => "Test transfer",
               "currency"=> "NGN",
