@@ -56,7 +56,7 @@ class TransactionsController extends Controller
 
    
 
-    }
+    
     catch(\Exception $e){
         return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
 
