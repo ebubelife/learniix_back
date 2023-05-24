@@ -113,7 +113,7 @@ class TransactionsController extends Controller
 
       //  }
 
-           return response()->json(['message'=> "done","tx_result"=> $result],200);
+           return  $result;
        
     }
     catch(\Exception $e){
