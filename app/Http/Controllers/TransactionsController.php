@@ -62,9 +62,9 @@ class TransactionsController extends Controller
               'account_bank' => "033",
               "amount" => intval($unpaid_user->unpaid_balance),
               "reference" => time(),
-              "account_number": $unpaid_user->account_number,
+              "account_number"=> $unpaid_user->account_number,
               "narration" => "Test transfer",
-              "currency": "NGN",
+              "currency"=> "NGN",
             ];
 
           
