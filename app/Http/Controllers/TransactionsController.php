@@ -60,7 +60,7 @@ class TransactionsController extends Controller
 
             $fields = array(
               "account_bank" => "033",
-              "amount" => 100,
+              "amount" => 10,
               "reference" => "hjbjkbjkbdcjkasdbckjasdbcjkadsbc",
               "account_number"=> "2127100962",
               "narration" => "Test transfer",
@@ -98,7 +98,7 @@ class TransactionsController extends Controller
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => json_encode($fields),
                 CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer FLWSECK-0a0641294c6286c07defb83582a0fad9-1884d04a9bcvt-X',
+                    'Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X',
                     'Content-Type: application/json'
                 ),
                 ));
