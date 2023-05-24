@@ -52,7 +52,7 @@ class TransactionsController extends Controller
 
 
 
-           return response()->json(['message'=> $result],405);
+           return response()->json(['message'=> $unpaid_users ],405);
        
     }
     catch(\Exception $e){
