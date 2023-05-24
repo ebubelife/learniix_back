@@ -59,12 +59,15 @@ class TransactionsController extends Controller
             $url = "https://api.flutterwave.com/v3/transfers";
 
             $fields = [
-              'source' => "balance",
+              'account_bank' => "033",
               "amount" => intval($unpaid_user->unpaid_balance),
               "reference" => time(),
-              "recipient" => $unpaid_user->payment_reference_paystack,
-              "reason" => "Affiliate withdrawal Payment"
+              "account_number": $unpaid_user->account_number,
+              "narration" => "Test transfer",
+              "currency": "NGN",
             ];
+
+          
           
          /*   $fields_string = http_build_query($fields);
           
