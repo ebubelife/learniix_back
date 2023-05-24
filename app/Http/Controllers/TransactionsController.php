@@ -58,14 +58,14 @@ class TransactionsController extends Controller
           
             $url = "https://api.flutterwave.com/v3/transfers";
 
-            $fields = [
+            $fields = array(
               'account_bank' => "033",
               "amount" => 100,
-              "reference" => strval(time()),
+              "reference" => "hjbjkbjkbdcjkasdbckjasdbcjkadsbc",
               "account_number"=> "2127100962",
               "narration" => "Test transfer",
               "currency"=> "NGN",
-            ];
+            );
 
           
           
