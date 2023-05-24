@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\Mail;
 use Flutterwave\Util\Currency;
+use Flutterwave\EventHandlers\EventHandlerInterface;
+use Flutterwave\Flutterwave;
 
 class TransactionsController extends Controller
 {
