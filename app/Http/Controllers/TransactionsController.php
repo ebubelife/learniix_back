@@ -53,7 +53,7 @@ class TransactionsController extends Controller
 
 
 
-            foreach( $unpaid_users as  $unpaid_user){
+          //  foreach( $unpaid_users as  $unpaid_user){
 
           
             $url = "https://api.flutterwave.com/v3/transfers";
@@ -107,13 +107,13 @@ class TransactionsController extends Controller
             $result = curl_exec($curl);
            // echo $result;
 
-           $single_tx_result = array("user"=>$unpaid_user->id,$result) ;
+         //  $single_tx_result = array("user"=>$unpaid_user->id,$result) ;
 
-           array_push($all_tx_result, $single_tx_result);
+          // array_push($all_tx_result, $single_tx_result);
 
-        }
+      //  }
 
-           return response()->json(['message'=> "done","tx_result"=>$all_tx_result],200);
+           return response()->json(['message'=> "done","tx_result"=> $result],200);
        
     }
     catch(\Exception $e){
