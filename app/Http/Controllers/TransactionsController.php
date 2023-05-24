@@ -60,7 +60,7 @@ class TransactionsController extends Controller
 
             $fields = array(
               "account_bank" => "033",
-              "amount" => 10,
+              "amount" => 100,
               "reference" => "hjbjkbjkbdcjkasdbckjasdbcjkadsbc",
               "account_number"=> "2127100962",
               "narration" => "Test transfer",
@@ -95,14 +95,9 @@ class TransactionsController extends Controller
                     CURLOPT_URL => 'https://api.flutterwave.com/v3/transfers',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => '{  "account_bank" : "033",
-                        "amount" : 10,
-                        "reference" : "hjbjkbjkbdcjkasdbckjasdbcjkadsbc",
-                        "account_number : "2127100962",
-                        "narration": "Test transfer",
-                        "currency": "NGN"}',
+                    CURLOPT_POSTFIELDS => $jsonData,
                     CURLOPT_HTTPHEADER => [
-                        'Authorization: Bearer FLWSECK_TEST-85d7bdd92a96c2722020dadf14860a51-X',
+                        'Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X',
                         'Content-Type: application/json',
                     ],
                 ]);
