@@ -7,9 +7,8 @@ use App\Models\Members;
 use Illuminate\Http\Request;
 use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\Mail;
-use Flutterwave\Util\Currency;
-use Flutterwave\EventHandlers\EventHandlerInterface;
-use Flutterwave\Flutterwave;
+use KingFlamez\Rave\Facades\Rave as Flutterwave;
+
 
 class TransactionsController extends Controller
 {
@@ -53,31 +52,20 @@ class TransactionsController extends Controller
               ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
               ->get();
 
+              $reference = Flutterwave::generateReference();
+
               $data = [
-                "amount" => 100,
-                "currency" => Currency::NGN,
-                "tx_ref" => "TEST-".uniqid().time()."_PMCKDU_1",
-                "redirectUrl" => "https://www.example.com",
-                "additionalData" => [
-                    "account_details" => [
-                        "account_bank" => "033",
-                        "account_number" => "2127100962",
-                        "amount" => "100",
-                        "callback" => null
-                    ],
-                    "narration" => "Good Times in the making",
-                ],
-            ];
-            
-            $service = new Transfer();
-            $customerObj = $service->customer->create([
-                "full_name" => "Ebube Emeka",
-                "email" => "oebubeemeka19@gmail.com",
-                "phone" => "+2349030544003"
-            ]);
-            $data['customer'] = $customerObj;
-            $payload  = $service->payload->create($data);
-            $response = $service->initiate($payload);
+                  'account_bank'=> '044',
+                  'account_number'=> '0690000040',
+                  'amount' => 5500,
+                  'narration' => 'Payment for goods purchased',
+                  'currency' => 'NGN',
+                  'reference' => $reference
+              ];
+              
+              $transfer = Flutterwave::transfers()->initiate($data);
+              
+              dd($transfer);
 
 
 
