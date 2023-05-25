@@ -75,6 +75,8 @@ Route::controller(MembersController::class)->group(function(){
     Route::post('account/recover','send_mail_code');
     //Route::get('view/user/{id}', 'view_user');
 
+    
+
     //get affiliates with pending payment
 
     Route::get('view/payable_affiliates', function () {
@@ -125,7 +127,23 @@ unlink($filePath);
 
 // Return a response with the download link
 $downloadLink = Storage::url($publicPath);
-return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates]);
+
+
+$filePath = storage_path('csv/disburse_bank_codes.csv');
+$file = fopen($filePath, 'r');
+
+$data = [];
+
+if ($file) {
+    while (($row = fgetcsv($file)) !== false) {
+        $data[] = $row;
+    }
+
+    fclose($file);
+}
+
+
+return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates,"banks_list" => $data]);
 
 
    // return response()->json($unpaid_affiliates );
