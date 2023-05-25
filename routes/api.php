@@ -129,7 +129,7 @@ unlink($filePath);
 $downloadLink = Storage::url($publicPath);
 
 
-$filePath = Storage::url('public/csv/disburse_bank_codes-2.csv');
+$filePath = storage_path('app/public/csv/disburse_bank_codes-2.csv');
 $file = fopen($filePath, 'r');
 
 $data = [];
