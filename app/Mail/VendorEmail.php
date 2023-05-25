@@ -24,6 +24,10 @@ class VendorEmail extends Mailable
     public function __construct($vendor_email,  $firstName, $productPrice, $commission )
     {
         //
+        $this->firstName = $firstName;
+        $this->vendor_email =$vendor_email;
+        $this->productPrice = $productPrice;
+        $this->commission = $commission;
     }
 
     /**
