@@ -17,8 +17,11 @@ class AffiliateEmail extends Mailable
      * @return void
      */
     public $affiliate_email;
+    public $firstName;
+    public $productPrice;
+    public $commission;
    
-    public function __construct($affiliate_email )
+    public function __construct($affiliate_email,$firstName,$productPrice,$commission )
     {
         //
     }
@@ -32,10 +35,10 @@ class AffiliateEmail extends Mailable
     public function build()
     {
         $message = 'This is an example email sent from Laravel.';
-        return $this->view('vendor_sale_email', ['message' => $message])
-                    ->with(['affiliate_email'=> $this->affiliate_email])
+        return $this->view('affiliate_sale_email', ['message' => $message])
+                    ->with(['affiliate_email'=> $this->affiliate_email,'firstName'=>$this->firstName,'productPrice'=>$this->productPrice,'commission'=>$this->commission])
                    
                     ->from('accounts@zenithstake.com')
-                    ->subject('ZenithStake - Congratulations on your new sale!');
+                    ->subject('ZenithStake - Congratulations on your new sale!🥳🥳');
     }
 }

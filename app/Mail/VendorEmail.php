@@ -17,8 +17,11 @@ class VendorEmail extends Mailable
      * @return void
      */
     public $vendor_email;
+    public $firstName;
+    public $productPrice;
+    public $commission;
    
-    public function __construct($vendor_email )
+    public function __construct($vendor_email,  $firstName, $productPrice, $commission )
     {
         //
     }
@@ -32,9 +35,9 @@ class VendorEmail extends Mailable
     {
         $message = 'This is an example email sent from Laravel.';
         return $this->view('vendor_sale_email', ['message' => $message])
-                    ->with(['vendor_email'=> $this->vendor_email])
+                    ->with(['vendor_email'=> $this->vendor_email,'firstName'=>$this->firstName,'productPrice'=>$this->productPrice,'commission'=>$this->commission])
                    
                     ->from('accounts@zenithstake.com')
-                    ->subject('ZenithStake - Congratulations on your new sale!');
+                    ->subject('ZenithStake - Congratulations on your new sale!🥳🥳');
     }
 }
