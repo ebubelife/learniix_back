@@ -38,6 +38,6 @@ class VendorEmail extends Mailable
                     ->with(['vendor_email'=> $this->vendor_email,'firstName'=>$this->firstName,'productPrice'=>$this->productPrice,'commission'=>$this->commission])
                    
                     ->from('accounts@zenithstake.com')
-                    ->subject('ZenithStake - Congratulations on your new sale!🥳🥳');
+                    ->subject('ZenithStake - Congratulations🥳🥳 on your new sale!🥳');
     }
 }

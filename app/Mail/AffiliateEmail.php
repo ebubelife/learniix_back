@@ -39,6 +39,6 @@ class AffiliateEmail extends Mailable
                     ->with(['affiliate_email'=> $this->affiliate_email,'firstName'=>$this->firstName,'productPrice'=>$this->productPrice,'commission'=>$this->commission])
                    
                     ->from('accounts@zenithstake.com')
-                    ->subject('ZenithStake - Congratulations on your new sale!🥳🥳');
+                    ->subject('ZenithStake - Congratulations🥳🥳 on your new sale!🥳');
     }
 }
