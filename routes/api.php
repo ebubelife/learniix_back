@@ -98,17 +98,12 @@ $header = ['Account Number', 'Bank', 'Amount', 'Narration'];
 fputcsv($file, $header);
 
 // Fetch data from the database or any other source
-$data = [
-    ['John Doe', 'johndoe@example.com', '123456789'],
-    ['Jane Smith', 'janesmith@example.com', '987654321'],
-    // Add more rows as needed
-];
 
 $data = array();
 
 foreach($unpaid_affiliates as $unpaid_affiliate){
 
-    array_push($data, array($unpaid_affiliate->account_number, $unpaid_affiliate->bank, $unpaid_affiliate->$npaid_balance,"Transfer to  ".$unpaid_affiliate->firstName));
+    array_push($data, array($unpaid_affiliate->account_number, $unpaid_affiliate->bank, $unpaid_affiliate->$unpaid_balance,"Transfer to  ".$unpaid_affiliate->firstName));
 
 }
 
