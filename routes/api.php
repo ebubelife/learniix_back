@@ -103,7 +103,7 @@ $data = array();
 
 foreach($unpaid_affiliates as $unpaid_affiliate){
 
-    array_push($data, array($unpaid_affiliate->bank_account_numbe, $unpaid_affiliate->bank, $unpaid_affiliate->unpaid_balance,"Transfer to  ".$unpaid_affiliate->firstName));
+    array_push($data, array($unpaid_affiliate->bank_account_number, $unpaid_affiliate->bank, $unpaid_affiliate->unpaid_balance,"Transfer to  ".$unpaid_affiliate->firstName));
 
 }
 
