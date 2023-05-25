@@ -121,7 +121,7 @@ unlink($filePath);
 
 // Return a response with the download link
 $downloadLink = Storage::url($publicPath);
-return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaidAffiliates]);
+return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates]);
 
 
    // return response()->json($unpaid_affiliates );
