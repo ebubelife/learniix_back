@@ -13,9 +13,9 @@
 
     <p style="margin-top:15px; color:#000000; font-weight:bold">SMAC COURSE</p>
 
-    <p style="margin-top:12px; color:#696969;">Price :  N {{ $productPrice }}</p>
+    <p style="margin-top:12px; color:#696969;">Price :  ₦{{ $productPrice }}</p>
 
-    <p style="margin-top:12px; color:#0000000;">Commission :  N  {{ $commission }}</p>
+    <p style="margin-top:12px; color:#0000000;">Commission :  ₦{{ $commission }}</p>
 
 
 		
