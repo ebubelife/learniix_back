@@ -13,6 +13,8 @@ use App\Models\Vendors;
 use App\Models\Products;
 use App\Models\Sales;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +84,47 @@ Route::controller(MembersController::class)->group(function(){
     ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
     ->get();
 
-    return response()->json($unpaid_affiliates );
+    // Generate a unique file name
+$fileName = 'data_' . Str::random(10) . '.csv';
+
+// Create a new file in the storage directory
+$filePath = storage_path('app/' . $fileName);
+
+// Open the file in write mode
+$file = fopen($filePath, 'w');
+
+// Write the CSV header
+$header = ['Name', 'Email', 'Phone'];
+fputcsv($file, $header);
+
+// Fetch data from the database or any other source
+$data = [
+    ['John Doe', 'johndoe@example.com', '123456789'],
+    ['Jane Smith', 'janesmith@example.com', '987654321'],
+    // Add more rows as needed
+];
+
+// Write the data rows to the CSV file
+foreach ($data as $row) {
+    fputcsv($file, $row);
+}
+
+// Close the file
+fclose($file);
+
+// Store the CSV file in a public directory (optional)
+$publicPath = 'public/csv/' . $fileName;
+Storage::disk('local')->put($publicPath, file_get_contents($filePath));
+
+// Optionally, you can delete the temporary file
+unlink($filePath);
+
+// Return a response with the download link
+$downloadLink = Storage::url($publicPath);
+return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaidAffiliates]);
+
+
+   // return response()->json($unpaid_affiliates );
 
     });
 
