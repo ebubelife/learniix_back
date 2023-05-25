@@ -129,21 +129,10 @@ unlink($filePath);
 $downloadLink = Storage::url($publicPath);
 
 
-$filePath = storage_path('app/public/csv/disburse_bank_codes-2.csv');
-$file = fopen($filePath, 'r');
-
-$data = [];
-
-if ($file) {
-    while (($row = fgetcsv($file)) !== false) {
-        $data[] = $row;
-    }
-
-    fclose($file);
-}
 
 
-return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates,"banks_list" => $data]);
+
+return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates]);
 
 
    // return response()->json($unpaid_affiliates );
