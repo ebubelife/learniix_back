@@ -72,6 +72,21 @@ Route::controller(MembersController::class)->group(function(){
     Route::get('email/test','test_email');
     Route::post('account/recover','send_mail_code');
     //Route::get('view/user/{id}', 'view_user');
+
+    //get affiliates with pending payment
+
+    Route::get('view/payable_affiliates', function () {
+
+    $unpaid_affiliates = Members::where("is_vendor", false)
+    ->where("payment_reference_paystack","!=",null)
+    ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
+    ->get();
+
+    return response()->json($unpaid_affiliates );
+
+    });
+
+
     Route::get('view/all', 'show');
 
     Route::get('view/affiliates', function () {
