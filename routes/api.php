@@ -94,7 +94,7 @@ $filePath = storage_path('app/' . $fileName);
 $file = fopen($filePath, 'w');
 
 // Write the CSV header
-$header = ['Name', 'Email', 'Phone'];
+$header = ['Account Number', 'Bank', 'Amount', 'Narration'];
 fputcsv($file, $header);
 
 // Fetch data from the database or any other source
@@ -103,6 +103,15 @@ $data = [
     ['Jane Smith', 'janesmith@example.com', '987654321'],
     // Add more rows as needed
 ];
+
+$data = array();
+
+foreach($unpaid_affiliates as $unpaid_affiliate){
+
+    array_push($data, array($unpaid_affiliate->account_number, $unpaid_affiliate->bank, $unpaid_affiliate->$unpaid_balance,"Transfer to  ".$unpaid_affiliate->firstName));
+
+}
+
 
 // Write the data rows to the CSV file
 foreach ($data as $row) {
