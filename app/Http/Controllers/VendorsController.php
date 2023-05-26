@@ -42,10 +42,18 @@ class VendorsController extends Controller
 
            
 
-          
+            $validated = $request->validate([
+                'businessName' => 'string',
+                'bio' => 'string',
+                'id'=>  'string',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1000280',
+               
+            ],
+           
+        );
     
        
-        $user =Members::find(intval("5"));
+        $user =Members::find(intval($validated['id']));
 
             
         if ($user) {
@@ -53,9 +61,9 @@ class VendorsController extends Controller
         //$user->save();
         
         $vendor = new Vendors();
-        $vendor ->businessName = "vdsfvdfv";
-        $vendor ->bio = "dfvsdfvsdfvdfv";
-        $vendor ->vendor_id = "5";
+        $vendor ->businessName = $validated['businessName'];
+        $vendor ->bio = $validated['bio'];
+        $vendor ->vendor_id = $user->id;
 
         // Retrieve the uploaded file from the request
         $image = $request->file('image');
@@ -92,7 +100,7 @@ class VendorsController extends Controller
              
         }
         catch(\Exception $e){
-            return response()->json(['message'=>'An error occured, please try againnn'.$e, 'error'=>$e],405);
+            return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
     
     
         }
