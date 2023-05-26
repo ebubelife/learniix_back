@@ -42,15 +42,7 @@ class VendorsController extends Controller
 
            
 
-            $validated = $request->validate([
-                'businessName' => 'string',
-                'bio' => 'string',
-                'id'=>  'string',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1000280',
-               
-            ],
-           
-        );
+          
     
        
         $user =Members::find(intval($validated['id']));
@@ -61,9 +53,9 @@ class VendorsController extends Controller
         //$user->save();
         
         $vendor = new Vendors();
-        $vendor ->businessName = $validated['businessName'];
-        $vendor ->bio = $validated['bio'];
-        $vendor ->vendor_id = $user->id;
+        $vendor ->businessName = "vdsfvdfv";
+        $vendor ->bio = "dfvsdfvsdfvdfv";
+        $vendor ->vendor_id = "5";
 
         // Retrieve the uploaded file from the request
         $image = $request->file('image');
