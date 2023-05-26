@@ -45,7 +45,7 @@ class VendorsController extends Controller
             $validated = $request->validate([
                 'businessName' => 'required|string',
                 'bio' => 'required|string',
-                'id'=>  'required:string',
+               // 'id'=>  'required:string',
                // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:100280',
                
             ],
