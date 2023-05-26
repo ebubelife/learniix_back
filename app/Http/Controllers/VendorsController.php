@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Vendors;
 use App\Models\Members;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class VendorsController extends Controller
 {
@@ -42,16 +43,21 @@ class VendorsController extends Controller
 
            
 
-            $validated = $request->validate([
-                'businessName' => 'string',
-                'bio' => 'string',
-                'id'=>  'string',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1000280',
-               
-            ],
-           
-        );
+        // Validate the request inputs
+    $validator = Validator::make($request->all(), [
+        'businessName' => 'required|string',
+        'bio' => 'required|string',
+        'id' => 'required|string',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10024', // Adjust the max file size as needed
+    ]);
+
+    // Check if the validation fails
+    if ($validator->fails()) {
+        return response()->json(['message' => 'Validation error', 'errors' => $validator->errors()], 422);
+    }
     
+     // Retrieve the validated data
+     $validated = $validator->validated();
        
         $user =Members::find(intval($validated['id']));
 
