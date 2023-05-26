@@ -45,8 +45,8 @@ class VendorsController extends Controller
             $validated = $request->validate([
                 'businessName' => 'required|string',
                 'bio' => 'required|string',
-               // 'id'=>  'required:string',
-               // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:100280',
+                'id'=>  'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10280',
                
             ],
            
@@ -63,10 +63,9 @@ class VendorsController extends Controller
         $vendor = new Vendors();
         $vendor ->businessName = $validated['businessName'];
         $vendor ->bio = $validated['bio'];
-        $vendor ->image = "";
-        $vendor ->save();
+        $vendor ->vendor_id = $user->id;
 
-      /*  // Retrieve the uploaded file from the request
+        // Retrieve the uploaded file from the request
         $image = $request->file('image');
 
         // Generate a unique filename for the uploaded file
@@ -86,7 +85,7 @@ class VendorsController extends Controller
 
                 else{
                     return response()->json(['message'=>'Sorry, your image could not be uploaded!'],405);
-                }*/
+                }
     
       
         // return response()->json(['exists' => true]);
