@@ -53,7 +53,7 @@ class VendorsController extends Controller
 
     // Check if the validation fails
     if ($validator->fails()) {
-        return response()->json(['message' => 'Validation error', 'errors' => $validator->errors()], 422);
+        return response()->json(['message' => 'Validation error'.$validator->errors(), 'errors' => $validator->errors()], 422);
     }
     
      // Retrieve the validated data
