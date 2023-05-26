@@ -64,7 +64,7 @@ class VendorsController extends Controller
             
         if ($user) {
         $user->is_vendor = true;
-        //$user->save();
+        $user->save();
         
         $vendor = new Vendors();
         $vendor ->businessName = $validated['businessName'];
