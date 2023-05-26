@@ -90,7 +90,7 @@ class VendorsController extends Controller
       
         // return response()->json(['exists' => true]);
         } else {
-            return response()->json(['message'=>'That user does\'t exist please try again! ', 'error'=>$e],405);
+            return response()->json(['message'=>'That user does\'t exist please try again! '.$e, 'error'=>$e],405);
     
     
         }
