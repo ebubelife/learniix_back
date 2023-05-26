@@ -92,7 +92,7 @@ class VendorsController extends Controller
              
         }
         catch(\Exception $e){
-            return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
+            return response()->json(['message'=>'An error occured, please try againnn'.$e, 'error'=>$e],405);
     
     
         }
