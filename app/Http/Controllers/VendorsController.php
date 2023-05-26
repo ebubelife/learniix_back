@@ -43,22 +43,22 @@ class VendorsController extends Controller
            
 
             $validated = $request->validate([
-                'businessName' => 'required|string',
-                'bio' => 'required|string',
-                'id'=>  'required',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10280',
+                'businessName' => 'string',
+                'bio' => 'string',
+                'id'=>  'string',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1000280',
                
             ],
            
         );
     
        
-        $user =Members::find($validated['id']);
+        $user =Members::find(intval($validated['id']));
 
             
         if ($user) {
         $user->is_vendor = true;
-        $user->save();
+        //$user->save();
         
         $vendor = new Vendors();
         $vendor ->businessName = $validated['businessName'];
