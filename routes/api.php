@@ -218,9 +218,6 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
 
 Route::controller(VendorsController::class)->group(function(){
 
-    
- 
-  
     Route::post('vendors/create','store');
    
    // Route::middleware('auth:sanctum')-> post('set_transaction_pin','set_transaction_pin');
@@ -228,10 +225,12 @@ Route::controller(VendorsController::class)->group(function(){
    // Route::get('test_api','test_api');
 
    Route::get('view/vendor/{id}', function ($id) {
-    $user = Vendors::where('vendor_id', $id);
+    $user = Vendors::where('vendor_id', $id)->get();
 
     return response()->json($user);
 });
+
+
 
 
 Route::get('vendors/view', function () {
