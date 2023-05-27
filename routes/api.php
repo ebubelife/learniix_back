@@ -228,7 +228,7 @@ Route::controller(VendorsController::class)->group(function(){
    // Route::get('test_api','test_api');
 
    Route::get('view/vendor/{id}', function ($id) {
-    $user = Vendors::find($id);
+    $user = Vendors::where('vendor_id', $id);
 
     return response()->json($user);
 });
