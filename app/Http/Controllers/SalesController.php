@@ -155,7 +155,7 @@ class SalesController extends Controller
 
             //send email to vendor
 
-            if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email,$getAffiliate->firstName,$validated["product_price"],strval($vendor_comission)))){
+            if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission)))){
 
                 return true;
 
