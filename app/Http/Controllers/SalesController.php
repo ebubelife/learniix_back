@@ -109,7 +109,7 @@ class SalesController extends Controller
 
             $unpaid_balance_affiliate = intval($user->unpaid_balance);
 
-             $user->unpaid_balance = strval($unpaid_balance_affiliate + ((($commission_int/100) * $price_int)  + $total_aff_sales));
+             $user->unpaid_balance = strval($unpaid_balance_affiliate + (($commission_int/100) * $price_int));
 
 
             $user->save();
@@ -136,7 +136,7 @@ class SalesController extends Controller
             $user->total_vendor_sales_cash = strval($vendor_comission + $total_aff_sales);
             $user->total_vendor_sales = strval($total_vendor_sales_num + 1);
 
-            $user->unpaid_balance_vendor = strval($unpaid_balance_vendor + ($vendor_comission + $total_aff_sales));
+            $user->unpaid_balance_vendor = strval($unpaid_balance_vendor + ($vendor_comission ));
 
 
 
