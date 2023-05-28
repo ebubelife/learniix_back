@@ -4,7 +4,7 @@
 	<title>Congratulations 🎉🥳 on your new sale!</title>
 </head>
 <body>
-	<div style="padding:10px; border:1px solid #cccccc;  border-radius:20px; font-size:16px;">
+	<div style="padding:10px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius:20px; font-size:16px;">
 	<img src="https://www.zenithstake.com/images/logo.png" alt="logo" height="80" width="270" />
 
 

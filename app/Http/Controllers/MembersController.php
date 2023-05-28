@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Mail\MyEmail;
 use App\Mail\RecoverAccountMail;
 use App\Mail\ConfirmEmail;
+use App\Mail\AffiliateWelcomeEmail;
+
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -36,13 +38,13 @@ class MembersController extends Controller
 
     public function test_email(){
 
-        $logo = asset('https://zenithstake.syncight.com/storage/images/general/logo.png');
+        $logo = asset('https://back.zenithstake.com/storage/images/general/logo.png');
 
         Mail::to('ebubeemeka19@gmail.com')->send(new RecoverAccountMail("1234","Ebube", $logo));
     }
 
     public function test_email_view(){
-        $logo = asset('https://zenithstake.syncight.com/storage/images/general/logo.png');
+        $logo = asset('https://back.zenithstake.com/storage/images/general/logo.png');
         $data = ['emailCode' => '123456', 'firstName'=>'Bob',"logo"=> $logo];
         return view('test_email', $data);
     }
@@ -77,6 +79,7 @@ class MembersController extends Controller
                 'email' => 'required|string|email|max:255',
                 'password' => 'required|string|min:8',
                 'is_payed'=> 'required|string'
+                'reg_type'=> 'required|string'
               
             ],
           
@@ -124,9 +127,21 @@ class MembersController extends Controller
 
         $send_verification_email = $this->send_mail_verify_code($user->email,$user->email_code,$user->firstName );
 
-      
-            return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
+            if($validated["reg_type"]=="AFFILIATE" ){
 
+                if(Mail::to($validated["email"])->send(new AffiliateWelcomeEmail( $validated["email"]))){
+
+                    return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
+
+        
+                }else{
+                    return response()->json(['message'=>'successfully created account but could not verify email. ','user_id'=>$lastInsertedId ],200);
+
+                }
+
+
+            }
+           
    
 
        
