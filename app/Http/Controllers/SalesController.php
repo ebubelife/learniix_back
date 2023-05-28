@@ -133,7 +133,7 @@ class SalesController extends Controller
 
             $unpaid_balance_vendor = intval($user->unpaid_balance_vendor);
 
-            $user->total_vendor_sales_cash = strval($vendor_comission + $total_aff_sales);
+            $user->total_vendor_sales_cash = strval($vendor_comission + $total_vendor_sales);
             $user->total_vendor_sales = strval($total_vendor_sales_num + 1);
 
             $user->unpaid_balance_vendor = strval($unpaid_balance_vendor + ($vendor_comission ));
