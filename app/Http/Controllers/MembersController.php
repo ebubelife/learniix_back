@@ -91,6 +91,17 @@ class MembersController extends Controller
         $user->firstName = ($validated["firstName"]);
         $user->lastName = ($validated["lastName"]);
         $user->is_payed = $validated["is_payed"];
+
+        $reg_type = $validated["reg_type"];
+
+        if($reg_type == "VENDOR"){
+
+             $user->is_vendor = true;
+
+        }
+        else{
+            $user->is_vendor = false;
+        }
       
         $user->phone = $validated["phone"];
         $user->email = strtolower($validated["email"]);
