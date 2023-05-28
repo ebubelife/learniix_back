@@ -13,7 +13,7 @@
 
 	<p style="margin-top:20px; color:#696969;">Your account has been fully created it is ready for you to start earning with it. Click the link below to login into your account. </p>
 
-	<p style="margin-top:20px; color:#8E44AD;">LOGIN TO YOUR ACCOUNT </p>
+	<a href="https://zenithstake.com/signin" style="margin-top:20px; color:#8E44AD;">LOGIN TO YOUR ACCOUNT </a>
 
 		
 	<p style="margin-top:20px; color:red">If you are receiving this email in error, please disregard it</p>
