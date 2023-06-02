@@ -446,6 +446,46 @@ public function checkPhoneExists($phone)
        
     }
 
+
+    public function update_profile_admin(Request $request, Members $members)
+    {
+        try{
+       
+        $request->validate([
+            'id' => 'required',
+            'total_aff_sales_cash' => 'string',
+            'total_aff_sales' => 'string',
+            'unpaid_balance' => 'string',
+            'email' => 'string',
+           
+            
+        ]);
+        $user = Members::where('id', $request->id)->first();
+
+        if (!$user ) {
+             return response()->json(['message'=>'That user doesn\'t exist.'],405);
+        }else{
+
+            $user->total_aff_sales_cash = $request->total_aff_sales_cash;
+            $user->total_aff_sales = $request->total_aff_sales;
+            $user->unpaid_balance = $request->unpaid_balance;
+            $user->email = $request->email;
+
+            $user->save();
+
+
+           
+        }
+    }catch(Exception $e){
+
+        return response()->json(['message' => $e->getMessage()],500);
+    }
+      
+ 
+
+       
+    }
+
     public function send_mail_code(Request $request){
 
         $request->validate([

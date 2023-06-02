@@ -198,6 +198,8 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
 
     Route::post('member/update','update');
 
+    Route::post('member/update_profile_admin','member/update_profile_admin')
+
     Route::post('account/verify_code','verify_code');
     Route::post('account/change_password','change_password');
 
