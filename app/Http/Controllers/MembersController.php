@@ -447,7 +447,7 @@ public function checkPhoneExists($phone)
     }
 
 
-    public function update_profile_admin(Request $request, Members $members)
+    public function update_profile_admin(Request $request)
     {
         try{
        
