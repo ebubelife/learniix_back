@@ -31,7 +31,7 @@ class SalesController extends Controller
 
         }
 
-        if(Mail::to("zenithstake@gmail.com")->send(new VendorEmail( "kongonut@gmail.com","Vendor", "10000","4000"))){
+        if(Mail::to("zenithstake@gmail.com")->send(new VendorEmail("kongonut@gmail.com","Vendor", "10000","4000"))){
 
             return true;
 
