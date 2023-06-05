@@ -18,7 +18,7 @@
 		
 	<p style="margin-top:20px; color:red">If you are receiving this email in error, please disregard it</p>
 
-	<p style="margin-top:20px; color:#B2BEB5">© zenithstake.com 2023</p>
+	<p style="margin-top:20px; color:#B2BEB5"> zenithstake.com © 2023</p>
 
 </div>
 </body>

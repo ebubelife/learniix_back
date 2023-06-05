@@ -6,7 +6,7 @@
 <body>
 	<div style="padding:10px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius:20px; font-size:16px;">
 	
-	<div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#cdcdcd; text-center">
+	<div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#cdcdcd; text-align:center">
 	<img src="https://www.zenithstake.com/images/logo.png" alt="logo" height="80" width="270" style="display:inline-block" />
 
 </div>
