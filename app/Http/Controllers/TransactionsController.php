@@ -87,27 +87,9 @@ class TransactionsController extends Controller
             //So that curl_exec returns the contents of the cURL; rather than echoing it
             curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);*/
 
-            $jsonData = json_encode($fields);
-
-            $curl = curl_init();
-            
          
-                curl_setopt_array($curl, [
-                    CURLOPT_URL => 'https://api.flutterwave.com/v3/transfers',
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => $jsonData,
-                    CURLOPT_HTTPHEADER => [
-                        'Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X',
-                        'Content-Type: application/json',
-                    ],
-                ]);
-            
-            //execute post
-            $result = curl_exec($curl);
-           // echo $result;
 
-           $single_tx_result = array("user"=>$unpaid_user->id,$result) ;
+           $single_tx_result = array("user"=>$unpaid_user->id) ;
 
            array_push($all_tx_result, $single_tx_result);
 
