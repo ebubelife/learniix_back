@@ -111,6 +111,13 @@ class TransactionsController extends Controller
 
            if($res["status"]=="success"){
 
+            $update_user = Members::find($unpaid_user->id);
+
+            $update_user->unpaid_balance= "0.00";
+
+            $unpaid_user->save();
+
+
             Mail::to($unpaid_user->email)->send(new AffiliatePayment( $unpaid_user->unpaid_balance,$unpaid_user->firstName." ".$unpaid_user->lastName));
             $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$res); 
 
