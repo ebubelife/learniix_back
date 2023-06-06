@@ -47,6 +47,7 @@ class TransactionsController extends Controller
 
               $unpaid_users = Members::where("is_vendor", false)
               ->where("payment_reference_paystack","!=",null)
+              ->where("email","ebubeemeka19@gmail.com")
               ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
               ->get();
 
@@ -61,9 +62,9 @@ class TransactionsController extends Controller
             $fields = array(
               "account_bank" => "033",
               "amount" => 100,
-              "reference" => "hjbjkbjkbdcjkasdbckjasdbcjkadsbc",
+             
               "account_number"=> "2127100962",
-              "narration" => "Test transfer",
+              "narration" => "ZENNITHSTAKE ENTERPRISE",
               "currency"=> "NGN",
             );
 
