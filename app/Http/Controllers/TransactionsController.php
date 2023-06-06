@@ -124,7 +124,7 @@ class TransactionsController extends Controller
             $tx->tx_type = "AFFILIATE_PAYMENT";
             $tx->user_id =  $unpaid_user->id;
 
-            $tx->amount = $unpaid_user->unpaid_balance;
+            $tx->amount = $amount ;
             $tx->status = "DONE";
     
            if($tx->save()){
