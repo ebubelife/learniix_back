@@ -64,7 +64,7 @@ class TransactionsController extends Controller
               "amount" => 100,
              
               "account_number"=> "2127100962",
-              "narration" => "ZENNITHSTAKE ENTERPRISE",
+              "narration" => "ZENITHSTAKE ENTERPRISE",
               "currency"=> "NGN",
             );
 
@@ -116,7 +116,7 @@ class TransactionsController extends Controller
 
            }
 
-           
+
 
         
 
