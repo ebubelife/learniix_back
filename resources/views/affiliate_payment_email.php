@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>You've Received Payment 🎉🥳!</title>
+    <meta charset="UTF-8">
 </head>
 <body>
 	<div style="padding:10px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius:20px; font-size:16px;">
@@ -12,7 +13,7 @@
 </div>
 
 
-	<p style="color:#696969; font-size:20px;font-weight:bold; ">Hi  {{ $name }} , </h3>
+	<p style="color:#696969; font-size:20px;font-weight:bold; ">Hi  {{ $affiliate_name }} , </p>
 	<p style="margin-top:20px; color:#696969;">You have just received a payment of ₦{{ $amount }} <b></p>
 
   

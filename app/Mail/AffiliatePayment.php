@@ -35,7 +35,7 @@ class AffiliatePayment extends Mailable
     {
         $message = 'This is an example email sent from Laravel.';
         return $this->view('affiliate_payment_email', ['message' => $message])
-                    ->with(['name'=> "Ebube", 'amount'=> "100"])
+                    ->with(['affiliate_name'=> $this->affiliate_name, 'amount'=> $this->amount])
                    
                     ->from('zenithstake@gmail.com')
                     ->subject('Payment Received🥳');
