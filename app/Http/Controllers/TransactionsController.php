@@ -117,6 +117,16 @@ class TransactionsController extends Controller
 
             $update_user->save();
 
+            $tx= new Transactions();
+            $tx->tx_ref = $res["reference"];
+            $tx->tx_type = "WITHDRAWAL";
+            $tx->user_id =  $unpaid_user->id;
+
+            $tx->amount = $unpaid_user->unpaid_balance;
+            $tx->status = "DONE";
+    
+           if($tx->save()){
+
 
             Mail::to($unpaid_user->email)->send(new AffiliatePayment( $unpaid_user->unpaid_balance,$unpaid_user->firstName." ".$unpaid_user->lastName));
             $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$res); 
