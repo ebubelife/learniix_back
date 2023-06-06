@@ -83,12 +83,13 @@ Route::controller(MembersController::class)->group(function(){
 
     $unpaid_affiliates = Members::where("is_vendor", false)
     ->where("payment_reference_paystack","!=",null)
-    ->where("email","nonsojoshua001@gmail.com")
-    ->where("email","aimchinaza3039@gmail.com")
-    ->where("email","johnadetunji92@gmail.com")
-    ->where("email","belovedprinz@gmail.com")
-    ->where("email","blessingochiemen01@gmail.com")
-    ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
+    ->whereIn("email", [
+        "nonsojoshua001@gmail.com",
+        "aimchinaza3039@gmail.com",
+        "johnadetunji92@gmail.com",
+        "belovedprinz@gmail.com",
+        "blessingochiemen01@gmail.com"
+    ])
     ->get();
 
     // Generate a unique file name
