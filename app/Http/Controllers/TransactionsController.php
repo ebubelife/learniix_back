@@ -109,7 +109,7 @@ class TransactionsController extends Controller
 
            if($result["status"]=="success"){
 
-            Mail::to($unpaid_user->email)->send(new AffiliatePayment( $unpaid_user->unpaid_balance,$unpaid_user->firstName." ".$unpaid_user->lastName))
+            Mail::to($unpaid_user->email)->send(new AffiliatePayment( $unpaid_user->unpaid_balance,$unpaid_user->firstName." ".$unpaid_user->lastName));
             $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$result); 
 
             array_push($all_tx_result, $single_tx_result);
