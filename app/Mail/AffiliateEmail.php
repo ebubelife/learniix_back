@@ -20,8 +20,9 @@ class AffiliateEmail extends Mailable
     public $firstName;
     public $productPrice;
     public $commission;
+    public $customer_email;
    
-    public function __construct($affiliate_email,$firstName,$productPrice,$commission )
+    public function __construct($affiliate_email,$firstName,$productPrice,$commission, $customer_email )
     {
         //
 

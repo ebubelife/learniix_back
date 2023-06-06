@@ -21,6 +21,8 @@
 
     <p style="margin-top:12px; color:#0000000;">You have just earned  ₦{{ $commission }}  on this sale</p>
 
+	<p>Customer Email: {{ $customer_email }}</p>
+
 
 		
 	<div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#E5E4E2; text-align:center">

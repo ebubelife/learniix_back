@@ -147,7 +147,7 @@ class SalesController extends Controller
 
             //send email to affiliate
 
-            if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision )))){
+            if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_email"]))){
 
                 return true;
 
