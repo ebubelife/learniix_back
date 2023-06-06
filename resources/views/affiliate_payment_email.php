@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Congratulations 🎉🥳 on your new sale!</title>
+	<title>You've Received Payment 🎉🥳!</title>
 </head>
 <body>
 	<div style="padding:10px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius:20px; font-size:16px;">

@@ -60,10 +60,10 @@ class TransactionsController extends Controller
             $url = "https://api.flutterwave.com/v3/transfers";
 
             $fields = array(
-              "account_bank" => "033",
+              "account_bank" => $unpaid_user->bank,
               "amount" => 100,
              
-              "account_number"=> "2127100962",
+              "account_number"=> $unpaid_user->bank_account_number,
               "narration" => "ZENITHSTAKE ENTERPRISE",
               "currency"=> "NGN",
             );

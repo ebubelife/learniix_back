@@ -19,7 +19,7 @@ class AffiliatePayment extends Mailable
 
      public $affiliate_name;
      public $amount;
-    public function __construct($affiliate_name, $amount)
+    public function __construct( $amount, $affiliate_name)
     {
         //
         $this->affiliate_name = $affiliate_name;
@@ -38,6 +38,6 @@ class AffiliatePayment extends Mailable
                     ->with(['name'=> $this->affiliate_name, 'amount'=> $this->amount])
                    
                     ->from('zenithstake@gmail.com')
-                    ->subject('ZenithStake - Welcome!🥳🥳 To ZenithStake!🥳');
+                    ->subject('Payment Received🥳');
     }
 }
