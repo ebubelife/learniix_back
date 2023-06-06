@@ -119,7 +119,7 @@ class TransactionsController extends Controller
 
             $tx= new Transactions();
             $tx->tx_ref = $res["data"]["reference"];
-            $tx->tx_type = "WITHDRAWAL";
+            $tx->tx_type = "AFFILIATE_PAYMENT";
             $tx->user_id =  $unpaid_user->id;
 
             $tx->amount = $unpaid_user->unpaid_balance;
