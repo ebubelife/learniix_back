@@ -95,7 +95,7 @@ class TransactionsController extends Controller
 
         }
 
-           return response()->json(['message'=> "done","tx_result"=>$all_tx_result],200);
+           return response()->json(['message'=> "donejhgh","tx_result"=>$all_tx_result],200);
        
     }
     catch(\Exception $e){
