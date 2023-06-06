@@ -118,7 +118,7 @@ class TransactionsController extends Controller
             $update_user->save();
 
             $tx= new Transactions();
-            $tx->tx_ref = $re["data"]["reference"];
+            $tx->tx_ref = $res["data"]["reference"];
             $tx->tx_type = "WITHDRAWAL";
             $tx->user_id =  $unpaid_user->id;
 
