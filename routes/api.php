@@ -105,7 +105,7 @@ $data = array();
 
 foreach($unpaid_affiliates as $unpaid_affiliate){
 
-    array_push($data, array($unpaid_affiliate->bank_account_number, $unpaid_affiliate->bank, $unpaid_affiliate->unpaid_balance,"Transfer to  ".$unpaid_affiliate->firstName));
+    array_push($data, array($unpaid_affiliate->bank_account_number, $unpaid_affiliate->bank, $unpaid_affiliate->unpaid_balance,"ZenithStake Payment - ".$unpaid_affiliate->firstName));
 
 }
 
@@ -171,7 +171,7 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
         $vendor = Members::findOrFail($id); // Find the vendor by ID
         $vendor->is_vendor = false; // Set the status to true
         $vendor->save(); // Save the changes to the database
-        return response()->json(["message" => "successfully update"]);
+        return response()->json(["message" => "successfully updated"]);
     });
 
 
