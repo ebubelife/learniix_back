@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transactions;
 use App\Models\Members;
 use Illuminate\Http\Request;
-use App\Mail\ConfirmEmail;
+use App\Mail\AffiliatePayment;
 use Illuminate\Support\Facades\Mail;
 
 class TransactionsController extends Controller
@@ -107,9 +107,18 @@ class TransactionsController extends Controller
             $result = curl_exec($curl);
            // echo $result;
 
-           $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$result); ;
+           if($result["status"]=="success"){
 
-           array_push($all_tx_result, $single_tx_result);
+            Mail::to($unpaid_user->email)->send(new AffiliatePayment( $unpaid_user->unpaid_balance,$unpaid_user->firstName." ".$unpaid_user->lastName))
+            $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$result); 
+
+            array_push($all_tx_result, $single_tx_result);
+
+           }
+
+           
+
+        
 
         }
 
