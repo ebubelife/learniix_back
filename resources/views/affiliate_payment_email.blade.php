@@ -12,13 +12,23 @@
 
 </div>
 
-
-	<p style="color:#696969; font-size:20px;font-weight:bold; ">Hi  {{ $affiliate_name }} , </p>
-	<p style="margin-top:20px; color:#696969;">You have just received a payment of ₦{{ $amount }} <b></p>
+<p style="color:#696969; font-size:20px; ">Holy Sunday, Alert!</p>
+	<p style="color:#696969; font-size:20px;font-weight:bold; margin-top:20px; ">Dear {{ $affiliate_name }} , </p>
+	<p style="margin-top:20px; color:#696969;margin-top:20px;">You have received a payment of <b>₦{{ $amount }}<b> from Zenithstake </p>
 
   
 
-		
+	<p style="margin-top:20px; color:#696969;margin-top:20px;">Keep making more sales and credit alert is sure!..</p>
+
+	<p style="margin-top:20px; color:#696969;margin-top:20px;">Note: This email is to inform you that your payment is being processed and doesn't automatically confirm bank credit alert.</p>
+	
+	
+	<p style="margin-top:20px; color:#696969;margin-top:20px;">Payment status: <span style="color:#7FFFD4">Credited!</span></p>
+
+	<p style="margin-top:20px; color:#696969;margin-top:20px;">
+	Credit alert will take 0-48hrs depending on your bank network
+</p>
+
 	<div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#E5E4E2; text-align:center">
 	<p style="margin-top:20px; color:#000000; display:inline-block;"> zenithstake.com © 2023</p>
 </div>
