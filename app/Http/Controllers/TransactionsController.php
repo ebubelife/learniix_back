@@ -48,7 +48,7 @@ class TransactionsController extends Controller
               $unpaid_users = Members::where("is_vendor", false)
               ->where("payment_reference_paystack","!=",null)
               ->where("email","ebubeemeka19@gmail.com")
-              ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
+            //  ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
               ->get();
 
 
@@ -98,7 +98,7 @@ class TransactionsController extends Controller
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => $jsonData,
                     CURLOPT_HTTPHEADER => [
-                       // 'Authorization: Bearer TOKEN HERE',
+                        'Authorization: Bearer FLWSECK-04562a5b70635c4c57442a53df1b5b44-18847d9721evt-X',
                         'Content-Type: application/json',
                     ],
                 ]);
