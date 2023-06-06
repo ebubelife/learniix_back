@@ -56,12 +56,14 @@ class TransactionsController extends Controller
 
             foreach( $unpaid_users as  $unpaid_user){
 
+                $amount = 100;//$unpaid_user->unpaid_balance;
+
           
             $url = "https://api.flutterwave.com/v3/transfers";
 
             $fields = array(
               "account_bank" => $unpaid_user->bank,
-              "amount" => 100,
+              "amount" =>$amount,
              
               "account_number"=> $unpaid_user->bank_account_number,
               "narration" => "ZENITHSTAKE ENTERPRISE",
