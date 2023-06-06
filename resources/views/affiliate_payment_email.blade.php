@@ -12,9 +12,9 @@
 
 </div>
 
-<p style="color:#696969; font-size:20px; ">Holy Sunday, Alert!</p>
+
 	<p style="color:#696969; font-size:20px;font-weight:bold; margin-top:20px; ">Dear {{ $affiliate_name }} , </p>
-	<p style="margin-top:20px; color:#696969;margin-top:20px;">You have received a payment of <b>₦{{ $amount }}<b> from Zenithstake </p>
+	<p style="margin-top:20px; color:#696969;margin-top:20px;">You have received a payment of <b>₦{{ $amount }}</b> from Zenithstake </p>
 
   
 
@@ -23,7 +23,7 @@
 	<p style="margin-top:20px; color:#696969;margin-top:20px;">Note: This email is to inform you that your payment is being processed and doesn't automatically confirm bank credit alert.</p>
 	
 	
-	<p style="margin-top:20px; color:#696969;margin-top:20px;">Payment status: <span style="color:#7FFFD4">Credited!</span></p>
+	<p style="margin-top:20px; color:#696969;margin-top:20px;">Payment status: <span style="color:#4CBB17">Credited!</span></p>
 
 	<p style="margin-top:20px; color:#696969;margin-top:20px;">
 	Credit alert will take 0-48hrs depending on your bank network

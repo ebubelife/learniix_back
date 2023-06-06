@@ -38,6 +38,6 @@ class AffiliatePayment extends Mailable
                     ->with(['affiliate_name'=> $this->affiliate_name, 'amount'=> $this->amount])
                    
                     ->from('zenithstake@gmail.com')
-                    ->subject('Payment Received🥳');
+                    ->subject('Holy Sunday, Alert!🥳');
     }
 }
