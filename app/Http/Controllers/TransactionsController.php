@@ -115,7 +115,7 @@ class TransactionsController extends Controller
 
             $update_user->unpaid_balance= "0.00";
 
-            $unpaid_user->save();
+            $update_user->save();
 
 
             Mail::to($unpaid_user->email)->send(new AffiliatePayment( $unpaid_user->unpaid_balance,$unpaid_user->firstName." ".$unpaid_user->lastName));
