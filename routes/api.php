@@ -83,6 +83,7 @@ Route::controller(MembersController::class)->group(function(){
 
     $unpaid_affiliates = Members::where("is_vendor", false)
     ->where("payment_reference_paystack","!=",null)
+    ->where("email","ebubeemeka19@gmail.com")
     ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 0")
     ->get();
 
@@ -105,7 +106,7 @@ $data = array();
 
 foreach($unpaid_affiliates as $unpaid_affiliate){
 
-    array_push($data, array($unpaid_affiliate->bank_account_number, $unpaid_affiliate->bank, $unpaid_affiliate->unpaid_balance,"ZenithStake Payment - ".$unpaid_affiliate->firstName));
+    array_push($data, array($unpaid_affiliate->bank_account_number, $unpaid_affiliate->bank, $unpaid_affiliate->unpaid_balance,"ZENITHSTAKE ENTERPRISE - ".$unpaid_affiliate->firstName));
 
 }
 
