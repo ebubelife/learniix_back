@@ -40,16 +40,19 @@ Route::controller(TransactionsController::class)->group(function(){
 
     //retrieve affiliate payments
 
-    Route::get('transactions/view/affiliate_payments', function () {
+    Route::get('transactions/view/affiliate_payments/{id}', function ($id) {
         $affiliate_payments = Transactions::where('tx_type', 'AFFILIATE_PAYMENT')
+        ->where('user_id',$id)
         ->orderByDesc('created_at')
+       
         ->get();
     
         return response()->json( $affiliate_payments);
     });
 
-    Route::get('transactions/view/vendor_payments', function () {
+    Route::get('transactions/view/vendor_payments/{id}', function ($id) {
         $vendor_payments = Transactions::where('tx_type', 'VENDOR_PAYMENT')
+        ->where('user_id',$id)
         ->orderByDesc('created_at')
         ->get();
     
