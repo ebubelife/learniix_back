@@ -11,6 +11,7 @@ use App\Http\Controllers\SalesController;
 use App\Models\Members;
 use App\Models\Vendors;
 use App\Models\Products;
+use App\Models\Transactions;
 use App\Models\Sales;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
