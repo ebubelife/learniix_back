@@ -107,7 +107,9 @@ class TransactionsController extends Controller
             $result = curl_exec($curl);
            // echo $result;
 
-           if($result["status"]=="success"){
+           $res = json_decode($result, true);
+
+           if($res["status"]=="success"){
 
             Mail::to($unpaid_user->email)->send(new AffiliatePayment( $unpaid_user->unpaid_balance,$unpaid_user->firstName." ".$unpaid_user->lastName));
             $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$result); 
