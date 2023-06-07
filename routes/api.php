@@ -57,7 +57,7 @@ Route::controller(TransactionsController::class)->group(function(){
        
         ->get();
     
-        return response()->json( affiliate_payments);
+        return response()->json( $ffiliate_payments);
     });
 
     Route::get('transactions/view/vendor_payments/{id}', function ($id) {
