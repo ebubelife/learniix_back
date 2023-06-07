@@ -56,7 +56,7 @@ class TransactionsController extends Controller
 
             foreach( $unpaid_users as  $unpaid_user){
 
-                $amount = 100;//$unpaid_user->unpaid_balance;
+                $amount = $unpaid_user->unpaid_balance;
 
           
             $url = "https://api.flutterwave.com/v3/transfers";

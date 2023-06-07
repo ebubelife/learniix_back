@@ -47,7 +47,7 @@ Route::controller(TransactionsController::class)->group(function(){
        
         ->get();
     
-        return response()->json( $affiliate_payments);
+        return response()->json( affiliate_payments);
     });
 
     Route::get('transactions/view/vendor_payments/{id}', function ($id) {
@@ -56,7 +56,7 @@ Route::controller(TransactionsController::class)->group(function(){
         ->orderByDesc('created_at')
         ->get();
     
-        return response()->json( $vendor_payments);
+        return response()->json($vendor_payments);
     });
 
 
