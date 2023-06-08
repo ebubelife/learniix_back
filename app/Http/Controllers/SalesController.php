@@ -58,6 +58,8 @@ class SalesController extends Controller
     {
         //
 
+        DB::beginTransaction();
+
 
         try{
 
@@ -181,8 +183,11 @@ class SalesController extends Controller
         else{
             return response()->json(['message'=>'Could not verify the affiliate. Please contact the ZenithStake admin', 'error'=>$e],405);
         }
+
+        DB::commit();
     }
     catch(\Exception $e){
+        DB::rollBack();
         return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
 
 
