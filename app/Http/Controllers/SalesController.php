@@ -163,26 +163,26 @@ class SalesController extends Controller
 
                             if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission)))){
 
-                                return response()->json(['message'=>'Successful', 'error'=>$e],200);
+                                return response()->json(['message'=>'Successful' ],200);
 
                             }
                             else{
 
-                                return response()->json(['message'=>'Successful. Could not send email notification - 1', 'error'=>$e],200);
+                                return response()->json(['message'=>'Successful. Could not send email notification - 1'],200);
                             }
 
             }else{
-                return response()->json(['message'=>'Successful!.Could not send email notification - 2', 'error'=>$e],200);
+                return response()->json(['message'=>'Successful!.Could not send email notification - 2'],200);
             }
 
            
 
            }else{
-            return response()->json(['message'=>'Could not verify the vendor. Please contact Zenithstake admin', 'error'=>$e],405);
+            return response()->json(['message'=>'Could not verify the vendor. Please contact Zenithstake admin'],405);
            }
         }
         else{
-            return response()->json(['message'=>'Could not verify the affiliate. Please contact the ZenithStake admin', 'error'=>$e],405);
+            return response()->json(['message'=>'Could not verify the affiliate. Please contact the ZenithStake admin'],405);
         }
 
         DB::commit();
