@@ -95,7 +95,7 @@ class SalesController extends Controller
            /// $characters = '0123456789abcdefghijklmnopqrstuvwxyz' ;
             //$random_string = substr(str_shuffle($characters), 0, 8);
             $sale->tx_id = $validated["tx_id"];
-            $sale->save();
+           
 
             //calculate total affiliate commission and save
 
@@ -141,6 +141,8 @@ class SalesController extends Controller
 
             $user->unpaid_balance_vendor = strval($unpaid_balance_vendor + ($vendor_comission ));
 
+            if( $sale->save()){
+
             //Save affiliate commission
 
           if( $affiliate->save()){
@@ -184,6 +186,11 @@ class SalesController extends Controller
         else{
             return response()->json(['message'=>'Could not verify the affiliate. Please contact the ZenithStake admin'],405);
         }
+
+    }else{
+        return response()->json(['message'=>'Could not save this transaction. Please contact the ZenithStake admin'],405);
+
+    }
 
         DB::commit();
     }
