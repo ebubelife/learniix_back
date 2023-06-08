@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Mail\AffiliateEmail;
 use App\Mail\VendorEmail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
