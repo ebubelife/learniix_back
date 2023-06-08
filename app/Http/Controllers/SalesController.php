@@ -70,7 +70,7 @@ class SalesController extends Controller
             'product_id' => 'required|string',
             'product_price' => 'required|string',
             'commission' => 'required|string',
-             'tx_id' => 'required|string',
+            'tx_id' => 'required|string',
             'customer_name' => 'required|string',
             'customer_email' => 'required|string',
             'customer_phone' => 'required|string',
