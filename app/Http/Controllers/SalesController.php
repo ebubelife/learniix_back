@@ -59,7 +59,7 @@ class SalesController extends Controller
     {
         //
 
-        DB::beginTransaction();
+       // DB::beginTransaction();
 
 
         try{
@@ -192,10 +192,10 @@ class SalesController extends Controller
 
     }
 
-        DB::commit();
+       // DB::commit();
     }
     catch(\Exception $e){
-        DB::rollBack();
+       // DB::rollBack();
         return response()->json(['message'=>'An error occured, please try again', 'error'=>$e->getMessage()],405);
 
 
