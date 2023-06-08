@@ -94,28 +94,28 @@ class SalesController extends Controller
             $sale->tx_id = $validated["tx_id"];
             $sale->save();
 
-            //calculate total affiliate sales column and add
+            //calculate total affiliate commission and save
 
 
-            $user = Members::where('affiliate_id', $validated["affiliate_id"])->first();
+            $affiliate = Members::where('affiliate_id', $validated["affiliate_id"])->first();
 
             $commission_int = intval($validated["commission"]);
             $price_int = intval($validated["product_price"]);
-            $total_aff_sales = intval($user->total_aff_sales_cash);
-            $total_aff_sales_num = intval($user->total_aff_sales);
+            $total_aff_sales = intval($affiliate->total_aff_sales_cash);
+            $total_aff_sales_num = intval($affiliate->total_aff_sales);
 
-            $user->total_aff_sales_cash = strval((($commission_int/100) * $price_int)  + $total_aff_sales);
-            $user->total_aff_sales = strval($total_aff_sales_num + 1);
+            $affiliate->total_aff_sales_cash = strval((($commission_int/100) * $price_int)  + $total_aff_sales);
+            $affiliate->total_aff_sales = strval($total_aff_sales_num + 1);
 
-            $unpaid_balance_affiliate = intval($user->unpaid_balance);
+            $unpaid_balance_affiliate = intval($affiliate->unpaid_balance);
 
-            $user->unpaid_balance = strval($unpaid_balance_affiliate + (($commission_int/100) * $price_int));
-
-
-            $user->save();
+            $affiliate->unpaid_balance = strval($unpaid_balance_affiliate + (($commission_int/100) * $price_int));
 
 
-            //calculate total vendor salles column
+           
+
+
+            //calculate vendor commision an save
 
 
             $user = Members::where('id', $validated["vendor_id"])->first();
@@ -138,29 +138,38 @@ class SalesController extends Controller
 
             $user->unpaid_balance_vendor = strval($unpaid_balance_vendor + ($vendor_comission ));
 
+            //Save affiliate commission
+
+          if( $affiliate->save()){
 
 
+          
+                //Save vendor commission
            if( $user->save()){
 
-            $getAffiliate = Members::where('affiliate_id', $validated["affiliate_id"])->first();
-            $getVendor = Members::where('id', $validated["vendor_id"])->first();
+                $getAffiliate = Members::where('affiliate_id', $validated["affiliate_id"])->first();
+                $getVendor = Members::where('id', $validated["vendor_id"])->first();
 
-            //send email to affiliate
+                //send email to affiliate
 
-            if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_email"]))){
+                if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_email"]))){
 
-                return true;
+                
+
+                    //send email to vendor
+
+                            if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission)))){
+
+                                return response()->json(['message'=>'Successful', 'error'=>$e],200);
+
+                            }
 
             }
 
-            //send email to vendor
+           
 
-            if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission)))){
-
-                return true;
-
-            }
            }
+        }
     }
     catch(\Exception $e){
         return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
