@@ -189,7 +189,7 @@ class SalesController extends Controller
     }
     catch(\Exception $e){
         DB::rollBack();
-        return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
+        return response()->json(['message'=>'An error occured, please try again', 'error'=>$e->getMessage()],405);
 
 
     }
