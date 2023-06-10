@@ -221,6 +221,14 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
 
     Route::post('member/update','update');
 
+    Route::get('member/update_withdrawal/{id}', function ($id) {
+        $user = Members::destroy($id);
+
+        return response()->json(["message" => "successfully deleted"]);
+    });
+
+   
+
     Route::post('member/update_profile_admin','update_profile_admin');
 
     Route::post('account/verify_code','verify_code');
