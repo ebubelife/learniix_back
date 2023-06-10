@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddToMembersWithdrawalStatus extends Migration
+class AddToMembersWithdrawalSettings extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class AddToMembersWithdrawalStatus extends Migration
     {
         Schema::table('members', function (Blueprint $table) {
             //
-            $table->('weekly_withdrawal')->default(true);
+            $table->boolean('withdrawal_settings')->default(true);
         });
     }
 
@@ -26,7 +26,7 @@ class AddToMembersWithdrawalStatus extends Migration
      */
     public function down()
     {
-        Schema::table('members_withdrawal_status', function (Blueprint $table) {
+        Schema::table('members', function (Blueprint $table) {
             //
         });
     }
