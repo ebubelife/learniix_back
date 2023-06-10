@@ -222,9 +222,14 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
     Route::post('member/update','update');
 
     Route::get('member/update_withdrawal/{id}', function ($id) {
-        $user = Members::destroy($id);
+        $user = Members::findOrFail($id);
+    
+    // Toggle the withdrawal_setting value
+    $user->withdrawal_setting = !$user->withdrawal_setting;
+    $user->save();
 
-        return response()->json(["message" => "successfully deleted"]);
+    return response()->json(["message" => "Withdrawal setting updated successfully"]);
+
     });
 
    
