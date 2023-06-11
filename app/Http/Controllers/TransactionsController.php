@@ -139,6 +139,16 @@ class TransactionsController extends Controller
 
 
         }
+        else{
+
+            $tx= new Transactions();
+            $tx->tx_ref = "TX_NOT_FOUND";
+            $tx->tx_type = "AFFILIATE_PAYMENT";
+            $tx->user_id =  $unpaid_user->id;
+
+            $tx->amount = $amount ;
+            $tx->status = "FAILED";
+        }
         
 
         }
