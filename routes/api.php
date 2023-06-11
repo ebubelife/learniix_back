@@ -225,7 +225,7 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
         $user = Members::findOrFail($id);
     
     // Toggle the withdrawal_setting value
-    $user->withdrawal_setting = !$user->withdrawal_setting;
+    $user->withdrawal_settings = !$user->withdrawal_settings;
     $user->save();
 
     return response()->json(["message" => "Withdrawal setting updated successfully"]);
