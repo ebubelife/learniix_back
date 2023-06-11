@@ -100,7 +100,7 @@ Route::controller(MembersController::class)->group(function(){
 
     $unpaid_affiliates = Members::where("is_vendor", false)
     ->where("payment_reference_paystack","!=",null)
-   // ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > ")
+    ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200 ")
     ->where("withdrawal_settings", true)
    /* ->whereIn("email", [
         "nonsojoshua001@gmail.com",
