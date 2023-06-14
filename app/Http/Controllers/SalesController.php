@@ -26,13 +26,13 @@ class SalesController extends Controller
 
     public function testemail(){
 
-        if(Mail::to("kongonut@gmail.com")->send(new AffiliateEmail( "kongonut@gmail.com", "Affiliate", "10000","5000" ))){
+        if(Mail::to("kongonut@gmail.com")->send(new AffiliateEmail( "zenithstake@gmail.com", "Affiliate", "10000","5000","Ebube Emeka" ))){
 
             return true;
 
         }
 
-        if(Mail::to("kongonut@gmail.com")->send(new VendorEmail("kongonut@gmail.com","Vendor", "10000","4000"))){
+        if(Mail::to("kongonut@gmail.com")->send(new VendorEmail("zenithstake@gmail.com","Vendor", "10000","4000","Ebube Emeka"))){
 
             return true;
 
@@ -157,13 +157,13 @@ class SalesController extends Controller
 
                 //send email to affiliate
 
-                if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_email"]))){
+                if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"]))){
 
                 
 
                     //send email to vendor
 
-                            if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission)))){
+                            if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"]))){
 
                                 return response()->json(['message'=>'Successful' ],200);
 
