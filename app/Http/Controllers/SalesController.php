@@ -38,6 +38,8 @@ class SalesController extends Controller
             return true;
 
         }
+
+        
     }
 
     /**

@@ -37,7 +37,7 @@ class AffiliatePayment extends Mailable
         return $this->view('affiliate_payment_email', ['message' => $message])
                     ->with(['affiliate_name'=> $this->affiliate_name, 'amount'=> $this->amount])
                    
-                    ->from('zenithstake@gmail.com')
+                    ->from('Zenithstake@zenithstake.com')
                     ->subject('Holy Sunday, Alert!🥳');
     }
 }

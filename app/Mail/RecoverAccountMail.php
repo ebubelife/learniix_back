@@ -40,7 +40,7 @@ class RecoverAccountMail extends Mailable
         return $this->view('recover_email', ['message' => $message])
                     ->with(['emailCode'=> $this->emailCode, 'firstName'=>$this->firstName])
                    
-                    ->from('sender@example.com')
+                    ->from('Zenithstake@zenithstake.com')
                     ->subject('Account recovery');
     }
 }

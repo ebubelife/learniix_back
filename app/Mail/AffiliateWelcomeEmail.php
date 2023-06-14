@@ -36,7 +36,7 @@ class AffiliateWelcomeEmail extends Mailable
         return $this->view('affiliate_welcome_email', ['message' => $message])
                     ->with(['email'=> $this->email])
                    
-                    ->from('zenithstake@gmail.com')
-                    ->subject('ZenithStake - Welcome!🥳🥳 To ZenithStake!🥳');
+                    ->from('Zenithstake@zenithstake.com')
+                    ->subject('Welcome!🥳🥳 To ZenithStake!🥳');
     }
 }

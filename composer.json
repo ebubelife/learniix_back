@@ -10,12 +10,12 @@
         "doctrine/dbal": "^3.6",
         "flutterwavedev/flutterwave-v3": "^1.0",
         "fruitcake/laravel-cors": "^3.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.5",
         "kingflamez/laravelrave": "^4.2",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "mailgun/mailgun-php": "^3.5"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -60,7 +60,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
