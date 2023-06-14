@@ -21,7 +21,7 @@ class VendorEmail extends Mailable
     public $productPrice;
     public $commission;
     public $customerName;
-    public $productName
+    public $productName;
    
     public function __construct($vendor_email,  $firstName, $productPrice, $commission,$customerName, $productName )
     {
