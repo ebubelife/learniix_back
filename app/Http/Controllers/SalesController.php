@@ -97,7 +97,7 @@ class SalesController extends Controller
             //$random_string = substr(str_shuffle($characters), 0, 8);
             $sale->tx_id = $validated["tx_id"];
 
-            $product = Products::where('id',$validated["product_id"]);
+            $product = Products::where('id',$validated["product_id"])->get();
 
             $productName = $product->productName;
            
