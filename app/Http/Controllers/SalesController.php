@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sales;
 use App\Models\Members;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -26,13 +27,13 @@ class SalesController extends Controller
 
     public function testemail(){
 
-        if(Mail::to("kongonut@gmail.com")->send(new AffiliateEmail( "zenithstake@gmail.com", "Affiliate", "10000","5000","Ebube Emeka" ))){
+        if(Mail::to("kongonut@gmail.com")->send(new AffiliateEmail( "zenithstake@gmail.com", "Affiliate", "10000","5000","Ebube Emeka","SMAC Course" ))){
 
             return true;
 
         }
 
-        if(Mail::to("kongonut@gmail.com")->send(new VendorEmail("zenithstake@gmail.com","Vendor", "10000","4000","Ebube Emeka"))){
+        if(Mail::to("kongonut@gmail.com")->send(new VendorEmail("zenithstake@gmail.com","Vendor", "10000","4000","Ebube Emeka", "SMAC Course"))){
 
             return true;
 
@@ -95,6 +96,10 @@ class SalesController extends Controller
            /// $characters = '0123456789abcdefghijklmnopqrstuvwxyz' ;
             //$random_string = substr(str_shuffle($characters), 0, 8);
             $sale->tx_id = $validated["tx_id"];
+
+            $product = Products::where('id',$validated["product_id"]);
+
+            $productName = $product->productName;
            
 
             //calculate total affiliate commission and save
@@ -157,13 +162,13 @@ class SalesController extends Controller
 
                 //send email to affiliate
 
-                if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"]))){
+                if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
 
                 
 
                     //send email to vendor
 
-                            if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"]))){
+                            if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"],$productName))){
 
                                 return response()->json(['message'=>'Successful' ],200);
 

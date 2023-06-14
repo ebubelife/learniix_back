@@ -11,13 +11,15 @@
 </div>
 
 	<p style="color:#696969; font-size:21px;">Hi  {{ $firstName }} , </h3>
-	<p style="margin-top:20px; color:#696969;">You just made a successful sale for the product below</p>
+	<p style="margin-top:20px; color:#696969;">You just made a successful sale for your product below</p>
 
-    <p style="margin-top:15px; color:#000000; font-weight:bold">SMAC COURSE</p>
+    <p style="margin-top:15px; color:#000000; font-weight:bold">{{ $productName }}</p>
 
     <p style="margin-top:12px; color:#696969;">Price :  ₦{{ $productPrice }}</p>
 
     <p style="margin-top:12px; color:#0000000;">Commission :  ₦{{ $commission }}</p>
+
+	<p style="margin-top:15px; color:#000000; font-weight:bold">Buyer :  {{ $customerName}}</p>
 
 
 		

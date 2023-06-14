@@ -13,15 +13,21 @@
 
 
 	<p style="color:#696969; font-size:20px;font-weight:bold; ">Hi  {{ $firstName }} , </h3>
-	<p style="margin-top:20px; color:#696969;">You just made a successful sale for the product below</p>
+	<p style="margin-top:20px; color:#696969;">You just made a successful sale for <b>{{ $productName }}</b></p>
 
-    <p style="margin-top:15px; color:#000000; font-weight:bold">SMAC COURSE</p>
+
 
     <p style="margin-top:12px; color:#696969;">Price :  ₦{{ $productPrice }}</p>
 
     <p style="margin-top:12px; color:#0000000;">You have just earned  ₦{{ $commission }}  on this sale</p>
 
-	<p>Customer Name: {{ $customer_name }}</p>
+	<p>Buyer: {{ $customer_name }}</p>
+
+	<p style="margin-top:20px; color:#696969;">Keep up the good work and keep on selling</p>
+
+	<p style="margin-top:20px; color:#696969;">Kind regards</p>
+
+	<p style="margin-top:20px; color:#696969;">ZenithStake Team</p>
 
 
 		

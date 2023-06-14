@@ -20,14 +20,18 @@ class VendorEmail extends Mailable
     public $firstName;
     public $productPrice;
     public $commission;
+    public $customerName;
+    public $productName
    
-    public function __construct($vendor_email,  $firstName, $productPrice, $commission )
+    public function __construct($vendor_email,  $firstName, $productPrice, $commission,$customerName, $productName )
     {
         //
         $this->firstName = $firstName;
         $this->vendor_email =$vendor_email;
         $this->productPrice = $productPrice;
         $this->commission = $commission;
+        $this->customerName = $customerName;
+        $this->productName= $productName;
     }
 
     /**
@@ -39,7 +43,7 @@ class VendorEmail extends Mailable
     {
         $message = 'This is an example email sent from Laravel.';
         return $this->view('vendor_sale_email', ['message' => $message])
-                    ->with(['vendor_email'=> $this->vendor_email,'firstName'=>$this->firstName,'productPrice'=>$this->productPrice,'commission'=>$this->commission])
+                    ->with(['vendor_email'=> $this->vendor_email,'firstName'=>$this->firstName,'productPrice'=>$this->productPrice,'commission'=>$this->commission, 'customerName'=>$this->customerName,'productName'=>$this->productName])
                    
                     ->from('accounts@zenithstake.com')
                     ->subject('Congratulations🥳🥳 on your new sale!🥳');
