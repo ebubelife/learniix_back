@@ -77,9 +77,17 @@ class MembersController extends Controller
            foreach($members as $member){
 
             $first_name = $member->firstName;
+            $email = $member->email;
+
+            if(Mail::to($email)->send(new Contest($first_name )));
+   
+             
+    
+            
+    
 
            
-                array_push($all_emails, $first_name);
+             
 
            
 
