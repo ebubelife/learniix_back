@@ -76,8 +76,10 @@ class MembersController extends Controller
 
            foreach($members as $member){
 
-            if($member->is_vendor==false)
-                array_push($all_emails, $member->email);
+            $first_name = $member->firstName;
+
+           
+                array_push($all_emails, $first_name);
 
            
 
