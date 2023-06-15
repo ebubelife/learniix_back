@@ -40,14 +40,14 @@ class SalesController extends Controller
 
         }*/
 
-        if(Mail::to("kongonut@gmail.com")->send(new Contest())){
+        if(Mail::to("kongonut@gmail.com")->send(new Contest("Ebube"))){
 
             return true;
 
         }
 
 
-        if(Mail::to("zenithstake@gmail.com")->send(new Contest())){
+        if(Mail::to("zenithstake@gmail.com")->send(new Contest("Godspower"))){
 
             return true;
 

@@ -12,7 +12,7 @@
 </div>
 
 
-	<p style="color:#000000; font-size:20px;font-weight:bold; ">Hi  {{ $firstName }} , </h3>
+	<p style="color:#000000; font-size:20px;font-weight:bold; ">Hi  {{ $firstName }}, </h3>
 	<p style="margin-top:20px; color:#696969;">You just made a successful sale for <span style="font-weight:bold; color:#000000;">{{ $productName }}</span></p>
 
 

@@ -16,9 +16,12 @@ class Contest extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+     public $firstName;
+    public function __construct($firstName)
     {
         //
+        $this->firstName = $firstName;
     }
 
     /**
@@ -31,7 +34,7 @@ class Contest extends Mailable
        
         $message = 'This is an example email sent from Laravel.';
         return $this->view('contest', ['message' => $message])
-                    ->with(['key'=> '1'])
+                    ->with(['firstName'=> $this->firstName])
                    
                     ->from('ZenithStake@zenithstake.com')
                     ->subject('Hello Hurray 🥳🥳!!');

@@ -10,7 +10,7 @@
 
 </div>
 
-	<p style="color:#696969; font-size:21px;">Hi  {{ $firstName }} , </h3>
+	<p style="color:#696969; font-size:21px;">Hi  {{ $firstName }}, </h3>
 	<p style="margin-top:20px; color:#696969;">You just made a successful sale for your product below</p>
 
     <p style="margin-top:15px; color:#000000; font-weight:bold">{{ $productName }}</p>

@@ -14,11 +14,15 @@
 
 <br><br>
 
+<p style="color:#000000; font-size:18px; margin-top:20px; font-weight:bold; font-style:italics;">SMAC challenge 2.0 Edition, Bigger and Better all for you 🎉🥳!</p>
+
 
 <div style="width:100%;padding-top:10px; padding-bottom:10px;  text-align:center; margin-top:15px;">
 	<img src="https://www.zenithstake.com/WhatsApp%20Image%202023-06-15%20at%2010.48.29%20AM.jpeg" alt="zenithstake-contest" height="400" width="400" style="display:inline-block" />
 
 </div>
+
+<p style="color:#000000; font-size:18px; margin-top:20px; ">Dear {{ $firstName }}, </p>
 
 
 	<p style="color:#000000; font-size:18px; margin-top:20px; ">In the last few weeks, the Sales Machine Accelerator Course has transformed a lot of lives financially and knowledge-wise. </p>
