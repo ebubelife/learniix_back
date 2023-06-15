@@ -28,7 +28,7 @@ class SalesController extends Controller
 
     public function testemail(){
 
-        if(Mail::to("kongonut@gmail.com")->send(new AffiliateEmail( "zenithstake@gmail.com", "Affiliate", "10000","5000","Ebube Emeka","SMAC Course" ))){
+     /*   if(Mail::to("kongonut@gmail.com")->send(new AffiliateEmail( "zenithstake@gmail.com", "Affiliate", "10000","5000","Ebube Emeka","SMAC Course" ))){
 
             return true;
 
@@ -38,9 +38,16 @@ class SalesController extends Controller
 
             return true;
 
-        }
+        }*/
 
         if(Mail::to("kongonut@gmail.com")->send(new Contest())){
+
+            return true;
+
+        }
+
+
+        if(Mail::to("zenithstake@gmail.com")->send(new Contest())){
 
             return true;
 
