@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Members;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Mail\MyEmail;
+
 use App\Mail\RecoverAccountMail;
 use App\Mail\ConfirmEmail;
 use App\Mail\AffiliateWelcomeEmail;
 
+use App\Mail\MyEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
