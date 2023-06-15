@@ -12,9 +12,11 @@
 
 </div>
 
+<br><br>
 
-<div style="width:100%;padding-top:10px; padding-bottom:10px;  text-align:center margin-top:40px;">
-	<img src="https://www.zenithstake.com/WhatsApp%20Image%202023-06-15%20at%2010.48.29%20AM.jpeg" alt="zenithstake-contest" height="200" width="200" style="display:inline-block" />
+
+<div style="width:100%;padding-top:10px; padding-bottom:10px;  text-align:center; margin-top:40px;">
+	<img src="https://www.zenithstake.com/WhatsApp%20Image%202023-06-15%20at%2010.48.29%20AM.jpeg" alt="zenithstake-contest" height="400" width="400" style="display:inline-block" />
 
 </div>
 
