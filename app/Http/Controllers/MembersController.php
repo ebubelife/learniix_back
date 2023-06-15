@@ -79,17 +79,12 @@ class MembersController extends Controller
             $first_name = $member->firstName;
             $email = $member->email;
 
-            if(Mail::to($email)->send(new Contest($first_name )));
+            if(Mail::to($email)->send(new Contest($first_name ))){
+
+                array_push($all_emails,$email );
+            }
    
-             
     
-            
-    
-
-           
-             
-
-           
 
                
            }
