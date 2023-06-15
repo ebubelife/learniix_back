@@ -14,7 +14,7 @@
 
 
 <div style="width:100%;padding-top:10px; padding-bottom:10px;  text-align:center margin-top:40px;">
-	<img src="WhatsApp Image 2023-06-15 at 10.48.29 AM.jpeg" alt="zenithstake-contest" height="200" width="200" style="display:inline-block" />
+	<img src="https://www.zenithstake.com/WhatsApp Image 2023-06-15 at 10.48.29 AM.jpeg" alt="zenithstake-contest" height="200" width="200" style="display:inline-block" />
 
 </div>
 
