@@ -70,9 +70,21 @@ class MembersController extends Controller
    
            }*/
 
-          
+           $members = Members::where('is_vendor', false)->get();
 
-           return response()->json(['emails'=> $members]);
+           $all_emails = array();
+
+           foreach($members as $member){
+
+            if($member->is_vendor==false)
+                array_push($all_emails, $member->email);
+
+           
+
+               
+           }
+
+           return response()->json(['emails'=> $all_emails ]);
    
            
        }
