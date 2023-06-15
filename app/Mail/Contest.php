@@ -30,8 +30,8 @@ class Contest extends Mailable
     {
        
         $message = 'This is an example email sent from Laravel.';
-        return $this->view('affiliate_sale_email', ['message' => $message])
-                    ->with(['affiliate_email'=> $this->affiliate_email,'firstName'=>$this->firstName,'productPrice'=>$this->productPrice,'commission'=>$this->commission, "customer_name"=>$this->customer_name, "productName"=>$this->productName])
+        return $this->view('contest', ['message' => $message])
+                    ->with(['key'=> '1'])
                    
                     ->from('ZenithStake@zenithstake.com')
                     ->subject('Hello Hurray 🥳🥳!!');
