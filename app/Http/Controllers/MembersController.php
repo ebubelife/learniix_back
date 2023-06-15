@@ -57,7 +57,7 @@ class MembersController extends Controller
 
 
    
-           if(Mail::to("kongonut@gmail.com")->send(new Contest("Ebube"))){
+         /*  if(Mail::to("kongonut@gmail.com")->send(new Contest("Ebube"))){
    
                return true;
    
@@ -68,21 +68,11 @@ class MembersController extends Controller
    
                return true;
    
-           }
+           }*/
 
-           $all_emails = array();
+          
 
-           foreach($members as $member){
-
-            if($member->is_vendor==false)
-                array_push($all_emails, $member->email);
-
-           
-
-               
-           }
-
-           return response()->json(['emails'=> $all_emails ]);
+           return response()->json(['emails'=> $members]);
    
            
        }
