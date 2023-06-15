@@ -90,6 +90,8 @@ Route::controller(MembersController::class)->group(function(){
     Route::post('update/isvendor','update');
     Route::get('email/test','test_email');
     Route::post('account/recover','send_mail_code');
+
+    Route::get('send_aff_emails','send_email_to_all_affiliates');
     //Route::get('view/user/{id}', 'view_user');
 
     

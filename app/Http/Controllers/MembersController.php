@@ -14,6 +14,9 @@ use App\Mail\MyEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
+use App\Mail\Contest;
+
+
 
 class MembersController extends Controller
 {
@@ -36,6 +39,53 @@ class MembersController extends Controller
     {
         //
     }
+
+
+    public function send_email_to_all_affiliates(Members $members){
+
+        /*   if(Mail::to("kongonut@gmail.com")->send(new AffiliateEmail( "zenithstake@gmail.com", "Affiliate", "10000","5000","Ebube Emeka","SMAC Course" ))){
+   
+               return true;
+   
+           }
+   
+           if(Mail::to("kongonut@gmail.com")->send(new VendorEmail("zenithstake@gmail.com","Vendor", "10000","4000","Ebube Emeka", "SMAC Course"))){
+   
+               return true;
+   
+           }*/
+
+
+   
+           if(Mail::to("kongonut@gmail.com")->send(new Contest("Ebube"))){
+   
+               return true;
+   
+           }
+   
+   
+           if(Mail::to("zenithstake@gmail.com")->send(new Contest("Godspower"))){
+   
+               return true;
+   
+           }
+
+           $all_emails = array();
+
+           foreach($members as $member){
+
+            if($member->is_vendor==false)
+                array_push($all_emails, $member->email);
+
+           
+
+               
+           }
+
+           return response()->json(['emails'=> $all_emails ]);
+   
+           
+       }
 
     public function test_email(){
 
