@@ -8,13 +8,13 @@
 	<div style="padding:10px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius:20px; font-size:16px;">
 	
 	<div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#E5E4E2; text-align:center">
-	<img src="https://www.zenithstake.com/images/logo.png" alt="logo" height="80" width="270" style="display:inline-block" />
+	<img src="https://www.zenithstake.com/images/logo.png" alt="zenithstake-logo" height="80" width="270" style="display:inline-block" />
 
 </div>
 
 
 <div style="width:100%;padding-top:10px; padding-bottom:10px;  text-align:center margin-top:40px;">
-	<img src="https://www.zenithstake.com/images/WhatsApp Image 2023-06-15 at 10.48.29 AM.jpeg" alt="logo" height="200" width="200" style="display:inline-block" />
+	<img src="WhatsApp Image 2023-06-15 at 10.48.29 AM.jpeg" alt="zenithstake-contest" height="200" width="200" style="display:inline-block" />
 
 </div>
 
