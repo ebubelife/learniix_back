@@ -10,6 +10,7 @@ use Carbon\Carbon;
 
 use App\Mail\AffiliateEmail;
 use App\Mail\VendorEmail;
+use App\Mail\Contest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 
@@ -34,6 +35,12 @@ class SalesController extends Controller
         }
 
         if(Mail::to("kongonut@gmail.com")->send(new VendorEmail("zenithstake@gmail.com","Vendor", "10000","4000","Ebube Emeka", "SMAC Course"))){
+
+            return true;
+
+        }
+
+        if(Mail::to("kongonut@gmail.com")->send(new Contest())){
 
             return true;
 

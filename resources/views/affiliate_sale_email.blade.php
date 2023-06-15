@@ -12,12 +12,12 @@
 </div>
 
 
-	<p style="color:#696969; font-size:20px;font-weight:bold; ">Hi  {{ $firstName }} , </h3>
-	<p style="margin-top:20px; color:#696969;">You just made a successful sale for <b>{{ $productName }}</b></p>
+	<p style="color:#000000; font-size:20px;font-weight:bold; ">Hi  {{ $firstName }} , </h3>
+	<p style="margin-top:20px; color:#696969;">You just made a successful sale for <span style="font-weight:bold; color:#000000;">{{ $productName }}</span></p>
 
 
 
-    <p style="margin-top:12px; color:#696969;">Price :  ₦{{ $productPrice }}</p>
+    <p style="margin-top:12px; color:#000000;">Price :  ₦{{ $productPrice }}</p>
 
     <p style="margin-top:12px; color:#0000000;">You have just earned  ₦{{ $commission }}  on this sale</p>
 
