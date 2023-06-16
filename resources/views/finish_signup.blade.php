@@ -5,7 +5,10 @@
 </head>
 <body>
 	<div style="padding:10px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius:20px; font-size:16px;">
-	<img src="https://demo.punteer.com/_next/static/media/header_logo.db007d8f.png" alt="logo" height="80" width="270" />
+    <div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#E5E4E2; text-align:center">
+	<img src="https://www.zenithstake.com/images/logo.png" alt="logo" height="80" width="270" style="display:inline-block" />
+
+</div>
 
 
 	<p style="color:#696969; font-size:21px;">Hi  {{ $firstName }}, </h3>

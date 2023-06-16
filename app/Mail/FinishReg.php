@@ -20,7 +20,7 @@ class FinishReg extends Mailable
     public $tx_id;
     public $firstName;
 
-    public function __construct($tx_id,$firstName)
+    public function __construct($firstName, $tx_id)
     {
         //
 
