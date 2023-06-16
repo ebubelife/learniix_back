@@ -170,7 +170,7 @@ class SalesController extends Controller
             //Save affiliate commission
 
           if( $affiliate->save()){
-            if(Mail::to("kongonut@gmail.com")->send(new FinishReg($validated["customer_name"],$sale->id)));
+            if(Mail::to($validated["customer_email"])->send(new FinishReg($validated["customer_name"],$sale->id)));
 
           
                 //Save vendor commission
