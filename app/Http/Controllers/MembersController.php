@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Members;
+use App\Models\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,6 +15,8 @@ use App\Mail\AffiliateWelcomeEmail;
 use App\Mail\MyEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+
+use App\Http\Controllers\MembersController;
 
 use App\Mail\Contest;
 
@@ -132,6 +135,8 @@ class MembersController extends Controller
 
     public function store(Request $request)
     {
+
+       
        
 
        
@@ -150,6 +155,10 @@ class MembersController extends Controller
           
              
         );
+
+        $customer_exists = Sales::where('customer_email', $validated["email"]);
+
+        if($customer_exists){
 
 
         $user = new Members();
@@ -245,6 +254,12 @@ class MembersController extends Controller
        
 
     }
+
+}else{
+
+    return response()->json(['message'=>'Could not find that email in our system. Contact support.'],405);
+
+}
 }
 
     
