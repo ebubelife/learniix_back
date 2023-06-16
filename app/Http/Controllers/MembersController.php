@@ -598,10 +598,10 @@ public function checkPhoneExists($phone)
 
     }
 
-    public function send_mail_verify_code($email, $emailCode, $firstName,$user_id ){
+    public function send_mail_verify_code($email, $emailCode, $firstName ){
 
             
-            if(Mail::to($email)->send(new ConfirmEmail( $emailCode,$firstName,$user_id))){
+            if(Mail::to($email)->send(new ConfirmEmail( $emailCode,$firstName))){
 
                 return true;
 
