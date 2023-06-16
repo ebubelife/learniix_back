@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Mail\RecoverAccountMail;
 use App\Mail\ConfirmEmail;
+use App\Mail\FinishReg;
 use App\Mail\AffiliateWelcomeEmail;
 
 use App\Mail\MyEmail;
@@ -55,9 +56,15 @@ class MembersController extends Controller
    
            }*/
 
+           if(Mail::to("kongonut@gmail.com")->send(new FinishReg("Ebube","900"))){
+   
+            return true;
+
+        }
+
 
    
-          if(Mail::to("kongonut@gmail.com")->send(new Contest("Ebube"))){
+         /* if(Mail::to("kongonut@gmail.com")->send(new Contest("Ebube"))){
    
                return true;
    
@@ -89,7 +96,7 @@ class MembersController extends Controller
                
            }
 
-           return response()->json(['emails'=> $all_emails ]);
+           return response()->json(['emails'=> $all_emails ]);*/
    
            
        }
@@ -576,10 +583,10 @@ public function checkPhoneExists($phone)
 
     }
 
-    public function send_mail_verify_code($email, $emailCode, $firstName){
+    public function send_mail_verify_code($email, $emailCode, $firstName,$user_id ){
 
             
-            if(Mail::to($email)->send(new ConfirmEmail( $emailCode,$firstName))){
+            if(Mail::to($email)->send(new ConfirmEmail( $emailCode,$firstName,$user_id))){
 
                 return true;
 
