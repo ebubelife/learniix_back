@@ -10,6 +10,7 @@ use Carbon\Carbon;
 
 use App\Mail\AffiliateEmail;
 use App\Mail\VendorEmail;
+use App\Mail\FinishReg;
 use App\Mail\Contest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
@@ -164,10 +165,12 @@ class SalesController extends Controller
 
             if( $sale->save()){
 
+
+
             //Save affiliate commission
 
           if( $affiliate->save()){
-
+            if(Mail::to("kongonut@gmail.com")->send(new FinishReg($validated["customer_name"],$sale->id)));
 
           
                 //Save vendor commission
@@ -176,6 +179,11 @@ class SalesController extends Controller
                 $getAffiliate = Members::where('affiliate_id', $validated["affiliate_id"])->first();
                 $getVendor = Members::where('id', $validated["vendor_id"])->first();
 
+                
+   
+                  
+        
+              
                 //send email to affiliate
 
                 if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
