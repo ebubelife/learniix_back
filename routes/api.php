@@ -74,6 +74,10 @@ Route::controller(TransactionsController::class)->group(function(){
 
     Route::get('pay/affiliates', 'pay_affiliates');
 
+    Route::get('pay/vendors', 'pay_vendors');
+
+    
+
 });
 
 

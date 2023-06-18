@@ -37,6 +37,139 @@ class TransactionsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+         public function pay_vendors(Request $request){
+
+        $all_tx_result = array();
+
+        try{
+
+              //get affiliate
+
+              $unpaid_users = Members::where("is_vendor", true)
+              ->where("payment_reference_paystack","!=",null)
+             // ->whereIn("email", [ "ebubeemeka19@gmail.com","aimchinaza3039@gmail.com" ])
+              ->whereRaw("CAST(unpaid_balance_vendor AS UNSIGNED) > 200")
+              ->get();
+
+
+
+
+            foreach( $unpaid_users as  $unpaid_user){
+
+                $amount = $unpaid_user->unpaid_balance_vendor;
+
+          
+            $url = "https://api.flutterwave.com/v3/transfers";
+
+            $fields = array(
+              "account_bank" => $unpaid_user->bank,
+              "amount" =>$amount,
+             
+              "account_number"=> $unpaid_user->bank_account_number,
+              "narration" => "ZENITHSTAKE ENTERPRISE",
+              "currency"=> "NGN",
+            );
+
+          
+          
+         /*   $fields_string = http_build_query($fields);
+          
+            //open connection
+            $ch = curl_init();
+            
+            //set the url, number of POST vars, POST data
+            curl_setopt($ch,CURLOPT_URL, $url);
+            curl_setopt($ch,CURLOPT_POST, true);
+            curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+              "Authorization: Bearer TOKEN HERE",
+              "Cache-Control: no-cache",
+            ));
+            
+            //So that curl_exec returns the contents of the cURL; rather than echoing it
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);*/
+
+            $jsonData = json_encode($fields);
+
+            $curl = curl_init();
+            
+         
+                curl_setopt_array($curl, [
+                    CURLOPT_URL => 'https://api.flutterwave.com/v3/transfers',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => $jsonData,
+                    CURLOPT_HTTPHEADER => [
+                        'Authorization: Bearer '.env('FLW_API_KEY'),
+                        'Content-Type: application/json',
+                    ],
+                ]);
+            
+            //execute post
+            $result = curl_exec($curl);
+           // echo $result;
+
+           $res = json_decode($result, true);
+
+           if($res["status"]=="success"){
+
+            $update_user = Members::find($unpaid_user->id);
+
+            $update_user->unpaid_balance_vendor= "0.00";
+
+            $update_user->save();
+
+            $tx= new Transactions();
+            $tx->tx_ref = $res["data"]["reference"];
+            $tx->tx_type = "VENDOR_PAYMENT";
+            $tx->user_id =  $unpaid_user->id;
+
+            $tx->amount = $amount ;
+            $tx->status = "DONE";
+    
+           if($tx->save()){
+
+
+            Mail::to($unpaid_user->email)->send(new AffiliatePayment( $unpaid_user->unpaid_balance_vendor,$unpaid_user->firstName." ".$unpaid_user->lastName));
+            $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$res); 
+
+            array_push($all_tx_result, $single_tx_result);
+
+           }
+
+
+        }
+        else{
+
+            $tx= new Transactions();
+            $tx->tx_ref = "TX_NOT_FOUND";
+            $tx->tx_type = "AFFILIATE_PAYMENT";
+            $tx->user_id =  $unpaid_user->id;
+
+            $tx->amount = $amount ;
+            $tx->status = "FAILED";
+        }
+        
+
+        }
+
+           return response()->json(['message'=> "done","tx_result"=>$all_tx_result],200);
+       
+    }
+    catch(\Exception $e){
+        return response()->json(['message'=>'An error occured, please try again', 'error'=>$e],405);
+
+
+
+
+
+
+
+    }
+}
+
+
     public function pay_affiliates(Request $request){
 
         $all_tx_result = array();
