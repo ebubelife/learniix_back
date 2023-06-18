@@ -65,7 +65,7 @@ class TransactionsController extends Controller
 
             $fields = array(
               "account_bank" => $unpaid_user->bank,
-              "amount" =>$amount,
+              "amount" =>"100",
              
               "account_number"=> $unpaid_user->bank_account_number,
               "narration" => "ZENITHSTAKE ENTERPRISE",
