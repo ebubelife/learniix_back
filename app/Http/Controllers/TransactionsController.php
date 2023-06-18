@@ -50,7 +50,7 @@ class TransactionsController extends Controller
               ->where("payment_reference_paystack","!=",null)
              // ->whereIn("email", [ "ebubeemeka19@gmail.com","aimchinaza3039@gmail.com" ])
               ->whereRaw("CAST(unpaid_balance_vendor AS UNSIGNED) > 200")
-              ->where("id", )
+              ->where("id",34 )
               ->get();
 
 
