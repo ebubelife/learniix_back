@@ -181,6 +181,27 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
         return response()->json( $affiliates);
     });
 
+    Route::get('view/affiliates/total', function () {
+        $affiliates = Members::where('is_vendor', false)
+           // ->orderByDesc('created_at')
+            ->get();
+    
+        $sumTotalAffCash = 0;
+        $sumTotalAff = 0;
+        foreach ($affiliates as $affiliate) {
+            $totalAffCash = intval($affiliate->total_aff_sales_cash);
+            $totalAff = intval($affiliate->total_aff_sales);
+            $sumTotalAffCash += $totalAffCash;
+            $sumTotalAff +=$totalAff ;
+        }
+    
+        return response()->json([
+            'affiliates' => count($affiliates),
+            'sum_total_aff_cash' => $sumTotalAffCash,
+            'sum_total_aff_sales'=> $sumTotalAff,
+        ]);
+    });
+
     Route::get('view/vendors', function () {
         $vendors = Members::where('is_vendor', true)
         ->orderByDesc('created_at')
