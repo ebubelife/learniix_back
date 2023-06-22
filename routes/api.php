@@ -184,6 +184,7 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
     Route::get('view/affiliates/total', function () {
         $affiliates = Members::where('is_vendor', false)
            // ->orderByDesc('created_at')
+            ->where('id'.'!=',507)
             ->get();
     
         $sumTotalAffCash = 0;
