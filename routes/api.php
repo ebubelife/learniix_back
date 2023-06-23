@@ -431,7 +431,7 @@ Route::controller(SalesController::class)->group(function(){
     //get affiliate_sales in last 24 hours
 
     Route::get('sales/today/affiliate/{affiliate_id}', function ($affiliate_id) {
-        $startDateTime = Carbon::now()->subDay(); // Get the date and time 24 hours ago
+        $startDateTime = Carbon::today(); // Get the start of today (12am)
         $endDateTime = Carbon::now(); // Get the current date and time
     
         $sales = Sales::where('affiliate_id', $affiliate_id)
@@ -441,11 +441,10 @@ Route::controller(SalesController::class)->group(function(){
         return response()->json($sales);
     });
 
-
     //get vendor sales in last 24 hours
 
     Route::get('sales/today/vendor/{vendor_id}', function ($vendor_id) {
-        $startDateTime = Carbon::now()->subDay(); // Get the date and time 24 hours ago
+        $startDateTime = Carbon::today(); // Get the start of today (12am)
         $endDateTime = Carbon::now(); // Get the current date and time
     
         $sales = Sales::where('vendor_id', $vendor_id)
@@ -558,7 +557,7 @@ Route::get('admin_sales/view', function () {
 
     }
 
-     $startDateTime = Carbon::now()->subDay(); // Get the date and time 24 hours ago
+    $startDateTime = Carbon::today(); // Get the start of today (12am)
         $endDateTime = Carbon::now(); // Get the current date and time
     
         $sales_today = Sales::whereBetween('created_at', [$startDateTime, $endDateTime])
