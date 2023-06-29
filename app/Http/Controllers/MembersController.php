@@ -630,7 +630,7 @@ public function checkPhoneExists($phone)
     }
 
 
-    public function update_profile_admin(Request $request)
+    public function update_profile_admin_affiliate(Request $request)
     {
         try{
        
@@ -652,6 +652,45 @@ public function checkPhoneExists($phone)
             $user->total_aff_sales_cash = $request->total_aff_sales_cash;
             $user->total_aff_sales = $request->total_aff_sales;
             $user->unpaid_balance = $request->unpaid_balance;
+            $user->email = $request->email;
+
+            $user->save();
+
+
+           
+        }
+    }catch(Exception $e){
+
+        return response()->json(['message' => $e->getMessage()],500);
+    }
+      
+ 
+
+       
+    }
+
+    public function update_profile_admin_vendor(Request $request)
+    {
+        try{
+       
+        $request->validate([
+            'id' => 'required',
+            'total_vendor_sales_cash' => 'string',
+            'total_vendor_sales' => 'string',
+            'unpaid_balance_vendor' => 'string',
+            'email' => 'string',
+           
+            
+        ]);
+        $user = Members::where('id', $request->id)->first();
+
+        if (!$user ) {
+             return response()->json(['message'=>'That user doesn\'t exist.'],405);
+        }else{
+
+            $user->total_vendor_sales_cash = $request->total_vendor_sales_cash;
+            $user->total_vendor_sales = $request->total_vendor_sales;
+            $user->unpaid_balance_vendor = $request->unpaid_balance_vendor;
             $user->email = $request->email;
 
             $user->save();
