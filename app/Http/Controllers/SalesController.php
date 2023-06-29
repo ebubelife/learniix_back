@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Mail\AffiliateEmail;
 use App\Mail\VendorEmail;
 use App\Mail\FinishReg;
+use App\Mail\CourseAccess
 use App\Mail\Contest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
@@ -170,7 +171,17 @@ class SalesController extends Controller
             //Save affiliate commission
 
           if( $affiliate->save()){
-            if(Mail::to($validated["customer_email"])->send(new FinishReg($validated["customer_name"],$sale->id)));
+            if($validated["product_id"] == "1"){
+
+                Mail::to($validated["customer_email"])->send(new FinishReg($validated["customer_name"],$sale->id))
+            }
+
+            else{
+
+                Mail::to($validated["customer_email"])->send(new CourseAccess($validated["customer_name"], $product->ProductTYLink ))
+               
+
+            }
 
           
                 //Save vendor commission
