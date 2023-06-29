@@ -223,12 +223,13 @@ class SalesController extends Controller
 
        // DB::commit();
     }
-    catch(\Exception $e){
-       // DB::rollBack();
-        return response()->json(['message'=>'An error occured, please try again'.$e->getMessage(), 'error'=>$e->getMessage()],405);
-
-
-    }
+    catch (\Illuminate\Validation\ValidationException $exception) {
+        $errors = $exception->errors();
+    
+        return response()->json(['message' => 'Validation error', 'errors' => $errors], 422);
+      } catch (\Exception $e) {
+        return response()->json(['message' => 'An error occurred, please try again', 'error' => $e->getMessage()], 405);
+      }
     }
 
     /**
