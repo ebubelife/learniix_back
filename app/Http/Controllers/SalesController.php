@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use App\Mail\AffiliateEmail;
 use App\Mail\VendorEmail;
 use App\Mail\FinishReg;
-use App\Mail\CourseAccess
+use App\Mail\CourseAccess;
 use App\Mail\Contest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
