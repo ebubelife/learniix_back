@@ -12,7 +12,7 @@
 
 
 	<p style="color:#696969; font-size:21px;">Hi  {{ $customerName }}, </h3>
-	<p style="margin-top:20px; color:#696969;">You have successfully purchased the <b>{{ $course }}</b>  </p>
+	<p style="margin-top:20px; color:#696969;">You have successfully purchased the <b>{{ $productName }}</b>  </p>
 
     	<p style="margin-top:20px; color:#696969;">Click the link below to access the product </p>
 

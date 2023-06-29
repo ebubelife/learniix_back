@@ -19,13 +19,15 @@ class CourseAccess extends Mailable
 
     public $productTYLink;
     public $customerName;
+    public $productName;
 
-    public function __construct($customerName, $productTYLink)
+    public function __construct($customerName, $productTYLink,$productName)
     {
         //
 
         $this->customerName = $customerName;
         $this->productTYLink = $productTYLink;
+        $this->$productName  = $productName;
       
     }
 
@@ -38,7 +40,7 @@ class CourseAccess extends Mailable
     {
         $message = 'This is an example email sent from Laravel.';
         return $this->view('access_course', ['message' => $message])
-                    ->with(['productTYLink'=> $this->productTYLink, 'customerName'=>$this->customerName])
+                    ->with(['productTYLink'=> $this->productTYLink, 'customerName'=>$this->customerName, 'productName'=>$this->productName])
                    
                     ->from('Zenithstake@zenithstake.com')
                     ->subject('Access your course');

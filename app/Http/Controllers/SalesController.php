@@ -173,7 +173,7 @@ class SalesController extends Controller
           if( $affiliate->save()){
             if($validated["product_id"] == "1"){
 
-                Mail::to($validated["customer_email"])->send(new CourseAccess($validated["customer_name"], $product->ProductTYLink ));
+                Mail::to($validated["customer_email"])->send(new CourseAccess($validated["customer_name"], $product->ProductTYLink, $productName ));
                
 
               
