@@ -201,13 +201,13 @@ class SalesController extends Controller
               
                 //send email to affiliate
 
-                if(Mail::to($getAffiliate )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
+                if(Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
 
                 
 
                     //send email to vendor
 
-                            if(Mail::to($getVendor)->send(new VendorEmail( $getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"],$productName))){
+                            if(Mail::to($getVendor->email)->send(new VendorEmail( $getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"],$productName))){
 
                                 return response()->json(['message'=>'Successful' ],200);
 
