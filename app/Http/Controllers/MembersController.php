@@ -416,6 +416,7 @@ else if($validated["reg_type"]=="VENDOR"){
   //  }
 
 }
+}
 else {
 
     return response()->json(['message'=>'Could not find that email in our system. Contact support.'],405);
