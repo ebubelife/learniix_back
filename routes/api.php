@@ -323,6 +323,29 @@ Route::get('vendors/view', function () {
 
 
 
+Route::get('vendors/top/view', function () {
+    $vendors = Members::where('is_vendor', true)
+                        ->where('is_payed', "true")
+                        ->get();
+
+    foreach ($vendors as $vendor) {
+        $salesCount = Sales::where('vendor_id', $vendor->id)->count();
+        $vendor->sales_count = $salesCount;
+
+        $user = Members::find($vendor->vendor_id);
+        $vendor->vendor_details = $user;
+        $vendor->image_path = asset('https://back.zenithstake.com/storage/images/vendor_images/' . $vendor->image);
+    }
+
+    // Sort vendors based on sales_count in descending order
+    $vendors = $vendors->sortByDesc('sales_count')->values();
+
+    return response()->json($vendors);
+});
+
+
+
+
 });
 
 Route::controller(ProductsController::class)->group(function(){
