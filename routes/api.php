@@ -340,7 +340,10 @@ Route::get('vendors/top/view', function () {
     // Sort vendors based on sales_count in descending order
     $vendors = $vendors->sortByDesc('sales_count')->values();
 
-    return response()->json($vendors);
+    // Limit the number of results to two
+    $limitedVendors = $vendors->take(2);
+
+    return response()->json($limitedVendors);
 });
 
 
