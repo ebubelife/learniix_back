@@ -332,7 +332,7 @@ Route::get('vendors/top/view', function () {
 
         $user = Members::where('is_payed', "true")
                          ->where("id",$vendor->vendor_id)->get();
-        $vendor->vendor_details = $user;
+        $vendor["vendor_details"] = $user;
         $vendor->image_path = asset('https://back.zenithstake.com/storage/images/vendor_images/' . $vendor->image);
     }
 
