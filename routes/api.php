@@ -330,7 +330,7 @@ Route::get('vendors/top/view', function () {
         $salesCount = Sales::where('vendor_id', $vendor->vendor_id)->count();
         $vendor->sales_count = $salesCount;
 
-        $user = Members::where('is_paid', "true")
+        $user = Members::where('is_payed', "true")
                          ->where($vendor->vendor_id)->get();
         $vendor->vendor_details = $user;
         $vendor->image_path = asset('https://back.zenithstake.com/storage/images/vendor_images/' . $vendor->image);
