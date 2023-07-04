@@ -324,15 +324,14 @@ Route::get('vendors/view', function () {
 
 
 Route::get('vendors/top/view', function () {
-    $vendors = Members::where('is_vendor', true)
-                        ->where('is_payed', "true")
-                        ->get();
+    $vendors = Vendors::all();
 
     foreach ($vendors as $vendor) {
-        $salesCount = Sales::where('vendor_id', $vendor->id)->count();
+        $salesCount = Sales::where('vendor_id', $vendor->vendor_id)->count();
         $vendor->sales_count = $salesCount;
 
-        $user = Members::find($vendor->vendor_id);
+        $user = Members::where('is_paid', "true")
+                         ->where($vendor->vendor_id)->get();
         $vendor->vendor_details = $user;
         $vendor->image_path = asset('https://back.zenithstake.com/storage/images/vendor_images/' . $vendor->image);
     }
