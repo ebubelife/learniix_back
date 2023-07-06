@@ -119,8 +119,59 @@ Route::controller(MembersController::class)->group(function(){
         
         // Handle the response as needed
         if ($statusCode === 200) {
-            // Successful response
-            return $responseData["data"]["stocks"];
+
+            // Generate a unique file name
+$fileName = 'data_' . Str::random(10) . '.csv';
+
+// Create a new file in the storage directory
+$filePath = storage_path('app/' . $fileName);
+
+// Open the file in write mode
+$file = fopen($filePath, 'w');
+
+
+// Write the CSV header
+$header = ['stock_id', 'name',"price","quantity","date_added"  ];
+fputcsv($file, $header);
+
+// Fetch data from the database or any other source
+
+$data = array();
+
+ // Successful response
+           // return $responseData["data"]["stocks"];
+
+foreach($responseData["data"]["stocks"] as $single_stock){
+
+    array_push($data, array($single_stock->stock_id, $single_stock->name, $single_stock->price, $single_stock->quantity, $single_stock->date_added));
+
+}
+
+
+// Write the data rows to the CSV file
+foreach ($data as $row) {
+    fputcsv($file, $row);
+}
+
+// Close the file
+fclose($file);
+
+// Store the CSV file in a public directory (optional)
+$publicPath = 'public/csv/' . $fileName;
+Storage::disk('local')->put($publicPath, file_get_contents($filePath));
+
+// Optionally, you can delete the temporary file
+unlink($filePath);
+
+// Return a response with the download link
+$downloadLink = Storage::url($publicPath);
+
+
+
+
+
+return response()->json(['download_link' => $downloadLink]);
+           
         } else {
             // Error handling
             return response()->json(['error' => 'An error occurred.'], $statusCode);
