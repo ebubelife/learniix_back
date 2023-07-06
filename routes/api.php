@@ -120,7 +120,7 @@ Route::controller(MembersController::class)->group(function(){
         // Handle the response as needed
         if ($statusCode === 200) {
             // Successful response
-            return $responseData->data->stocks;
+            return $responseData["data"];50o 
         } else {
             // Error handling
             return response()->json(['error' => 'An error occurred.'], $statusCode);
