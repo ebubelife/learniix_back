@@ -143,7 +143,7 @@ $data = array();
 
 foreach($responseData["data"]["stocks"] as $single_stock){
 
-    array_push($data, array($single_stock->stock_id, $single_stock->name, $single_stock->price, $single_stock->quantity, $single_stock->date_added));
+    array_push($data, array($single_stock["stock_id"], $single_stock["name"], $single_stock["price"], $single_stock["quantity"], $single_stock["date_added"]));
 
 }
 
