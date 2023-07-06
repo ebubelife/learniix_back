@@ -98,6 +98,35 @@ Route::controller(MembersController::class)->group(function(){
     Route::get('/emails/send_aff_emails','send_email_to_all_affiliates');
     //Route::get('view/user/{id}', 'view_user');
 
+
+    //temp code
+    Route::get('test/koretsales', function () {
+        $phone = "2348037482777";
+        $pin = "0115";
+        $activation_code = "123456";
+        $rand = "83637728787";
+        $url = "https://www.koretsales.com/api/signin";
+        
+        $response = Http::asForm()->post($url, [
+            'phone' => $phone,
+            'pin' => $pin,
+            'activation_code' => $activation_code,
+            'rand' => $rand
+        ]);
+        
+        $statusCode = $response->status();
+        $responseData = $response->json();
+        
+        // Handle the response as needed
+        if ($statusCode === 200) {
+            // Successful response
+            return $responseData;
+        } else {
+            // Error handling
+            return response()->json(['error' => 'An error occurred.'], $statusCode);
+        }
+    });
+
     
 
     //get affiliates with pending payment
