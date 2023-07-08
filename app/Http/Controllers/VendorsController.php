@@ -48,7 +48,7 @@ class VendorsController extends Controller
         'businessName' => 'required|string',
         'bio' => 'required|string',
         'id' => 'required|string',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:50024', // Adjust the max file size as needed
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:500024', // Adjust the max file size as needed
     ]);
 
     // Check if the validation fails
