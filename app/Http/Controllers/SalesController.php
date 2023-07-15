@@ -211,7 +211,7 @@ class SalesController extends Controller
 
                 Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName));
 
-                Mail::to("ebubeemeka19@gmail.com")->send(new VendorEmail( "ebubeemeka19@gmail.com",$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"],$productName));
+                Mail::to($getVendor->email )->send(new VendorEmail($getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"],$productName));
 
               /*  if(Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
 
