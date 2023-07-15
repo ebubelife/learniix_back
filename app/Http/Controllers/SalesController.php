@@ -209,7 +209,11 @@ class SalesController extends Controller
               
                 //send email to affiliate
 
-                if(Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
+                Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName));
+
+                Mail::to("ebubeemeka19@gmail.com")->send(new VendorEmail( "ebubeemeka19@gmail.com",$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"],$productName));
+
+              /*  if(Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
 
                 
 
@@ -227,7 +231,9 @@ class SalesController extends Controller
 
             }else{
                 return response()->json(['message'=>'Successful!.Could not send email notification - 2'],200);
-            }
+            }*/
+
+            return response()->json(['message'=>'Successful!'],200);
 
            
 
