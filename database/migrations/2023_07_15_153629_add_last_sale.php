@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddToMembersWithdrawalStatus extends Migration
+class AddLastSale extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddToMembersWithdrawalStatus extends Migration
      */
     public function up()
     {
+        //
         Schema::table('members', function (Blueprint $table) {
             //
-            $table->string('weekly_withdrawal')->default(true);
+            $table->string('last_sale_amount')->nullable();
+            $table->string('last_sale_time')->nullable();
+
         });
     }
 
@@ -26,8 +29,6 @@ class AddToMembersWithdrawalStatus extends Migration
      */
     public function down()
     {
-        Schema::table('members_withdrawal_status', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }
