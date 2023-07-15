@@ -137,6 +137,14 @@ class SalesController extends Controller
 
             $affiliate->unpaid_balance = strval($unpaid_balance_affiliate + (($commission_int/100) * $price_int));
 
+            $timestamp = time(); // Get the current Unix timestamp
+            $timestamp_format = date('Y-m-d H:i:s', $timestamp); // Convert to the timestamp format
+
+            $affiliate->last_sale_time = $timestamp_format ;
+            $affiliate->last_sale_amount = strval((($commission_int/100) * $price_int)) ;
+            $affiliate->last_sale_product = $validated["product_id"] ;
+
+
 
            
 
