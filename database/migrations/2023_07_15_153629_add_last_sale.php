@@ -17,7 +17,7 @@ class AddLastSale extends Migration
         Schema::table('members', function (Blueprint $table) {
             //
             $table->string('last_sale_amount')->nullable();
-            $table->string('last_sale_time')->nullable();
+            $table->timestamp('last_sale_time')->nullable();
 
         });
     }
