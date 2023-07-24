@@ -416,6 +416,29 @@ else if($validated["reg_type"]=="VENDOR"){
   //  }
 
 }
+else if(!$checkEmailValid){
+
+    return response()->json(['message'=>'Please use a valid email'],405);
+
+
+}
+
+else if($checkEmailExists){
+
+    return response()->json(['message'=>'That email is in use already, please try another'],405);
+
+
+}
+
+else if( $checkPhoneExists){
+
+    return response()->json(['message'=>'That phone number is in use already, please try another'],405);
+
+
+
+
+}
+
 }
 else {
 
