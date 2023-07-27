@@ -459,7 +459,7 @@ else {
             'password' => 'required|string',
         ]);
 
-        $user = Members::where('email', $request->email)
+        $user = Members::where('email',strtolower($request->email) )
        // ->where('is_payed', "true")
         ->first();
 
