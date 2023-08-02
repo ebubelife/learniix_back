@@ -20,6 +20,8 @@ use App\Http\Controllers\MembersController;
 
 use App\Mail\Contest;
 
+use Illuminate\Support\Facades\DB;
+
 
 
 class MembersController extends Controller
@@ -453,6 +455,9 @@ else {
 
     public function login(Request $request){
 
+    $exchange_rate = DB::selectOne('SELECT value FROM settings WHERE setting_key = ? LIMIT 1', ['exchange_rate']);
+
+
         try{
         $request->validate([
             'email' => 'required|string',
@@ -489,7 +494,8 @@ else {
         return response()->json([
             'message' => 'Successfully logged in.',
             'user_details' => $user,
-            'access_token' => $token
+            'access_token' => $token,
+            'exchange_rate'=>$exchange_rate
         ]);
 
        
