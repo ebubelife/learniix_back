@@ -455,7 +455,7 @@ else {
 
     public function login(Request $request){
 
-    $exchange_rate = DB::selectOne('SELECT value FROM settings WHERE setting_key = ? LIMIT 1', ['exchange_rate']);
+    $exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['exchange_rate']);
 
 
         try{
