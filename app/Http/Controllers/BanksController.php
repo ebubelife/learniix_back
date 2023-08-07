@@ -89,6 +89,64 @@ class BanksController extends Controller
       
     }
 
+
+
+    public function addGhanaBanks(Request $request)
+    {
+        //
+       $url = "https://api.paystack.co/bank?currency=GHS";
+       $accessToken ="sk_live_9e99c504399b16cf066e5d5a3eb0edfeb2f7de06";
+      
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+        // Set authentication headers
+        $headers = [
+            'Authorization: Bearer ' . $accessToken,
+            'Content-Type: application/json',
+            // Add any other required headers
+        ];
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    
+        // Set any additional cURL options if needed
+    
+        $response = curl_exec($ch);
+        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    
+        if ($statusCode !== 200) {
+            // Handle error if needed
+            return null;
+        }
+    
+        curl_close($ch);
+    
+       // $ban = json_decode($response, true);
+
+       //return $response;
+
+       $banks = json_decode($response);
+    
+       // return  count($banks->data);
+ 
+       for ($i = 0; $i < count($banks->data); $i++) {
+
+               $bank_list = new Banks();       
+ 
+               $bank_list->bank= $banks->data[$i]->name;
+               $bank_list->code= $banks->data[$i]->code;
+               $bank_list->country= "GHS";
+
+               $bank_list->save();
+
+ 
+               
+ 
+       }
+    
+      
+    }
+
     /**
      * Display the specified resource.
      *
