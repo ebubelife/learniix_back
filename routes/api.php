@@ -518,7 +518,7 @@ Route::get('view/product/{id}', function ($id) {
 
 Route::controller(BanksController::class)->group(function(){
   
-    Route::post('banks/add','store');
+    Route::post('banks/add_nigerian_banks','addNigerianBanks');
     Route::get('banks/view','show');
 
     Route::get('banks/view/gh','show_ghana');

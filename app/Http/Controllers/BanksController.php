@@ -33,7 +33,7 @@ class BanksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addNigerianBanks(Request $request)
     {
         //
        $url = "https://api.paystack.co/bank?currency=NGN";
@@ -77,6 +77,7 @@ class BanksController extends Controller
  
                $bank_list->bank= $banks->data[$i]->name;
                $bank_list->code= $banks->data[$i]->code;
+               $bank_list->country= "NGN";
 
                $bank_list->save();
 
