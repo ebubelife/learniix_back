@@ -520,6 +520,10 @@ Route::controller(BanksController::class)->group(function(){
   
     Route::post('banks/add','store');
     Route::get('banks/view','show');
+
+    Route::get('banks/view/gh','show_ghana');
+
+    Route::get('banks/view/ng','show_nigeria');
   
 });
 
