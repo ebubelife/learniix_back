@@ -457,7 +457,7 @@ else {
 
     $naira_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_naira']);
 
-   // $ghs_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_ghs']);
+    $ghs_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_ghs']);
 
 
         try{
@@ -497,8 +497,8 @@ else {
             'message' => 'Successfully logged in.',
             'user_details' => $user,
             'access_token' => $token,
-           // 'naira_exchange_rate'=>$naira_exchange_rate,
-            //'ghs_exchange_rate'=>$ghs_exchange_rate
+            'naira_exchange_rate'=>$naira_exchange_rate,
+            'ghs_exchange_rate'=>$ghs_exchange_rate
         ]);
 
        
