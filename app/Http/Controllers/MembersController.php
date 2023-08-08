@@ -497,8 +497,8 @@ else {
             'message' => 'Successfully logged in.',
             'user_details' => $user,
             'access_token' => $token,
-            'naira_exchange_rate'=>$naira_exchange_rate,
-            'ghs_exchange_rate'=>$ghs_exchange_rate
+           // 'naira_exchange_rate'=>$naira_exchange_rate,
+            //'ghs_exchange_rate'=>$ghs_exchange_rate
         ]);
 
        
