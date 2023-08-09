@@ -493,12 +493,21 @@ else {
             // return response()->json(['message'=>'You haven\t completed your registration'],406);
  
          }
+
+         $convert_total_aff_sales_usd = ($user["total_aff_sales_cash"])/intval( $naira_exchange_rate);
+
+
+         $convert_balance_sales_usd = ($user["unpaid_balance"])/intval( $naira_exchange_rate);
+         
         return response()->json([
             'message' => 'Successfully logged in.',
             'user_details' => $user,
             'access_token' => $token,
             'naira_exchange_rate'=>$naira_exchange_rate,
-            'ghs_exchange_rate'=>$ghs_exchange_rate
+            'ghs_exchange_rate'=>$ghs_exchange_rate,
+            'convert_total_aff_sales_usd'=>$convert_total_aff_sales_usd ,
+            'convert_balance_usd'=>$convert_balance_sales_usd 
+             
         ]);
 
        
