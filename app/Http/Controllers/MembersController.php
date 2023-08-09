@@ -494,10 +494,10 @@ else {
  
          }
 
-         $convert_total_aff_sales_usd = ($user->total_aff_sales_cash)/intval( $naira_exchange_rate);
+         $convert_total_aff_sales_usd = ($user->total_aff_sales_cash)/intval( $naira_exchange_rate->value);
 
 
-         $convert_balance_sales_usd = ($user->unpaid_balance)/intval( $naira_exchange_rate);
+         $convert_balance_sales_usd = ($user->unpaid_balance)/intval( $naira_exchange_rate->value);
 
         return response()->json([
             'message' => 'Successfully logged in.',
