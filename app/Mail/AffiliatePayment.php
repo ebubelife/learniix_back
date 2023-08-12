@@ -24,7 +24,7 @@ class AffiliatePayment extends Mailable
     {
         //
         $this->affiliate_name = $affiliate_name;
-        $this->amount= $amount;
+        $this->amount= intval($amount);
     }
 
     /**
@@ -41,7 +41,7 @@ class AffiliatePayment extends Mailable
     
         $message = 'This is an example email sent from Laravel.';
         return $this->view('affiliate_payment_email', ['message' => $message])
-                    ->with(['affiliate_name'=> $this->affiliate_name, 'amount'=> strval(inval($this->amount)/intval($naira_exchange_rate))])
+                    ->with(['affiliate_name'=> $this->affiliate_name, 'amount'=> strval($this->amount/intval($naira_exchange_rate))])
                    
                     ->from('Zenithstake@zenithstake.com')
                     ->subject('Holy Sunday, Alert!🥳');
