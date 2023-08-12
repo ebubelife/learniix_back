@@ -139,7 +139,7 @@ class TransactionsController extends Controller
            if($tx->save()){
 
 
-            Mail::to($unpaid_user->email)->send(new AffiliatePayment( intval($unpaid_user->unpaid_balance_vendor)/$naira_exchange_rate->value,$unpaid_user->firstName." ".$unpaid_user->lastName));
+            Mail::to($unpaid_user->email)->send(new AffiliatePayment( intval($unpaid_user->unpaid_balance_vendor)/intvale($naira_exchange_rate->value),$unpaid_user->firstName." ".$unpaid_user->lastName));
             $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$res); 
 
             array_push($all_tx_result, $single_tx_result);
@@ -276,7 +276,7 @@ class TransactionsController extends Controller
            if($tx->save()){
 
 
-            Mail::to($unpaid_user->email)->send(new AffiliatePayment( intval($unpaid_user->unpaid_balance)/$naira_exchange_rate->value,$unpaid_user->firstName." ".$unpaid_user->lastName));
+            Mail::to($unpaid_user->email)->send(new AffiliatePayment( intval($unpaid_user->unpaid_balance)/intval($naira_exchange_rate->value),$unpaid_user->firstName." ".$unpaid_user->lastName));
             $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$res); 
 
             array_push($all_tx_result, $single_tx_result);
