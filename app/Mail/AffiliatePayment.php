@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
 
 class AffiliatePayment extends Mailable
 {
@@ -33,9 +34,14 @@ class AffiliatePayment extends Mailable
      */
     public function build()
     {
+
+        $naira_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_naira']);
+
+        $ghs_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_ghs']);
+    
         $message = 'This is an example email sent from Laravel.';
         return $this->view('affiliate_payment_email', ['message' => $message])
-                    ->with(['affiliate_name'=> $this->affiliate_name, 'amount'=> $this->amount])
+                    ->with(['affiliate_name'=> $this->affiliate_name, 'amount'=> strval(inval($this->amount)/intval($naira_exchange_rate))])
                    
                     ->from('Zenithstake@zenithstake.com')
                     ->subject('Holy Sunday, Alert!🥳');

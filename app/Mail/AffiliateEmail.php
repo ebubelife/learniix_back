@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
 
 class AffiliateEmail extends Mailable
 {
@@ -43,9 +44,16 @@ class AffiliateEmail extends Mailable
      */
     public function build()
     {
+
+
+    $naira_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_naira']);
+
+    $ghs_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_ghs']);
+
+
         $message = 'This is an example email sent from Laravel.';
         return $this->view('affiliate_sale_email', ['message' => $message])
-                    ->with(['affiliate_email'=> $this->affiliate_email,'firstName'=>$this->firstName,'productPrice'=>$this->productPrice,'commission'=>$this->commission, "customer_name"=>$this->customer_name, "productName"=>$this->productName])
+                    ->with(['affiliate_email'=> $this->affiliate_email,'firstName'=>$this->firstName,'productPrice'=>strval((intval($this->productPrice)/intval($naira_exchange_rate ))),'commission'=>strval((intval($this->commission)/intval($naira_exchange_rate ))), "customer_name"=>$this->customer_name, "productName"=>$this->productName])
                    
                     ->from('ZenithStake@zenithstake.com')
                     ->subject('Congratulations🥳🥳 on your new sale!🥳');

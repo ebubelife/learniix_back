@@ -17,9 +17,9 @@
 
 
 
-    <p style="margin-top:12px; color:#000000;">Price :  ₦{{ $productPrice }}</p>
+    <p style="margin-top:12px; color:#000000;">Price :  ${{ $productPrice }}</p>
 
-    <p style="margin-top:12px; color:#0000000;">You have just earned  ₦{{ $commission }}  on this sale</p>
+    <p style="margin-top:12px; color:#0000000;">You have just earned  ${{ $commission }}  on this sale</p>
 
 	<p>Buyer: {{ $customer_name }}</p>
 
