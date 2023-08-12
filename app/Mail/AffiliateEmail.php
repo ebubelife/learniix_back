@@ -53,7 +53,7 @@ class AffiliateEmail extends Mailable
 
         $message = 'This is an example email sent from Laravel.';
         return $this->view('affiliate_sale_email', ['message' => $message])
-                    ->with(['affiliate_email'=> $this->affiliate_email,'firstName'=>$this->firstName,'productPrice'=>strval(($this->productPrice/intval($naira_exchange_rate )),'commission'=>strval($this->commission/intval($naira_exchange_rate ))), "customer_name"=>$this->customer_name, "productName"=>$this->productName])
+                    ->with(['affiliate_email'=> $this->affiliate_email,'firstName'=>$this->firstName,'productPrice'=>strval($this->productPrice/intval($naira_exchange_rate )),'commission'=>strval($this->commission/intval($naira_exchange_rate )), "customer_name"=>$this->customer_name, "productName"=>$this->productName])
                    
                     ->from('ZenithStake@zenithstake.com')
                     ->subject('Congratulations🥳🥳 on your new sale!🥳');
