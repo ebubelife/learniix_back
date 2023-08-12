@@ -7,6 +7,7 @@ use App\Models\Members;
 use Illuminate\Http\Request;
 use App\Mail\AffiliatePayment;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class TransactionsController extends Controller
 {
@@ -39,6 +40,11 @@ class TransactionsController extends Controller
 
 
          public function pay_vendors(Request $request){
+
+            $naira_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_naira']);
+
+            $ghs_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_ghs']);
+        
 
         $all_tx_result = array();
 
@@ -133,7 +139,7 @@ class TransactionsController extends Controller
            if($tx->save()){
 
 
-            Mail::to($unpaid_user->email)->send(new AffiliatePayment( $unpaid_user->unpaid_balance_vendor,$unpaid_user->firstName." ".$unpaid_user->lastName));
+            Mail::to($unpaid_user->email)->send(new AffiliatePayment( intval($unpaid_user->unpaid_balance_vendor)/$naira_exchange_rate->value,$unpaid_user->firstName." ".$unpaid_user->lastName));
             $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$res); 
 
             array_push($all_tx_result, $single_tx_result);
@@ -175,6 +181,10 @@ class TransactionsController extends Controller
     public function pay_affiliates(Request $request){
 
         $all_tx_result = array();
+        $naira_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_naira']);
+
+        $ghs_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_ghs']);
+    
 
         try{
 
@@ -266,7 +276,7 @@ class TransactionsController extends Controller
            if($tx->save()){
 
 
-            Mail::to($unpaid_user->email)->send(new AffiliatePayment( $unpaid_user->unpaid_balance,$unpaid_user->firstName." ".$unpaid_user->lastName));
+            Mail::to($unpaid_user->email)->send(new AffiliatePayment( intval($unpaid_user->unpaid_balance)/$naira_exchange_rate->value,$unpaid_user->firstName." ".$unpaid_user->lastName));
             $single_tx_result = array("user"=>$unpaid_user->id,"result"=>$res); 
 
             array_push($all_tx_result, $single_tx_result);
