@@ -76,6 +76,11 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
+
+        $naira_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_naira']);
+
+        $ghs_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_ghs']);
+    
         //
 
        // DB::beginTransaction();
@@ -209,9 +214,9 @@ class SalesController extends Controller
               
                 //send email to affiliate
 
-                Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"]/500,$aff_commision/500, $validated["customer_name"], $productName));
+                Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"]/$naira_exchange_rate->value,$aff_commision/$naira_exchange_rate->value, $validated["customer_name"], $productName));
 
-                Mail::to($getVendor->email )->send(new VendorEmail($getVendor->email,$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"],$productName));
+                Mail::to($getVendor->email )->send(new VendorEmail($getVendor->email,$getVendor->firstName,$validated["product_price"],$vendor_comission/$naira_exchange_rate->value,$validated["customer_name"],$productName));
 
               /*  if(Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
 
