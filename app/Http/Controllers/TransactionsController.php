@@ -181,6 +181,7 @@ class TransactionsController extends Controller
     public function pay_affiliates(Request $request){
 
         $all_tx_result = array();
+        
         $naira_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_naira']);
 
         $ghs_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_ghs']);
