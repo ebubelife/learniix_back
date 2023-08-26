@@ -99,10 +99,13 @@ class SalesController extends Controller
             'customer_name' => 'required|string',
             'customer_email' => 'required|string',
             'customer_phone' => 'required|string',
+            'currency' => 'required|string',
            
         ]);
 
              $sale = new Sales();
+
+             
 
             
              $sale->affiliate_id =  $validated["affiliate_id"];
@@ -115,6 +118,7 @@ class SalesController extends Controller
              $sale->customer_phone =  $validated["customer_phone"];
              $sale->vendor_id =  $validated["vendor_id"];
 
+            
 
            /// $characters = '0123456789abcdefghijklmnopqrstuvwxyz' ;
             //$random_string = substr(str_shuffle($characters), 0, 8);
@@ -131,7 +135,14 @@ class SalesController extends Controller
             $affiliate = Members::where('affiliate_id', $validated["affiliate_id"])->first();
 
             $commission_int = intval($validated["commission"]);
-            $price_int = intval($validated["product_price"]);
+
+
+            $price_int = $validated["currency"]=="USD"?(intval($validated["product_price"]) * (intval( $naira_exchange_rate->value))):(intval($validated["product_price"]));
+
+        
+
+
+
             $total_aff_sales = intval($affiliate->total_aff_sales_cash);
             $total_aff_sales_num = intval($affiliate->total_aff_sales);
 
