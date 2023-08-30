@@ -363,7 +363,10 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
     
         if ($user) {
             // Update the email_verified column to true
-            $user->update(['email_verified' => true]);
+          //  $user->update(['email_verified' => true]);
+
+            $user->email_verified = true;
+            $user->save();
     
             return response()->json(['message' => 'Email verification status updated successfully']);
         } else {
