@@ -137,7 +137,7 @@ class SalesController extends Controller
             $commission_int = intval($validated["commission"]);
 
 
-            $price_int = $validated["currency"]=="USD"?(intval($validated["product_price"]) * (intval( $naira_exchange_rate->value))):(intval($validated["product_price"]));
+            $price_int = $validated["currency"]=="USD"?(intval($validated["product_price"]) * (intval($naira_exchange_rate->value))):(intval($validated["product_price"]));
 
         
 
