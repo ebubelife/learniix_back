@@ -355,6 +355,22 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
 
     Route::post('account/verify_email','verify_email_with_code');
 
+
+    //verify email from admin
+    Route::get('update_email_verified/{id}', function ($id) {
+        // Find the user by ID
+        $user = Members::find($id);
+    
+        if ($user) {
+            // Update the email_verified column to true
+            $user->update(['email_verified' => true]);
+    
+            return response()->json(['message' => 'Email verification status updated successfully']);
+        } else {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    });
+
    
 
     
