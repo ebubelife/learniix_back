@@ -597,8 +597,56 @@ Route::controller(SalesController::class)->group(function(){
     
         // Query the sales records between the provided dates
         $sales = Sales::whereBetween('created_at', [$startDateTime, $endDateTime])->get();
+
+
+                // Generate a unique file name
+        $fileName = 'data_' . Str::random(10) . '.csv';
+
+        // Create a new file in the storage directory
+        $filePath = storage_path('app/' . $fileName);
+
+        // Open the file in write mode
+        $file = fopen($filePath, 'w');
+
+
+        // Write the CSV header
+        $header = ['sale_id', 'c_name',"c_email","c_phone","date_added"  ];
+        fputcsv($file, $header);
+
+        // Fetch data from the database or any other source
+
+        $data = array();
+
+        // Successful response
+                // return $responseData["data"]["stocks"];
+
+        foreach($sales as $sale){
+
+            array_push($data, array($sale["id"], $sale["customer_name"], $sale["customer_email"], $sale["customer_phone"], $sale["created_at"]));
+
+        }
+
+
+        // Write the data rows to the CSV file
+        foreach ($data as $row) {
+            fputcsv($file, $row);
+        }
+
+        // Close the file
+        fclose($file);
+
+        // Store the CSV file in a public directory (optional)
+        $publicPath = 'public/csv/' . $fileName;
+        Storage::disk('local')->put($publicPath, file_get_contents($filePath));
+
+        // Optionally, you can delete the temporary file
+        unlink($filePath);
+
+        // Return a response with the download link
+        $downloadLink = Storage::url($publicPath);
+
     
-        return response()->json($sales);
+        return response()->json(array("csv"=>$filePath,"sales"=>$sales));
     });
     
 
