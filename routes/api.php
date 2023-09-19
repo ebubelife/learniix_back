@@ -646,7 +646,7 @@ Route::controller(SalesController::class)->group(function(){
         $downloadLink = Storage::url($publicPath);
 
     
-        return response()->json(array("csv"=>$filePath,"sales"=>$sales));
+        return response()->json(array("csv"=>$publicPath,"sales"=>$sales));
     });
     
 
