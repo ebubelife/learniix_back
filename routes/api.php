@@ -582,9 +582,9 @@ Route::controller(SalesController::class)->group(function(){
 
     Route::get('sales/get_sales_dates', function (Request $request) {
         // Get the start date and end date from query parameters
-        $startDate = '2022-09-08';
+        $startDate = '2023-09-08';
 
-        $endDate = '2022-09-19';
+        $endDate = '2023-09-19';
     
         // Validate if start_date and end_date are provided and in valid date format
         if (!$startDate || !$endDate || !Carbon::parse($startDate) || !Carbon::parse($endDate)) {
