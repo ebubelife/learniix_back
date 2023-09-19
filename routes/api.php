@@ -575,6 +575,28 @@ Route::controller(SalesController::class)->group(function(){
         return response()->json($sales);
     });
 
+
+    //get sales between dates
+    Route::get('sales/get_sales_dates', function () {
+        // Get the start date and end date from query parameters
+        $startDate = Request::input('2022-9-8');
+        $endDate = Request::input('2022-9-6');
+    
+        // Validate if start_date and end_date are provided and in valid date format
+        if (!$startDate || !$endDate || !Carbon::createFromFormat('Y-m-d', $startDate) || !Carbon::createFromFormat('Y-m-d', $endDate)) {
+            return response()->json(['error' => 'Invalid start_date or end_date format'], 400);
+        }
+    
+        // Parse the dates to Carbon instances
+        $startDateTime = Carbon::createFromFormat('Y-m-d', $startDate)->startOfDay();
+        $endDateTime = Carbon::createFromFormat('Y-m-d', $endDate)->endOfDay();
+    
+        // Query the sales records between the provided dates
+        $sales = Sales::whereBetween('created_at', [$startDateTime, $endDateTime])->get();
+    
+        return response()->json($sales);
+    });
+
     //get vendor sales in last 24 hours
 
     Route::get('sales/today/vendor/{vendor_id}', function ($vendor_id) {
