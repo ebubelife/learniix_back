@@ -12,15 +12,15 @@
 </div>
 
 
-<p>
+
 
 <p>Dear Esteemed Affiliate,</p>
 
-<p>Due to the present challenge between paystack payment platform and Zenithstake, paystack will not be available on our system for now, until further notice,
+<p>Due to the present challenge between paystack payment platform and Zenithstake, Paystack will not be available on our system for now, until further notice.
 
-As such, to everyone who has at one point made payment via paystack in the past two weeks.</p>
+As such, to everyone who has at one point made payment via Paystack in the past two weeks.</p>
 
-<p>You will receive back into your various bank accounts all your payments gradually, between now and the next 7working days.</p>
+<p>You will receive back into your various bank accounts all your payments gradually, between now and the next 7 working days.</p>
 
 <p>This does not affect you or your business in any way, it does not affect your commission neither does it affect your account or any of your students.</p>
 
@@ -42,7 +42,12 @@ Kindly send the screenshot of the transfer you made to <b>Mr. Chinaza </b> or se
 
 <p>We trust that you will do the right thing..!</p>
 
-</p>
+<br>
+<p>Thank you all,</p>
+
+<p>Zenithstake's Team💡</p>
+
+
 
 
 		
