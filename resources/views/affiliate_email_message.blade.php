@@ -32,7 +32,7 @@ All you need to do is to transfer the money upon receipt back into the company b
 
 <p>We have every Affiliate's detailson our database and we have been able to know how much each person will be receiving from paystack, and it has been documented and filled into the company's profile.
 
-Kindly send the screenshot of the transfer you made to Mr. Chinaza or send it to this number +232 88 592417 on WhatsApp.</p>
+Kindly send the screenshot of the transfer you made to <b>Mr. Chinaza </b> or send it to this number <b> +232 88 592417 </b> on WhatsApp.</p>
 
 <p><b>ZENITHSTAKE Enterprises NGN</b></p>
 <p><b>Wema Bank</b></p>
