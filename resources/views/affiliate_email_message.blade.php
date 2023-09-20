@@ -14,7 +14,7 @@
 
 <p>
 
-<p>Dear Affiliates,</p>
+<p>Dear Esteemed Affiliate,</p>
 
 <p>Due to the present challenge between paystack payment platform and Zenithstake, paystack will not be available on our system for now, until further notice,
 
@@ -22,23 +22,27 @@ As such, to everyone who has at one point made payment via paystack in the past 
 
 <p>You will receive back into your various bank accounts all your payments gradually, between now and the next 7working days.</p>
 
-<p>This does not affect you or your business in any way, it does not affect your commission neither does it affect your account or any of your students, 
+<p>This does not affect you or your business in any way, it does not affect your commission neither does it affect your account or any of your students.</p>
+
+<p>
 
 The issue does not affect Affiliates in any way whatsoever, so inform your students that there is no cause for alarm, everyone should be calm
 
-All you need to do is to transfer the money upon receipt back into the company bank account</p>
+All you need to do is to transfer the money upon receipt back into the company bank account.</p>
 
 <p>We have every Affiliate's details at the back-end of our website and we have been able to know how much each person will be receiving from paystack, and it has been documented and filled into the company's profile,
 
 Kindly send the screenshot of the transfer you made to Mr. Chinaza or send it to this number +232 88 592417 on WhatsApp.</p>
 
-<p><b>
-ZENITHSTAKE Enterprises NGN
-Wema Bank
-0124565836
+<b>
+<p>ZENITHSTAKE Enterprises NGN</p>
+<p>Wema Bank</p>
+<p>0124565836</p>
 
-We trust that you will do the right thing..!
-</b></p>
+<br>
+
+<p>We trust that you will do the right thing..!</p>
+</b>
 </p>
 
 
