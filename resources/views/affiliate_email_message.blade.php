@@ -26,23 +26,22 @@ As such, to everyone who has at one point made payment via paystack in the past 
 
 <p>
 
-The issue does not affect Affiliates in any way whatsoever, so inform your students that there is no cause for alarm, everyone should be calm
+The issue does not affect Affiliates in any way whatsoever, so inform your students that there is no cause for alarm, everyone should be calm.
 
 All you need to do is to transfer the money upon receipt back into the company bank account.</p>
 
-<p>We have every Affiliate's details at the back-end of our website and we have been able to know how much each person will be receiving from paystack, and it has been documented and filled into the company's profile,
+<p>We have every Affiliate's detailson our database and we have been able to know how much each person will be receiving from paystack, and it has been documented and filled into the company's profile.
 
 Kindly send the screenshot of the transfer you made to Mr. Chinaza or send it to this number +232 88 592417 on WhatsApp.</p>
 
-<b>
-<p>ZENITHSTAKE Enterprises NGN</p>
-<p>Wema Bank</p>
-<p>0124565836</p>
+<p><b>ZENITHSTAKE Enterprises NGN</b></p>
+<p><b>Wema Bank</b></p>
+<p><b>0124565836</b></p>
 
 <br>
 
 <p>We trust that you will do the right thing..!</p>
-</b>
+
 </p>
 
 
