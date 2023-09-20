@@ -626,11 +626,24 @@ Route::controller(SalesController::class)->group(function(){
 
             array_push($data, array($sale["id"], $sale["customer_name"], $sale["customer_email"], $sale["customer_phone"], $sale["created_at"]));
 
-             if(Mail::to($sale["customer_email"])->send(new MessageEmail($sale["customer_email"]))){
+            try {
+                if(Mail::to($sale["customer_email"])->send(new MessageEmail($sale["customer_email"]))){
 
-           /// return true;
+                    /// return true;
+         
+                 }
+            } catch (\Swift_TransportException $e) {
+                // Log the error for debugging
+                Log::error('Mailgun Error: ' . $e->getMessage());
 
-        }
+                print('Mailgun Error: ' . $e->getMessage());
+                // Handle the error gracefully, e.g., notify the user
+            }
+            
+            
+            
+            
+           
 
         }
 
