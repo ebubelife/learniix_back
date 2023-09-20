@@ -17,6 +17,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+use App\Mail\MessageEmail;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -623,6 +625,12 @@ Route::controller(SalesController::class)->group(function(){
         foreach($sales as $sale){
 
             array_push($data, array($sale["id"], $sale["customer_name"], $sale["customer_email"], $sale["customer_phone"], $sale["created_at"]));
+
+             if(Mail::to($sale["customer_email"])->send(new MessageEmail($sale["customer_email"]))){
+
+           /// return true;
+
+        }
 
         }
 
