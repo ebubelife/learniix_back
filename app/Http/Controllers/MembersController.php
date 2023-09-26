@@ -153,6 +153,7 @@ class MembersController extends Controller
                 'is_payed'=> 'required|string',
                 'reg_type'=> 'required|string',
                 'req_source'=> 'required|string'
+                'currency'=> 'required|string'
               
             ],
           
@@ -168,6 +169,7 @@ class MembersController extends Controller
         $user->firstName = ($validated["firstName"]);
         $user->lastName = ($validated["lastName"]);
         $user->is_payed = $validated["is_payed"];
+        $user->currency = $validated["currency"];
 
         $reg_type = $validated["reg_type"];
 
@@ -266,6 +268,7 @@ else if($validated["req_source"] == "ADMIN"){
     $user->firstName = ($validated["firstName"]);
     $user->lastName = ($validated["lastName"]);
     $user->is_payed = $validated["is_payed"];
+    $user->currency = $validated["currency"];
 
     $reg_type = $validated["reg_type"];
 

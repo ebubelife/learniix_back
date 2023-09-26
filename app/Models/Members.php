@@ -12,6 +12,6 @@ class Members extends Authenticatable
 {
     use HasFactory,HasApiTokens, Notifiable;
 
-    $fillable  = ["currency"];
+   // $fillable  = ["currency"];
  
 }
