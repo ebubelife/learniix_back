@@ -370,6 +370,7 @@ else if($validated["reg_type"]=="VENDOR"){
     $user->firstName = ($validated["firstName"]);
     $user->lastName = ($validated["lastName"]);
     $user->is_payed = $validated["is_payed"];
+    $user->currency = $validated["currency"];
 
     $reg_type = $validated["reg_type"];
 
