@@ -152,7 +152,7 @@ class MembersController extends Controller
                 'password' => 'required|string|min:8',
                 'is_payed'=> 'required|string',
                 'reg_type'=> 'required|string',
-                'req_source'=> 'required|string'
+                'req_source'=> 'required|string',
                 'currency'=> 'required|string'
               
             ],
