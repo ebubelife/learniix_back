@@ -6,15 +6,17 @@ use App\Models\Members;
 use App\Models\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 use App\Mail\RecoverAccountMail;
 use App\Mail\ConfirmEmail;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\FinishReg;
 use App\Mail\AffiliateWelcomeEmail;
 
 use App\Mail\MyEmail;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
+
+
 
 use App\Http\Controllers\MembersController;
 

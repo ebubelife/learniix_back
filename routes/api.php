@@ -1,14 +1,16 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\MembersController;
+use App\Models\Members;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VendorsController;
-use App\Http\Controllers\MembersController;
+
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\BanksController;
 use App\Http\Controllers\SalesController;
-use App\Models\Members;
+
 use App\Models\Vendors;
 use App\Models\Products;
 use App\Models\Transactions;
@@ -710,6 +712,26 @@ Route::controller(SalesController::class)->group(function(){
         return response()->json(["count"=>count( $sales_by_user ), "aff"=>$id, "total_sales"=>strval($total_sales)]);
     });
 
+   // Get top 5 affiliates with the highest number of sales for a product
+Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
+    $top_affiliates = Sales::where('product_id', $product_id)
+        ->selectRaw('affiliate_id, count(*) as sales_count')
+        ->groupBy('affiliate_id')
+        ->orderBy('sales_count', 'desc')
+        ->take(5) // Retrieve the top 5 affiliates
+        ->get();
+
+    // Retrieve affiliate details for each of the top affiliates
+    foreach ($top_affiliates as $index => $affiliate) {
+        $user = Members::find($affiliate->affiliate_id);
+        $top_affiliates[$index]->affiliate_details = $user;
+    }
+
+    return response()->json($top_affiliates);
+});
+
+
+    //get top affiliates for a vendor
     Route::get('top_affiliate/view/{vendor_id}', function ($vendor_id) {
         $top_affiliates = Sales::where('vendor_id', $vendor_id)->get();
     
