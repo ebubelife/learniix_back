@@ -723,7 +723,7 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
 
     // Retrieve affiliate details for each of the top affiliates
     foreach ($top_affiliates as $index => $affiliate) {
-        $user = Members::where('affiliate_id', $affiliate->affiliate_id);
+        $user = Members::where('affiliate_id', $affiliate->affiliate_id)->get();
         $top_affiliates[$index]->affiliate_details = $user;
     }
 
