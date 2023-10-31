@@ -718,7 +718,7 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
     $lastDayOfMonth = now()->lastOfMonth();
 
     $top_affiliates = Sales::where('product_id', $product_id)
-        ->whereBetween('sale_date', [$firstDayOfMonth, $lastDayOfMonth]) // Filter sales for the current month
+        ->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth]) // Filter sales for the current month
         ->selectRaw('affiliate_id, count(*) as sales_count')
         ->groupBy('affiliate_id')
         ->orderBy('sales_count', 'desc')
