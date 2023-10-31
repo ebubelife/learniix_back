@@ -847,7 +847,7 @@ Route::get('sales/today/unique', function () {
         $customerEmail = $sale->customer_email;
 
         // Check if the email is not in the uniqueEmails array
-        if (!in_array($customerEmail, $uniqueEmails)) {
+        if (in_array($customerEmail, $uniqueEmails)) {
             // Email is unique, add it to the array
             $uniqueEmails[] = $customerEmail;
         }
