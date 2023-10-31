@@ -722,7 +722,7 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
         ->selectRaw('affiliate_id, count(*) as sales_count')
         ->groupBy('affiliate_id')
         ->orderBy('sales_count', 'desc')
-        ->take(5) // Retrieve the top 5 affiliates
+        ->take(10) // Retrieve the top 5 affiliates
         ->get();
 
     // Retrieve affiliate details for each of the top affiliates
