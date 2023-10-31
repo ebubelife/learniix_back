@@ -712,9 +712,13 @@ Route::controller(SalesController::class)->group(function(){
         return response()->json(["count"=>count( $sales_by_user ), "aff"=>$id, "total_sales"=>strval($total_sales)]);
     });
 
-   // Get top 5 affiliates with the highest number of sales for a product
+// Get top 5 affiliates with the highest number of sales for a product within the current month
 Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
+    $firstDayOfMonth = now()->firstOfMonth();
+    $lastDayOfMonth = now()->lastOfMonth();
+
     $top_affiliates = Sales::where('product_id', $product_id)
+        ->whereBetween('sale_date', [$firstDayOfMonth, $lastDayOfMonth]) // Filter sales for the current month
         ->selectRaw('affiliate_id, count(*) as sales_count')
         ->groupBy('affiliate_id')
         ->orderBy('sales_count', 'desc')
@@ -730,6 +734,7 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
 
     return response()->json($top_affiliates);
 });
+
 
 
     //get top affiliates for a vendor
