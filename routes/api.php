@@ -717,7 +717,7 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
     $firstDayOfMonth = now()->firstOfMonth();
     $lastDayOfMonth = now()->lastOfMonth();
 
-    $top_affiliates = Sales::where('product_id', $product_id)
+   /* $top_affiliates = Sales::where('product_id', $product_id)
         ->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth]) // Filter sales for the current month
         ->selectRaw('affiliate_id, count(*) as sales_count')
         ->groupBy('affiliate_id')
@@ -730,9 +730,24 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
         $user = Members::where('affiliate_id', $affiliate->affiliate_id)->first();
         $top_affiliates[$index]->firstName = $user->firstName;
         $top_affiliates[$index]->lastName = $user->lastName;
-    }
+    }*/
 
-    return response()->json($top_affiliates);
+
+    $query = Sales::where('vendor_id', '16')
+    ->selectRaw('sales.affiliate_id, COUNT(*) as count, members.*')
+    ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
+    ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
+    ->where('sales.created_at', '>=', ($firstDayOfMonth))
+    ->where('sales.created_at', '<=', $lastDayOfMonth)
+    ->limit(10);
+
+
+$sales_by_user = $query->orderBy('count', 'desc')->get();
+
+return response()->json(["message" => $sales_by_user, "to" => $firstDayOfMonth, "from" => $lastDayOfMonth]);
+
+
+  //  return response()->json($top_affiliates);
 });
 
 
