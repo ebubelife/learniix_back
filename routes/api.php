@@ -744,7 +744,7 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
 
 $sales_by_user = $query->orderBy('count', 'desc')->get();
 
-return response()->json(["message" => $sales_by_user, "to" => $firstDayOfMonth, "from" => $lastDayOfMonth]);
+return response()->json( $sales_by_user);
 
 
   //  return response()->json($top_affiliates);
