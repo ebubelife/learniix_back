@@ -715,7 +715,7 @@ Route::controller(SalesController::class)->group(function(){
 // Get top 5 affiliates with the highest number of sales for a product within the current month
 Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
     $firstDayOfMonth = now()->firstOfMonth();
-    $lastDayOfMonth = now()->lastOfMonth();
+    $current = now();
 
    /* $top_affiliates = Sales::where('product_id', $product_id)
         ->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth]) // Filter sales for the current month
@@ -738,7 +738,7 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
     ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
     ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
     ->where('sales.created_at', '>=', ($firstDayOfMonth))
-    ->where('sales.created_at', '<=', $lastDayOfMonth)
+    ->where('sales.created_at', '<=', $current)
     ->limit(10);
 
 
