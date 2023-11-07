@@ -257,6 +257,20 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
 
     Route::get('view/all', 'show');
 
+
+    
+
+  //retrieve affiliates , order by total unpaid balance
+
+Route::get('view/affiliates/order', function () {
+    $affiliates = Members::orderBy('unpaid_balance', 'desc')->get();
+    
+    return response()->json($affiliates);
+});
+
+
+
+
     Route::get('view/affiliates', function () {
         $affiliates = Members::where('is_vendor', false)
         ->orderByDesc('created_at')
