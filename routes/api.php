@@ -103,6 +103,84 @@ Route::controller(MembersController::class)->group(function(){
     //Route::get('view/user/{id}', 'view_user');
 
 
+
+
+
+
+       /*code to update members database */
+
+
+      
+       Route::get('update/aff/data/', function () {
+
+        $json_d = '[
+            {
+                "id": 1,
+                "firstName": "Chinaza",
+                "lastName": "Temple",
+                "email": "aimchinaza3039@gmail.com",
+                "email_code": "2357",
+                "email_verified": 1,
+                "password": "$2y$10$U9qSCnPFDNEnBI22TAcZEeWGNghNQhFmNCyiyZYDTlQEk4ICmMmHi",
+                "phone": "09071877825",
+                "phone_code": null,
+                "phone_verified": 0,
+                "is_vendor": 0,
+                "affiliate_id": "YPhCRf",
+                "created_at": "2023-05-26T02:53:30.000000Z",
+                "updated_at": "2023-09-22T19:09:05.000000Z",
+                "bank_account_name": "Godspower Temple",
+                "bank": "035",
+                "bank_account_number": "8540756999",
+                "is_payed": "true",
+                "total_aff_sales_cash": "690000",
+                "total_aff_sales": "138",
+                "total_vendor_sales_cash": "0.00",
+                "total_vendor_sales": "0",
+                "unpaid_balance": "0.00",
+                "unpaid_balance_vendor": "0.00",
+                "payment_reference_paystack": "RCP_kl98oq1n1mrxqyg",
+                "payment_reference_flutterwave": null,
+                "weekly_withdrawal": "1",
+                "withdrawal_settings": 1,
+                "last_sale_amount": "5000",
+                "last_sale_time": "2023-08-10 08:25:33",
+                "last_sale_product": "1",
+                "currency": "NGN"
+            },]';
+
+
+            $json = json_decode($json_d, true);
+
+            if (!is_array($json)) {
+                return response()->json(['message' => 'Invalid JSON data'], 400);
+            }
+    
+            foreach ($json as $data) {
+                $id = $data['id'];
+                $totalAffSalesCash = $data['total_aff_sales_cash'];
+    
+                // Update the MySQL database column using Eloquent
+                Members::where('id', $id)->update(['total_aff_sales_cash' => $totalAffSalesCash]);
+            }
+    
+            return response()->json(['message' => 'Sales cash updated successfully'], 200);
+       
+
+
+
+
+
+       });
+
+
+
+
+
+
+
+
+
     //temp code
     Route::get('test/koretsales', function () {
         $phone = "2348037482777";
@@ -258,7 +336,7 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
     Route::get('view/all', 'show');
 
 
-    
+
 
   //retrieve affiliates , order by total unpaid balance
 
