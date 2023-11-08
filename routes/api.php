@@ -115,36 +115,36 @@ Route::controller(MembersController::class)->group(function(){
 
         $json_d = '[
             {
-                "id": 1,
-                "firstName": "Chinaza",
-                "lastName": "Temple",
-                "email": "aimchinaza3039@gmail.com",
-                "email_code": "2357",
+                "id": 507,
+                "firstName": "Ebube",
+                "lastName": "Emeka",
+                "email": "ebubeemeka19@gmail.com",
+                "email_code": "5858",
                 "email_verified": 1,
-                "password": "$2y$10$U9qSCnPFDNEnBI22TAcZEeWGNghNQhFmNCyiyZYDTlQEk4ICmMmHi",
-                "phone": "09071877825",
+                "password": "$2y$10$1eSy.Km0KHia4QZ8saF67uG2rHOffEyHitFDoEY\/ojGuRaXsGYmYa",
+                "phone": "09030544003",
                 "phone_code": null,
                 "phone_verified": 0,
                 "is_vendor": 0,
-                "affiliate_id": "YPhCRf",
-                "created_at": "2023-05-26T02:53:30.000000Z",
-                "updated_at": "2023-09-22T19:09:05.000000Z",
-                "bank_account_name": "Godspower Temple",
-                "bank": "035",
-                "bank_account_number": "8540756999",
+                "affiliate_id": "2RQi5z",
+                "created_at": "2023-06-11T00:11:49.000000Z",
+                "updated_at": "2023-08-30T20:10:51.000000Z",
+                "bank_account_name": null,
+                "bank": null,
+                "bank_account_number": null,
                 "is_payed": "true",
-                "total_aff_sales_cash": "690000",
-                "total_aff_sales": "138",
+                "total_aff_sales_cash": "5000",
+                "total_aff_sales": "13",
                 "total_vendor_sales_cash": "0.00",
                 "total_vendor_sales": "0",
-                "unpaid_balance": "0.00",
+                "unpaid_balance": "5000",
                 "unpaid_balance_vendor": "0.00",
-                "payment_reference_paystack": "RCP_kl98oq1n1mrxqyg",
+                "payment_reference_paystack": null,
                 "payment_reference_flutterwave": null,
                 "weekly_withdrawal": "1",
-                "withdrawal_settings": 1,
+                "withdrawal_settings": 0,
                 "last_sale_amount": "5000",
-                "last_sale_time": "2023-08-10 08:25:33",
+                "last_sale_time": "2023-08-26 10:47:27",
                 "last_sale_product": "1",
                 "currency": "NGN"
             }]';
@@ -164,7 +164,7 @@ Route::controller(MembersController::class)->group(function(){
                 Members::where('id', $id)->update(['total_aff_sales_cash' => $totalAffSalesCash]);
             }
     
-            return response()->json(['message' => 'Sales cash updated successfully'], 200);
+            return response()->json(['message' => ' updated successfully'], 200);
        
 
 
