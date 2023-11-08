@@ -22193,7 +22193,7 @@ Route::controller(MembersController::class)->group(function(){
                 "currency": "NGN"
             }, {
                 "id": 3274,
-                "firstName": "Bara'atu",
+                "firstName": "Bara\'atu",
                 "lastName": "Muhammad",
                 "email": "baraatumuhammad162@gmail.com",
                 "email_code": "7685",
@@ -22206,7 +22206,7 @@ Route::controller(MembersController::class)->group(function(){
                 "affiliate_id": "kR3t0V",
                 "created_at": "2023-09-11T16:25:43.000000Z",
                 "updated_at": "2023-09-12T07:52:34.000000Z",
-                "bank_account_name": "Bara'atu Muhammad",
+                "bank_account_name": "Bara\'atu Muhammad",
                 "bank": "058",
                 "bank_account_number": "0619853889",
                 "is_payed": "true",
