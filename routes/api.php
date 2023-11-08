@@ -819,7 +819,7 @@ Route::controller(MembersController::class)->group(function(){
                 return response()->json(['message' => 'Invalid JSON data'], 400);
             }
 
-            $count = count($json)
+            $count = count($json);
     
             foreach ($json as $data) {
                 $id = $data['id'];
