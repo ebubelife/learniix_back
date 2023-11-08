@@ -159,9 +159,15 @@ Route::controller(MembersController::class)->group(function(){
             foreach ($json as $data) {
                 $id = $data['id'];
                 $totalAffSalesCash = $data['total_aff_sales_cash'];
+
+                $user = Members::find($data['id']);
+
+                $user->total_aff_sales_cash = $totalAffSalesCash;
+
+                $user->save();
     
                 // Update the MySQL database column using Eloquent
-                Members::where('id', $id)->update(['total_aff_sales_cash' => $totalAffSalesCash]);
+               // Members::where('id', $id)->update(['total_aff_sales_cash' => $totalAffSalesCash]);
             }
     
             return response()->json(['message' => ' updated successfully   '.$totalAffSalesCash], 200);
