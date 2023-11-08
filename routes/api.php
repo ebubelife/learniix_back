@@ -13547,7 +13547,7 @@ Route::controller(MembersController::class)->group(function(){
                 "currency": "NGN"
             }, {
                 "id": 2296,
-                "firstName": "Zahra'u",
+                "firstName": "Zahra\'u",
                 "lastName": "Ibrahim Hanafi",
                 "email": "zahraibrahim003@gmail.com",
                 "email_code": "1873",
@@ -13560,7 +13560,7 @@ Route::controller(MembersController::class)->group(function(){
                 "affiliate_id": "AlJscZ",
                 "created_at": "2023-08-20T10:12:14.000000Z",
                 "updated_at": "2023-08-20T11:37:33.000000Z",
-                "bank_account_name": "Zahra'u Ibrahim Hanafi",
+                "bank_account_name": "Zahra\'u Ibrahim Hanafi",
                 "bank": "033",
                 "bank_account_number": "2232733053",
                 "is_payed": "true",
