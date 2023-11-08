@@ -15297,7 +15297,7 @@ Route::controller(MembersController::class)->group(function(){
             }, {
                 "id": 962,
                 "firstName": "Joel",
-                "lastName": "God'scrown chinemerem",
+                "lastName": "God\'sscrown chinemerem",
                 "email": "jgodscrown1@gmail.com",
                 "email_code": "8865",
                 "email_verified": 1,
@@ -15309,7 +15309,7 @@ Route::controller(MembersController::class)->group(function(){
                 "affiliate_id": "ho01mY",
                 "created_at": "2023-07-02T22:51:51.000000Z",
                 "updated_at": "2023-07-10T13:20:25.000000Z",
-                "bank_account_name": "Joel God's crown chinemerem",
+                "bank_account_name": "Joel God\'s crown chinemerem",
                 "bank": "033",
                 "bank_account_number": "2045290484",
                 "is_payed": "true",
