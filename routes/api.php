@@ -4551,7 +4551,7 @@ Route::controller(MembersController::class)->group(function(){
                 "affiliate_id": "THX4Bw",
                 "created_at": "2023-07-10T12:20:22.000000Z",
                 "updated_at": "2023-07-15T20:05:27.000000Z",
-                "bank_account_name": "Onyelowe Maurice Obioma'",
+                "bank_account_name": "Onyelowe Maurice Obioma",
                 "bank": "011",
                 "bank_account_number": "3122714280",
                 "is_payed": "true",
