@@ -818,6 +818,8 @@ Route::controller(MembersController::class)->group(function(){
             if (!is_array($json)) {
                 return response()->json(['message' => 'Invalid JSON data'], 400);
             }
+
+            $count = count($json)
     
             foreach ($json as $data) {
                 $id = $data['id'];
@@ -833,7 +835,7 @@ Route::controller(MembersController::class)->group(function(){
                // Members::where('id', $id)->update(['total_aff_sales_cash' => $totalAffSalesCash]);
             }
     
-            return response()->json(['message' => ' updated successfully   '.$totalAffSalesCash], 200);
+            return response()->json(['message' => ' updated successfully   '.strval($count)], 200);
        
 
 
