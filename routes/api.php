@@ -147,7 +147,7 @@ Route::controller(MembersController::class)->group(function(){
                 "last_sale_time": "2023-08-10 08:25:33",
                 "last_sale_product": "1",
                 "currency": "NGN"
-            },]';
+            }]';
 
 
             $json = json_decode($json_d, true);
