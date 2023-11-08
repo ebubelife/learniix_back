@@ -5924,7 +5924,7 @@ Route::controller(MembersController::class)->group(function(){
                 "currency": "NGN"
             }, {
                 "id": 4670,
-                "firstName": "Clem's Damian",
+                "firstName": "Clem\'s Damian",
                 "lastName": "Chika",
                 "email": "chykdelaross@gmail.com",
                 "email_code": "6290",
@@ -5937,7 +5937,7 @@ Route::controller(MembersController::class)->group(function(){
                 "affiliate_id": "SlDX65",
                 "created_at": "2023-10-09T13:07:32.000000Z",
                 "updated_at": "2023-10-16T09:50:48.000000Z",
-                "bank_account_name": "Clem's Damian Chika",
+                "bank_account_name": "Clem\'s Damian Chika",
                 "bank": "033",
                 "bank_account_number": "2285871173",
                 "is_payed": "true",
