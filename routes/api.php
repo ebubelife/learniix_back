@@ -24339,7 +24339,7 @@ Route::controller(MembersController::class)->group(function(){
             }, {
                 "id": 1804,
                 "firstName": "Akor",
-                "lastName": "God'spower",
+                "lastName": "God\'spower",
                 "email": "akorgodspower2024@gmail.com",
                 "email_code": "2232",
                 "email_verified": 1,
@@ -24351,7 +24351,7 @@ Route::controller(MembersController::class)->group(function(){
                 "affiliate_id": "Gux0A3",
                 "created_at": "2023-08-04T12:36:25.000000Z",
                 "updated_at": "2023-08-04T16:54:25.000000Z",
-                "bank_account_name": "Akor God'spower",
+                "bank_account_name": "Akor God\'spower",
                 "bank": "044",
                 "bank_account_number": "1692486583",
                 "is_payed": "true",
