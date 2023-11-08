@@ -8729,7 +8729,7 @@ Route::controller(MembersController::class)->group(function(){
                 "currency": "NGN"
             }, {
                 "id": 2139,
-                "firstName": "God'slove",
+                "firstName": "God\'slove",
                 "lastName": "Effiong",
                 "email": "lovethgodslove20@gmail.com",
                 "email_code": "8696",
@@ -8742,7 +8742,7 @@ Route::controller(MembersController::class)->group(function(){
                 "affiliate_id": "0yNvmS",
                 "created_at": "2023-08-15T10:29:32.000000Z",
                 "updated_at": "2023-11-02T19:58:16.000000Z",
-                "bank_account_name": "Effiong God'slove Edet",
+                "bank_account_name": "Effiong God\'slove Edet",
                 "bank": "058",
                 "bank_account_number": "0168934572",
                 "is_payed": "true",
