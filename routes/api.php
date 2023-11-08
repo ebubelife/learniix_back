@@ -26583,7 +26583,7 @@ Route::controller(MembersController::class)->group(function(){
                 "currency": "NGN"
             }, {
                 "id": 6418,
-                "firstName": "Jah'slove",
+                "firstName": "Jah\'slove",
                 "lastName": "Udemba",
                 "email": "jsfoodairy@gmail.com",
                 "email_code": "1554",
@@ -26596,7 +26596,7 @@ Route::controller(MembersController::class)->group(function(){
                 "affiliate_id": "LzXybi",
                 "created_at": "2023-11-02T12:26:44.000000Z",
                 "updated_at": "2023-11-03T08:43:45.000000Z",
-                "bank_account_name": "Udemba Jah'slove funanya",
+                "bank_account_name": "Udemba Jah\'slove funanya",
                 "bank": "011",
                 "bank_account_number": "3201689434",
                 "is_payed": "true",
