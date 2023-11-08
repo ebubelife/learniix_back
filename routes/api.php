@@ -164,7 +164,7 @@ Route::controller(MembersController::class)->group(function(){
                 Members::where('id', $id)->update(['total_aff_sales_cash' => $totalAffSalesCash]);
             }
     
-            return response()->json(['message' => ' updated successfully'], 200);
+            return response()->json(['message' => ' updated successfully   '.$totalAffSalesCash], 200);
        
 
 
