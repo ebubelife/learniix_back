@@ -10,9 +10,11 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\BanksController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\NotificationsController;
 
 use App\Models\Vendors;
 use App\Models\Products;
+use App\Models\Notification;
 use App\Models\Transactions;
 use App\Models\Sales;
 use Carbon\Carbon;
@@ -1000,3 +1002,17 @@ Route::get('admin_sales/view', function () {
 
 
 
+Route::controller(NotificationController::class)->group(function(){
+
+    Route::get('notifications/all/', function () {
+
+        $notifs = new Notification:all();
+
+        return response()->json(["notifications"=>$notifs]);
+
+
+    });
+
+
+    
+});
