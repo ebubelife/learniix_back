@@ -193,6 +193,15 @@ class SalesController extends Controller
             if( $sale->save()){
 
 
+                $new_notif = new Notification();
+
+
+                $new_notif->type = "NEW_SALE";
+
+                $new_notif->header = "New Sale!";
+                $new_notif->body = "congratulations! You have made a new sale for the product - ".$productName;
+
+                $new_notif->save();
 
             //Save affiliate commission
 
