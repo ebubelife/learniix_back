@@ -1015,3 +1015,20 @@ Route::get('admin_sales/view', function () {
 
     
 });
+
+//get user notifs
+
+Route::get('notifications/all/{id}', function ($id) {
+
+   // $notifs =  Notification::all();
+
+    $notifs =  Notification::where('user_id', $id)->get();    
+
+    return response()->json($notifs);
+
+
+
+
+
+
+});
