@@ -1018,7 +1018,7 @@ Route::get('admin_sales/view', function () {
 
 //get user notifs
 
-Route::get('notifications/all/{id}', function ($id) {
+Route::get('notifications/user/{id}', function ($id) {
 
    // $notifs =  Notification::all();
 
