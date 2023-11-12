@@ -1001,9 +1001,6 @@ Route::get('admin_sales/view', function () {
 
 
 
-
-
-
     Route::get('notifications/all/', function () {
 
         $notifs = new Notification::all();
