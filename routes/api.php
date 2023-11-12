@@ -1006,7 +1006,7 @@ Route::controller(NotificationController::class)->group(function(){
 
     Route::get('notifications/all/', function () {
 
-        $notifs = new Notification:all();
+        $notifs = new Notification::all();
 
         return response()->json(["notifications"=>$notifs]);
 
