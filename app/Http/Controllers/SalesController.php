@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sales;
 use App\Models\Members;
+use App\Models\Notification;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
