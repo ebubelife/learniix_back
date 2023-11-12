@@ -1002,7 +1002,7 @@ Route::get('admin_sales/view', function () {
 
 
 
-Route::controller(NotificationController::class)->group(function(){
+
 
     Route::get('notifications/all/', function () {
 
@@ -1011,7 +1011,7 @@ Route::controller(NotificationController::class)->group(function(){
         return response()->json(["notifications"=>$notifs]);
 
 
-    });
+
 
 
     
