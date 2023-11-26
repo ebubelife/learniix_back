@@ -506,7 +506,7 @@ else {
 $convert_total_aff_sales_usd = intval($user->total_aff_sales_cash)/intval( $naira_exchange_rate->value);
 
 
-$convert_balance_sales_usd = inval($user->unpaid_balance)/intval( $naira_exchange_rate->value);
+$convert_balance_sales_usd = intval($user->unpaid_balance)/intval( $naira_exchange_rate->value);
 
 
 
