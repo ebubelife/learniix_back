@@ -500,11 +500,26 @@ else {
  
          }
 
-         $convert_total_aff_sales_usd = ($user->total_aff_sales_cash)/intval( $naira_exchange_rate->value);
+         if (is_numeric($naira_exchange_rate->value)) {
+            // Perform your calculations involving $naira_exchange_rate->value
+//            $convert_total_aff_sales_usd = ($user->total_aff_sales_cash) / intval($naira_exchange_rate->value);
+$convert_total_aff_sales_usd = ($user->total_aff_sales_cash)/intval( $naira_exchange_rate->value);
 
 
-         $convert_balance_sales_usd = ($user->unpaid_balance)/intval( $naira_exchange_rate->value);
+$convert_balance_sales_usd = ($user->unpaid_balance)/intval( $naira_exchange_rate->value);
 
+
+
+        } else {
+            // Handle the case where the value is not numeric
+            return response()->json([
+                'message' => 'An error occured on your account, please contact admin to fix it.',
+              
+            ]);
+    
+        }
+
+       
         return response()->json([
             'message' => 'Successfully logged in.',
             'user_details' => $user,
