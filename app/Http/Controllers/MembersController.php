@@ -503,10 +503,10 @@ else {
          if (is_numeric($naira_exchange_rate->value)) {
             // Perform your calculations involving $naira_exchange_rate->value
 //            $convert_total_aff_sales_usd = ($user->total_aff_sales_cash) / intval($naira_exchange_rate->value);
-$convert_total_aff_sales_usd = ($user->total_aff_sales_cash)/intval( $naira_exchange_rate->value);
+$convert_total_aff_sales_usd = intval($user->total_aff_sales_cash)/intval( $naira_exchange_rate->value);
 
 
-$convert_balance_sales_usd = ($user->unpaid_balance)/intval( $naira_exchange_rate->value);
+$convert_balance_sales_usd = inval($user->unpaid_balance)/intval( $naira_exchange_rate->value);
 
 
 
