@@ -196,7 +196,7 @@ class SalesController extends Controller
             ->first();
         
 
-            if($check_c_email_record){
+            if(!$check_c_email_record){
 
                 if( $sale->save()){
 
