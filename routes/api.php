@@ -895,6 +895,7 @@ Route::get('sales/today/duplicates', function () {
     // Create an array to store encountered customer emails
     $encounteredEmails = [];
     $duplicateEmails = [];
+    $earliestDates = [];
 
     foreach($sales as $sale) {
         $total_sales += intval($sale->product_price);
@@ -907,6 +908,15 @@ Route::get('sales/today/duplicates', function () {
             // Email is a duplicate, add it to the duplicate array
             if (!in_array($customerEmail, $duplicateEmails)) {
                 $duplicateEmails[] = $customerEmail;
+
+                // Find the earliest 'created_at' date for this duplicate email
+                $earliestDate = Sales::where('customer_email', $customerEmail)
+                    ->orderBy('created_at', 'asc')
+                    ->first();
+
+                if ($earliestDate) {
+                    $earliestDates[$customerEmail] = $earliestDate->created_at;
+                }
             }
         } else {
             // Email is encountered for the first time, add it to encountered array
@@ -930,10 +940,12 @@ Route::get('sales/today/duplicates', function () {
         "sales_today" => count($sales_today),
         "total_earnings_today" => $total_earnings_today,
         "duplicate_customer_emails" => $duplicateEmails,
-        "number_of_duplicates"=> count($duplicateEmails)
+        "number_of_duplicates"=> count($duplicateEmails),
+        "earliest_dates" => $earliestDates
     ]);
 
 });
+
 
 
 
