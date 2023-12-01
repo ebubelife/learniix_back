@@ -896,6 +896,7 @@ Route::get('sales/today/duplicates', function () {
     $encounteredEmails = [];
     $duplicateEmails = [];
     $earliestDates = [];
+    $emailOccurrenceCount = [];
 
     foreach($sales as $sale) {
         $total_sales += intval($sale->product_price);
@@ -917,6 +918,9 @@ Route::get('sales/today/duplicates', function () {
                 if ($earliestDate) {
                     $earliestDates[$customerEmail] = $earliestDate->created_at;
                 }
+
+                // Count occurrences of this duplicate email
+                $emailOccurrenceCount[$customerEmail] = count(array_keys($encounteredEmails, $customerEmail));
             }
         } else {
             // Email is encountered for the first time, add it to encountered array
@@ -940,8 +944,9 @@ Route::get('sales/today/duplicates', function () {
         "sales_today" => count($sales_today),
         "total_earnings_today" => $total_earnings_today,
         "duplicate_customer_emails" => $duplicateEmails,
-        "number_of_duplicates"=> count($duplicateEmails),
-        "earliest_dates" => $earliestDates
+        "number_of_duplicates" => count($duplicateEmails),
+        "earliest_dates" => $earliestDates,
+        "email_occurrences" => $emailOccurrenceCount
     ]);
 
 });
