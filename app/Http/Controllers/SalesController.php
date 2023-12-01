@@ -190,94 +190,105 @@ class SalesController extends Controller
 
             $user->unpaid_balance_vendor = strval($unpaid_balance_vendor + ($vendor_comission ));
 
-            
-
-            if( $sale->save()){
-
-
-                $new_notif = new Notification();
-
-
-                $new_notif->type = "NEW_SALE";
-
-                $new_notif->header = "New Sale!";
-                $new_notif->body = "congratulations! You have made a new sale for the product - ".$productName;
-
-                $new_notif->save();
-
-            //Save affiliate commission
-
-          if( $affiliate->save()){
-            if($validated["product_id"] == "1"){
-
-               
-                Mail::to($validated["customer_email"])->send(new FinishReg($validated["customer_name"],$sale->id));
-              
-            }
-
-            else{
-
-             
-
-                Mail::to($validated["customer_email"])->send(new CourseAccess($validated["customer_name"], $product->ProductTYLink, $productName ));
-               
-
-            }
-
-          
-                //Save vendor commission
-           if( $user->save()){
-
-                $getAffiliate = Members::where('affiliate_id', $validated["affiliate_id"])->first();
-                $getVendor = Members::where('id', $validated["vendor_id"])->first();
-
-                
-   
-                  
+            //check if sale already exists with same customer email
+            $check_c_email_record = Sales::where('customer_email', $validated["customer_email"])
+            ->where('affiliate_id', $validated["affiliate_id"]) // Adding condition for affiliate_id
+            ->first();
         
+
+            if($check_c_email_record){
+
+                if( $sale->save()){
+
+
+                    $new_notif = new Notification();
+    
+    
+                    $new_notif->type = "NEW_SALE";
+    
+                    $new_notif->header = "New Sale!";
+                    $new_notif->body = "congratulations! You have made a new sale for the product - ".$productName;
+    
+                    $new_notif->save();
+    
+                //Save affiliate commission
+    
+              if( $affiliate->save()){
+                if($validated["product_id"] == "1"){
+    
+                   
+                    Mail::to($validated["customer_email"])->send(new FinishReg($validated["customer_name"],$sale->id));
+                  
+                }
+    
+                else{
+    
+                 
+    
+                    Mail::to($validated["customer_email"])->send(new CourseAccess($validated["customer_name"], $product->ProductTYLink, $productName ));
+                   
+    
+                }
+    
               
-                //send email to affiliate
-
-                Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"]/$naira_exchange_rate->value,$aff_commision/$naira_exchange_rate->value, $validated["customer_name"], $productName));
-
-                Mail::to($getVendor->email )->send(new VendorEmail($getVendor->email,$getVendor->firstName,$validated["product_price"],$vendor_comission/$naira_exchange_rate->value,$validated["customer_name"],$productName));
-
-              /*  if(Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
+                    //Save vendor commission
+               if( $user->save()){
+    
+                    $getAffiliate = Members::where('affiliate_id', $validated["affiliate_id"])->first();
+                    $getVendor = Members::where('id', $validated["vendor_id"])->first();
+    
+                    
+       
+                      
+            
+                  
+                    //send email to affiliate
+    
+                    Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"]/$naira_exchange_rate->value,$aff_commision/$naira_exchange_rate->value, $validated["customer_name"], $productName));
+    
+                    Mail::to($getVendor->email )->send(new VendorEmail($getVendor->email,$getVendor->firstName,$validated["product_price"],$vendor_comission/$naira_exchange_rate->value,$validated["customer_name"],$productName));
+    
+                  /*  if(Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
+    
+                    
+    
+                        //send email to vendor
+    
+                                if(Mail::to("ebubeemeka19@gmail.com")->send(new VendorEmail( "ebubeemeka19@gmail.com",$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"],$productName))){
+    
+                                    return response()->json(['message'=>'Successful' ],200);
+    
+                                }
+                                else{
+    
+                                    return response()->json(['message'=>'Successful. Could not send email notification - 1'],200);
+                                }
+    
+                }else{
+                    return response()->json(['message'=>'Successful!.Could not send email notification - 2'],200);
+                }*/
+    
+                return response()->json(['message'=>'Successful!'],200);
+    
+               
+    
+               }else{
+                return response()->json(['message'=>'Could not verify the vendor. Please contact Zenithstake admin'],405);
+               }
+            }
+            else{
+                return response()->json(['message'=>'Could not verify the affiliate. Please contact the ZenithStake admin'],405);
+            }
+    
+        }else{
+            return response()->json(['message'=>'Could not save this transaction. Please contact the ZenithStake admin'],405);
+    
+        }
 
                 
+            }
 
-                    //send email to vendor
-
-                            if(Mail::to("ebubeemeka19@gmail.com")->send(new VendorEmail( "ebubeemeka19@gmail.com",$getVendor->firstName,$validated["product_price"],strval($vendor_comission),$validated["customer_name"],$productName))){
-
-                                return response()->json(['message'=>'Successful' ],200);
-
-                            }
-                            else{
-
-                                return response()->json(['message'=>'Successful. Could not send email notification - 1'],200);
-                            }
-
-            }else{
-                return response()->json(['message'=>'Successful!.Could not send email notification - 2'],200);
-            }*/
-
-            return response()->json(['message'=>'Successful!'],200);
-
-           
-
-           }else{
-            return response()->json(['message'=>'Could not verify the vendor. Please contact Zenithstake admin'],405);
-           }
-        }
-        else{
-            return response()->json(['message'=>'Could not verify the affiliate. Please contact the ZenithStake admin'],405);
-        }
-
-    }else{
-        return response()->json(['message'=>'Could not save this transaction. Please contact the ZenithStake admin'],405);
-
-    }
+            
 
        // DB::commit();
     }
