@@ -885,46 +885,16 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 
 });
 
-Route::get('sales/today/unique', function () {
-
-    $sales = Sales::all();
-
-    $total_sales = 0;
-
-    $total_revenue = 0;
-
-    foreach($sales as $sale){
-        $total_sales += intval($sale->product_price);
-
-
-    }
-
-    $startDateTime = Carbon::today(); // Get the start of today (12am)
-        $endDateTime = Carbon::now(); // Get the current date and time
-    
-        $sales_today = Sales::whereBetween('created_at', [$startDateTime, $endDateTime])
-            ->get();
-
-
-            $total_earnings_today = 0;
-            foreach($sales_today as $sale_today){
-                $total_earnings_today  += intval($sale_today->product_price);
-            }
-    
-    return response()->json(["total_earnings"=>$total_sales,"sales_today"=>count($sales_today),"total_earnings_today"=>$total_earnings_today]);
-
-
-});
-
-Route::get('sales/today/unique', function () {
+Route::get('sales/today/duplicates', function () {
 
     $sales = Sales::all();
 
     $total_sales = 0;
     $total_revenue = 0;
 
-    // Create an array to store unique customer emails
-    $uniqueEmails = [];
+    // Create an array to store encountered customer emails
+    $encounteredEmails = [];
+    $duplicateEmails = [];
 
     foreach($sales as $sale) {
         $total_sales += intval($sale->product_price);
@@ -932,10 +902,15 @@ Route::get('sales/today/unique', function () {
         // Get the customer email for this sale
         $customerEmail = $sale->customer_email;
 
-        // Check if the email is not in the uniqueEmails array
-        if (in_array($customerEmail, $uniqueEmails)) {
-            // Email is unique, add it to the array
-            $uniqueEmails[] = $customerEmail;
+        // Check if the email is already encountered
+        if (in_array($customerEmail, $encounteredEmails)) {
+            // Email is a duplicate, add it to the duplicate array
+            if (!in_array($customerEmail, $duplicateEmails)) {
+                $duplicateEmails[] = $customerEmail;
+            }
+        } else {
+            // Email is encountered for the first time, add it to encountered array
+            $encounteredEmails[] = $customerEmail;
         }
     }
 
@@ -954,10 +929,13 @@ Route::get('sales/today/unique', function () {
         "total_earnings" => $total_sales,
         "sales_today" => count($sales_today),
         "total_earnings_today" => $total_earnings_today,
-        "unique_customer_emails" => $uniqueEmails
+        "duplicate_customer_emails" => $duplicateEmails
     ]);
 
 });
+
+
+
 
 
 
