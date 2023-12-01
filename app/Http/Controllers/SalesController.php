@@ -286,6 +286,10 @@ class SalesController extends Controller
         }
 
                 
+            }else{
+
+                return response()->json(['message'=>'Sorry! Your email has been previously employed on a sale. Please contact admin'],405);
+
             }
 
             
