@@ -929,7 +929,8 @@ Route::get('sales/today/duplicates', function () {
         "total_earnings" => $total_sales,
         "sales_today" => count($sales_today),
         "total_earnings_today" => $total_earnings_today,
-        "duplicate_customer_emails" => $duplicateEmails
+        "duplicate_customer_emails" => $duplicateEmails,
+        "number_of_duplicates"=> count($duplicateEmails)
     ]);
 
 });
