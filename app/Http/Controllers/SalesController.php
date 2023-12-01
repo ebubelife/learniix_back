@@ -190,6 +190,8 @@ class SalesController extends Controller
 
             $user->unpaid_balance_vendor = strval($unpaid_balance_vendor + ($vendor_comission ));
 
+            $sales = 
+
             if( $sale->save()){
 
 

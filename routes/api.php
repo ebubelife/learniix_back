@@ -887,7 +887,7 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 
 Route::get('sales/today/duplicates', function () {
 
-    $sales = Sales::all();
+    $sales = Sales::where('affiliate_id', 'TrBWli')->get(); 
 
     $total_sales = 0;
     $total_revenue = 0;
