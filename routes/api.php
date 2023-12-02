@@ -916,7 +916,7 @@ Route::get('sales/today/duplicates', function () {
     }
 
     return response()->json([
-        "duplicate_customer_emails" => $duplicateEmails,
+     //   "duplicate_customer_emails" => $duplicateEmails,
         "matched_affiliate_ids" => $matchedAffiliateIds,
         "number_of_duplicates" => count($duplicateEmails),
     ]);
