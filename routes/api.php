@@ -889,64 +889,36 @@ Route::get('sales/today/duplicates', function () {
 
     $sales = Sales::all();
 
-    $total_sales = 0;
-    $total_revenue = 0;
-
-    // Create an array to store encountered customer emails
-    $encounteredEmails = [];
+    // Create arrays to store encountered customer emails and affiliate IDs
+    $encounteredRecords = [];
     $duplicateEmails = [];
-    $earliestDates = [];
-    $emailOccurrenceCount = [];
+    $matchedAffiliateIds = [];
 
-    foreach($sales as $sale) {
-        $total_sales += intval($sale->product_price);
-
-        // Get the customer email for this sale
+    foreach ($sales as $sale) {
+        // Get the customer email and affiliate ID for this sale
         $customerEmail = $sale->customer_email;
+        $affiliateID = $sale->affiliate_id;
 
-        // Check if the email is already encountered
-        if (in_array($customerEmail, $encounteredEmails)) {
-            // Email is a duplicate, add it to the duplicate array
-            if (!in_array($customerEmail, $duplicateEmails)) {
-                $duplicateEmails[] = $customerEmail;
+        // Create a unique identifier based on customer email
+        $identifier = $customerEmail;
 
-                // Find the earliest 'created_at' date for this duplicate email
-                $earliestDate = Sales::where('customer_email', $customerEmail)
-                    ->orderBy('created_at', 'asc')
-                    ->first();
-
-                if ($earliestDate) {
-                    $earliestDates[$customerEmail] = $earliestDate->created_at;
-                }
-
-                // Count occurrences of this duplicate email
-                $emailOccurrenceCount[$customerEmail] = count(array_keys($encounteredEmails, $customerEmail));
-            }
+        // Check if the identifier is already encountered
+        if (in_array($identifier, $encounteredRecords)) {
+            // This customer email is a duplicate
+            $duplicateEmails[] = $customerEmail;
+            
+            // If it's a duplicate, also capture the affiliate ID for this sale
+            $matchedAffiliateIds[$customerEmail][] = $affiliateID;
         } else {
-            // Email is encountered for the first time, add it to encountered array
-            $encounteredEmails[] = $customerEmail;
+            // Sale encountered for the first time, add its identifier to encountered array
+            $encounteredRecords[] = $identifier;
         }
     }
 
-    $startDateTime = Carbon::today(); // Get the start of today (12am)
-    $endDateTime = Carbon::now(); // Get the current date and time
-
-    $sales_today = Sales::whereBetween('created_at', [$startDateTime, $endDateTime])->get();
-
-    $total_earnings_today = 0;
-
-    foreach($sales_today as $sale_today) {
-        $total_earnings_today  += intval($sale_today->product_price);
-    }
-
     return response()->json([
-        "total_earnings" => $total_sales,
-        "sales_today" => count($sales_today),
-        "total_earnings_today" => $total_earnings_today,
-        "duplicate_customer_emails" => $duplicateEmails,
+     //   "duplicate_customer_emails" => $duplicateEmails,
+        "matched_affiliate_ids" => $matchedAffiliateIds,
         "number_of_duplicates" => count($duplicateEmails),
-        "earliest_dates" => $earliestDates,
-        "email_occurrences" => $emailOccurrenceCount
     ]);
 
 });
