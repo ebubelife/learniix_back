@@ -886,7 +886,12 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 });
 
 Route::get('sales/today/duplicates', function () {
-    $sales = Sales::where("affiliate_id", "urmpAs")->get();
+    $startDate = '2023-11-27'; // Replace with your start date
+    $endDate = '2023-12-02';   // Replace with your end date
+
+    $sales = Sales::where("affiliate_id", "hAriNj")
+        ->whereBetween('created_at', [$startDate, $endDate])
+        ->get();
 
     // Create a collection to store the counts of duplicate transactions for each affiliate_id
     $duplicateCounts = collect();
