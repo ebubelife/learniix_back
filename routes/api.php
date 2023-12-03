@@ -909,7 +909,6 @@ Route::get('sales/today/duplicates/1', function () {
     ]);
 });
 
-
 Route::get('sales/today/duplicates/2', function () {
     $startDate = '2023-11-27'; // Replace with your start date
     $endDate = '2023-12-02';   // Replace with your end date
@@ -918,10 +917,14 @@ Route::get('sales/today/duplicates/2', function () {
         ->whereBetween('created_at', [$startDate, $endDate])
         ->get();
 
-  
+    // Extract emails from sales records
+    $emails = $sales->pluck('customer_email');
+
+    // Count occurrences of each email
+    $emailCounts = $emails->countBy();
+
     return response()->json([
-        "sales_c" => count($sales),
-        "sales" => $sales,
+        "email_counts" => $emailCounts,
     ]);
 });
 
