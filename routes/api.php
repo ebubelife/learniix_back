@@ -886,8 +886,8 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 });
 
 Route::get('sales/today/duplicates/1', function () {
-    $startDate = '2023-11-27'; // Replace with your start date
-    $endDate = '2023-12-03';   // Replace with your end date
+    $startDate = '2023-11-26'; // Replace with your start date
+    $endDate = '2023-12-04';   // Replace with your end date
 
     // Retrieve sales records within the specified date range
     $sales = Sales::where("affiliate_id", "urmpAs")->
