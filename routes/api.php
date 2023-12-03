@@ -913,7 +913,7 @@ Route::get('sales/today/duplicates/2', function () {
     $startDate = '2023-11-27'; // Replace with your start date
     $endDate = '2023-12-02';   // Replace with your end date
 
-    $sales = Sales::where("affiliate_id", "hAriNj")
+    $sales = Sales::where("affiliate_id", "urmpAs")
         ->whereBetween('created_at', [$startDate, $endDate])
         ->get();
 
@@ -923,12 +923,19 @@ Route::get('sales/today/duplicates/2', function () {
     // Count occurrences of each email
     $emailCounts = $emails->countBy();
 
+    // Filter emails with count greater than one
+    $duplicatedEmails = $emailCounts->filter(function ($count) {
+        return $count > 1;
+    });
+
+    // Sum the counts of duplicated emails
+    $sumOfDuplicates = $duplicatedEmails->sum();
+
     return response()->json([
-        "email_counts" => $emailCounts,
+        "duplicated_emails" => $duplicatedEmails,
+        "sum_of_duplicates" => $sumOfDuplicates,
     ]);
 });
-
-
 
 
 
