@@ -918,27 +918,19 @@ Route::get('sales/today/duplicates/2', function () {
         ->whereBetween('created_at', [$startDate, $endDate])
         ->get();
 
-    // Create a collection to store the counts of duplicate transactions for each affiliate_id
-    $duplicateCounts = collect();
+    // Group sales by affiliate_id and customer_email
+    $groupedSales = $sales->groupBy(['affiliate_id', 'customer_email']);
 
-    // Group sales by affiliate_id and customer_email and count occurrences
-    $groupedSales = $sales->groupBy(['affiliate_id', 'customer_email'])
-        ->map(function ($group) {
-            return $group->count();
-        });
-
-    // Iterate through each group to extract duplicate counts for each affiliate_id
-    $groupedSales->each(function ($count, $keys) use ($duplicateCounts) {
-        [$affiliateId] = explode('_', $keys); // Extract affiliate_id from keys
-        if ($count > 1) {
-            $duplicateCounts[$affiliateId] = $count;
-        }
+    // Filter grouped sales to retain only groups with more than one entry (duplicates)
+    $duplicateSales = $groupedSales->filter(function ($group) {
+        return $group->count() > 1;
     });
 
     return response()->json([
-        "duplicate_transactions" => $duplicateCounts,
+        "duplicate_sales" => $duplicateSales,
     ]);
 });
+
 
 
 
