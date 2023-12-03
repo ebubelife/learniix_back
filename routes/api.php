@@ -920,6 +920,7 @@ Route::get('sales/today/duplicates/2', function () {
 
   
     return response()->json([
+        "sales_c" => count($sales),
         "sales" => $sales,
     ]);
 });
