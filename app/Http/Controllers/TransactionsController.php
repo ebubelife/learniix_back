@@ -193,6 +193,7 @@ class TransactionsController extends Controller
 
               $unpaid_users = Members::where("is_vendor", false)
               ->where("affiliate_id","!=" ,"DN3jYz")
+              -> where ("id", "!=",3642)
               ->where("payment_reference_paystack","!=",null)
               ->where("withdrawal_settings",true)
              // ->whereIn("email", [ "ebubeemeka19@gmail.com","aimchinaza3039@gmail.com" ])
