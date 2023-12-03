@@ -885,7 +885,32 @@ Route::get('view/affiliates/{vendor_id}', function ($vendor_id) {
 
 });
 
-Route::get('sales/today/duplicates', function () {
+Route::get('sales/today/duplicates/1', function () {
+    $startDate = '2023-11-27'; // Replace with your start date
+    $endDate = '2023-12-02';   // Replace with your end date
+
+    // Retrieve sales records within the specified date range
+    $sales = Sales::where("affiliate_id", "qtJpV8")->
+    
+    whereBetween('created_at', [$startDate, $endDate])
+        ->get();
+
+    // Count occurrences of each customer_email
+    $duplicateEmails = $sales->groupBy('customer_email')
+        ->filter(function ($group) {
+            return $group->count() > 1; // Filter customer emails that appear more than once
+        })
+        ->map(function ($group) {
+            return $group->pluck('id'); // Retrieve IDs of sales with duplicated emails
+        });
+
+    return response()->json([
+        "duplicate_sales_with_same_email" => $duplicateEmails,
+    ]);
+});
+
+
+Route::get('sales/today/duplicates/2', function () {
     $startDate = '2023-11-27'; // Replace with your start date
     $endDate = '2023-12-02';   // Replace with your end date
 
