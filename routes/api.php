@@ -965,6 +965,8 @@ Route::get('sales/today/duplicates/2', function () {
         
         
         "sum_of_duplicates" => $sumOfDuplicates,
+
+        "emails"=>$emailCounts
     ]);
 });
 
