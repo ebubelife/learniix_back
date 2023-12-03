@@ -912,22 +912,15 @@ Route::get('sales/today/duplicates/1', function () {
 
 Route::get('sales/today/duplicates/2', function () {
     $startDate = '2023-11-27'; // Replace with your start date
-    $endDate = '2023-12-02';   // Replace with your end date
+    $endDate = '2023-11-29';   // Replace with your end date
 
     $sales = Sales::where("affiliate_id", "urmpAs")
         ->whereBetween('created_at', [$startDate, $endDate])
         ->get();
 
-    // Group sales by affiliate_id and customer_email
-    $groupedSales = $sales->groupBy(['affiliate_id', 'customer_email']);
-
-    // Filter grouped sales to retain only groups with more than one entry (duplicates)
-    $duplicateSales = $groupedSales->filter(function ($group) {
-        return $group->count() > 1;
-    });
-
+  
     return response()->json([
-        "duplicate_sales" => $duplicateSales,
+        "sales" => $sales,
     ]);
 });
 
