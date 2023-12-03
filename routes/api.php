@@ -890,7 +890,7 @@ Route::get('sales/today/duplicates/1', function () {
     $endDate = '2023-12-02';   // Replace with your end date
 
     // Retrieve sales records within the specified date range
-    $sales = Sales::where("affiliate_id", "qtJpV8")->
+    $sales = Sales::where("affiliate_id", "urmpAs")->
     
     whereBetween('created_at', [$startDate, $endDate])
         ->get();
