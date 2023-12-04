@@ -939,7 +939,7 @@ Route::get('sales/today/duplicates/2', function () {
 });
 
 Route::get('sales/today/duplicates/2/{aff}', function ($aff) {
-    $startDate = '2023-11-27'; // Replace with your start date
+    $startDate = '2023-11-26'; // Replace with your start date
     $endDate = '2023-12-02';   // Replace with your end date
 
     $sales = Sales::where("affiliate_id", $aff)
