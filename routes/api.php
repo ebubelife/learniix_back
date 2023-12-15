@@ -87,7 +87,9 @@ Route::controller(TransactionsController::class)->group(function(){
 });
 
 
-
+Route::get('/sample', function () {
+    return response()->json(['message' => 'This is a sample GET request']);
+});
 
 
 Route::controller(MembersController::class)->group(function(){
