@@ -18,6 +18,9 @@ class CreateTransactionsTable extends Migration
             $table->string('tx_type')->nullable();
             $table->string('user_id')->nullable();
             $table->string('tx_ref')->nullable();
+            $table->string('amount')->nullable();
+            $table->string('status')->nullable();
+     
             $table->timestamps();
         });
     }

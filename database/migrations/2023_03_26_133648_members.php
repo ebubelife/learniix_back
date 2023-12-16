@@ -38,9 +38,18 @@ class Members extends Migration
             $table->string('total_vendor_sales_cash')->default("0.00");
             $table->string('total_vendor_sales')->default("0.00");
             $table->string('unpaid_balance')->default("0.00");
+            $table->string('unpaid_balance_vendor')->default("0.00");
+            $table->string('currency')->nullabele();
 
             $table->string('payment_reference_paystack')->nullable();
             $table->string('payment_reference_flutterwave')->nullable();
+            $table->boolean('weekly_withdrawal')->default(true);
+
+            $table->string('last_sale_amount')->nullable();
+            $table->timestamp('last_sale_time')->nullable();
+            $table->string('last_sale_product')->nullable();
+
+            
             
             $table->timestamps();
         });
