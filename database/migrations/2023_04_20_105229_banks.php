@@ -20,7 +20,7 @@ class Banks extends Migration
             $table->string('bank');
             $table->string('code');
             $table->string('country')->nullabele();
-            $table->timestamps()->nullable();
+            $table->timestamps();
         });
     }
 
