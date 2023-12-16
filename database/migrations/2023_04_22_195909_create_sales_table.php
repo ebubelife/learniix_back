@@ -26,7 +26,7 @@ class CreateSalesTable extends Migration
             $table->string('customer_phone')->nullable();
             $table->boolean('refunded')->nullable();
             $table->string('cashback_id')->nullable();
-            $table->string('tx_id')->nullable();
+        
             $table->string('payment_method')->nullable();
 
             
