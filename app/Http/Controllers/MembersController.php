@@ -461,9 +461,9 @@ else {
 
     public function login(Request $request){
 
-    $naira_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_naira']);
+    $naira_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE `key` = ? LIMIT 1', ['usd_to_naira']);
 
-    $ghs_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE settings_key = ? LIMIT 1', ['usd_to_ghs']);
+    $ghs_exchange_rate = DB::selectOne('SELECT value FROM settings WHERE `key` = ? LIMIT 1', ['usd_to_ghs']);
 
 
         try{
