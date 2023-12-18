@@ -580,7 +580,8 @@ public function checkEmailValid($email){
         $user = Members::where('email', $email)->first();
     
         if ($user) {
-            return $user;
+           // return $user;
+           return false;
            // return response()->json(['exists' => true]);
         } else {
             return false;
