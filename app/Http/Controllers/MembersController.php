@@ -164,7 +164,7 @@ class MembersController extends Controller
 
         $customer_exists = Sales::where('customer_email', $validated["email"])->first();
 
-        if($customer_exists && $customer_exists->product_id=="1" && $validated["req_source"]=="USER" ){
+        if(  $validated["req_source"]=="USER" ){
 
 
         $user = new Members();
