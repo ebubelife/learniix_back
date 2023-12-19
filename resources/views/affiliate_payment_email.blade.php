@@ -8,7 +8,7 @@
 	<div style="padding:10px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius:20px; font-size:16px;">
 	
 	<div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#E5E4E2; text-align:center">
-	<img src="https://www.zenithstake.com/images/logo.png" alt="logo" height="80" width="270" style="display:inline-block" />
+	<img src="https://www.learniix.com/images/logo.jpeg" alt="logo" height="80" width="270" style="display:inline-block" />
 
 </div>
 
@@ -30,7 +30,7 @@
 </p>
 
 	<div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#E5E4E2; text-align:center">
-	<p style="margin-top:20px; color:#000000; display:inline-block;"> zenithstake.com © 2023</p>
+	<p style="margin-top:20px; color:#000000; display:inline-block;"> Learniix.com © 2024</p>
 </div>
 	
 
