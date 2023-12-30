@@ -36,7 +36,7 @@ class Contest extends Mailable
         return $this->view('contest', ['message' => $message])
                     ->with(['firstName'=> $this->firstName])
                    
-                    ->from('ZenithStake@zenithstake.com')
+                    ->from('Learniix@learniix.com')
                     ->subject('Hello Hurray 🥳🥳!!');
     }
 }

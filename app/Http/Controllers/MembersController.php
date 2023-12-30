@@ -110,13 +110,13 @@ class MembersController extends Controller
 
     public function test_email(){
 
-        $logo = asset('https://back.zenithstake.com/storage/images/general/logo.png');
+        $logo = asset('https://back.learniix.com/storage/images/general/logo.png');
 
         Mail::to('ebubeemeka19@gmail.com')->send(new RecoverAccountMail("1234","Ebube", $logo));
     }
 
     public function test_email_view(){
-        $logo = asset('https://back.zenithstake.com/storage/images/general/logo.png');
+        $logo = asset('https://back.learniix.com/storage/images/general/logo.png');
         $data = ['emailCode' => '123456', 'firstName'=>'Bob',"logo"=> $logo];
         return view('test_email', $data);
     }

@@ -40,7 +40,7 @@ class FinishReg extends Mailable
         return $this->view('finish_signup', ['message' => $message])
                     ->with(['tx_id'=> $this->tx_id, 'firstName'=>$this->firstName])
                    
-                    ->from('Zenithstake@zenithstake.com')
+                    ->from('Learniix@learniix.com')
                     ->subject('Complete your registration as an affiliate');
     }
 }

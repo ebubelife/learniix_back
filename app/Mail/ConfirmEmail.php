@@ -40,7 +40,7 @@ class ConfirmEmail extends Mailable
         return $this->view('verify_email', ['message' => $message])
                     ->with(['emailCode'=> $this->emailCode, 'firstName'=>$this->firstName])
                    
-                    ->from('Zenithstake@zenithstake.com')
+                    ->from('Learniix@learniix.com')
                     ->subject('Confirm Your Email');
     }
 }

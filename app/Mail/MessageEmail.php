@@ -48,7 +48,7 @@ class MessageEmail extends Mailable
         return $this->view('affiliate_email_message', ['message' => $message])
                     ->with(['affiliate_email'=> $this->affiliate_email])
                    
-                    ->from('ZenithStake@zenithstake.com')
+                    ->from('Learniix@learniix.com')
                     ->subject('Notice on Payment Reversal');
     }
 }
