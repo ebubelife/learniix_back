@@ -150,7 +150,7 @@ class MembersController extends Controller
                 'lastName' => 'required|string',
                 'phone' => 'required|string',
                
-                'email' => 'required|string|email|max:255',
+                'email' => 'required|string|email|max:255|unique:members',
                 'password' => 'required|string|min:8',
                 'is_payed'=> 'required|string',
                 'reg_type'=> 'required|string',
