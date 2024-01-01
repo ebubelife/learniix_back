@@ -403,8 +403,8 @@ else if($validated["reg_type"]=="VENDOR"){
     $random_string = substr(str_shuffle($characters), 0, 6);
     $user->affiliate_id = $random_string;
 
-    $checkEmailValid = $this->checkEmailValid($user->email);
-    $checkEmailExists = $this->checkEmailExists($user->email);
+    $checkEmailValid = $this->checkEmailValid(strtolower($validated["email"]));
+    $checkEmailExists = $this->checkEmailExists(strtolower($validated["email"]));
     $checkPhoneExists = $this->checkPhoneExists($user->phone);
 
     if($checkEmailValid && !$checkEmailExists && !$checkPhoneExists ){
