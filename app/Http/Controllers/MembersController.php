@@ -581,7 +581,7 @@ public function checkEmailValid($email){
     
         if ($user) {
            // return $user;
-           return false;
+           return true;
            // return response()->json(['exists' => true]);
         } else {
             return false;
