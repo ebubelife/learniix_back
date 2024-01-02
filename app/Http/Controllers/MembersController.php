@@ -327,6 +327,7 @@ else if($validated["req_source"] == "ADMIN"){
     $user->save();
 
     $lastInsertedId = $user->id;
+    $user_email = $user->email;
 
     // Generate a new API token for the user...
     $token = $user->createToken('auth_token')->plainTextToken;
@@ -356,7 +357,7 @@ else if($validated["req_source"] == "ADMIN"){
 
     
             }else{
-                return response()->json(['message'=>'successfully created account but could not verify email. ','user_id'=>$lastInsertedId ],200);
+                return response()->json(['message'=>'successfully created account but could not verify email. ','user_id'=>$lastInsertedId, 'email'=>$user_email ],200);
 
             }
 
