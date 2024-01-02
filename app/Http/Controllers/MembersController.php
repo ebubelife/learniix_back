@@ -141,7 +141,7 @@ class MembersController extends Controller
     {
 
        
-       return "Hi";
+      // return "Hi";
 
        
 
@@ -220,6 +220,21 @@ class MembersController extends Controller
         $send_verification_email = $this->send_mail_verify_code($user->email,$user->email_code,$user->firstName );
 
             if($validated["reg_type"]=="AFFILIATE" ){
+
+                if(Mail::to($validated["email"])->send(new AffiliateWelcomeEmail( $validated["email"]))){
+
+                    return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
+
+        
+                }else{
+                    return response()->json(['message'=>'successfully created account but could not verify email. ','user_id'=>$lastInsertedId ],200);
+
+                }
+
+
+            }
+
+            if($validated["reg_type"]=="VENDOR" ){
 
                 if(Mail::to($validated["email"])->send(new AffiliateWelcomeEmail( $validated["email"]))){
 
@@ -319,6 +334,21 @@ else if($validated["req_source"] == "ADMIN"){
     $send_verification_email = $this->send_mail_verify_code($user->email,$user->email_code,$user->firstName );
 
         if($validated["reg_type"]=="AFFILIATE" ){
+
+            if(Mail::to($validated["email"])->send(new AffiliateWelcomeEmail( $validated["email"]))){
+
+                return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
+
+    
+            }else{
+                return response()->json(['message'=>'successfully created account but could not verify email. ','user_id'=>$lastInsertedId ],200);
+
+            }
+
+
+        }
+
+        if($validated["reg_type"]=="VENDOR" ){
 
             if(Mail::to($validated["email"])->send(new AffiliateWelcomeEmail( $validated["email"]))){
 
