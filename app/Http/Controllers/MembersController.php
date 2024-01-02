@@ -420,8 +420,12 @@ else if($validated["reg_type"]=="VENDOR"){
 
    // if($send_verification_email){
 
-        return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
-  //  }
+    if($send_verification_email){
+        return "done";
+
+    }
+
+        //  }
 
 }
 else if(!$checkEmailValid){
