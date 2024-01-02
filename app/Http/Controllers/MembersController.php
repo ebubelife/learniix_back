@@ -368,6 +368,8 @@ else if($validated["req_source"] == "ADMIN"){
 
 else if($validated["reg_type"]=="VENDOR"){
 
+    return "done";
+
     $user = new Members();
     $user->firstName = ($validated["firstName"]);
     $user->lastName = ($validated["lastName"]);
@@ -420,12 +422,9 @@ else if($validated["reg_type"]=="VENDOR"){
 
    // if($send_verification_email){
 
-    if($send_verification_email){
-        return "done";
 
-    }
-
-        //  }
+        return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
+  //  }
 
 }
 else if(!$checkEmailValid){
