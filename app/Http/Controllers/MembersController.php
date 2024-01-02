@@ -141,7 +141,7 @@ class MembersController extends Controller
     {
 
        
-       
+       return "Hi";
 
        
 
@@ -368,7 +368,7 @@ else if($validated["req_source"] == "ADMIN"){
 
 else if($validated["reg_type"]=="VENDOR"){
 
-    return "done";
+   // return "done";
 
     $user = new Members();
     $user->firstName = ($validated["firstName"]);
