@@ -213,6 +213,7 @@ class MembersController extends Controller
         $user->save();
 
         $lastInsertedId = $user->id;
+        $lastInsertedEmail = $user->email;
 
         // Generate a new API token for the user...
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -223,11 +224,11 @@ class MembersController extends Controller
 
                 if(Mail::to($validated["email"])->send(new AffiliateWelcomeEmail( $validated["email"]))){
 
-                    return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
+                    return response()->json(['message'=>'success','user_id'=>$lastInsertedId, 'email'=>$lastInsertedEmail ],200);
 
         
                 }else{
-                    return response()->json(['message'=>'successfully created account but could not verify email. ','user_id'=>$lastInsertedId ],200);
+                    return response()->json(['message'=>'successfully created account but could not verify email. ','user_id'=>$lastInsertedId, 'email'=>$lastInsertedEmail ],200);
 
                 }
 
@@ -238,11 +239,11 @@ class MembersController extends Controller
 
                 if(Mail::to($validated["email"])->send(new AffiliateWelcomeEmail( $validated["email"]))){
 
-                    return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
+                    return response()->json(['message'=>'success','user_id'=>$lastInsertedId, 'email'=>$lastInsertedEmail  ],200);
 
         
                 }else{
-                    return response()->json(['message'=>'successfully created account but could not verify email. ','user_id'=>$lastInsertedId ],200);
+                    return response()->json(['message'=>'successfully created account but could not verify email. ','user_id'=>$lastInsertedId, 'email'=>$lastInsertedEmail ],200);
 
                 }
 
