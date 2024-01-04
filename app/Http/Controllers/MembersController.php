@@ -357,7 +357,7 @@ else if($validated["req_source"] == "ADMIN"){
 
             if(Mail::to($validated["email"])->send(new AffiliateWelcomeEmail( $validated["email"]))){
 
-                return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
+                return response()->json(['message'=>'success','user_id'=>$lastInsertedId, 'email'=>$user_email],200);
 
     
             }else{
