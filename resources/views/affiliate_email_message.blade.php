@@ -51,7 +51,7 @@ Kindly send the screenshot of the transfer you made to <b>Mr. Chinaza </b> or se
 
 
 		
-	<div style="width:100%;padding-top:10px; padding-bottom:10px;  text-align:center">	<p style="margin-top:20px; color:#000000; display:inline-block;"> learniix.com © 2024</p>
+	<div style="width:100%;padding-top:10px; padding-bottom:10px;  text-align:center">	<p style="margin-top:20px; color:#32cd32; display:inline-block;"> learniix.com © 2024</p>
 </div>
 	
 

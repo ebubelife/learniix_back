@@ -15,7 +15,7 @@
 
 	<p style="margin-top:20px; color:red">If you are receiving this email in error, please disregard it</p>
 
-	<p style="margin-top:20px; color:#B2BEB5"> Learniix.com © 2024</p>
+	<p style="margin-top:20px; color:#32CD32"> Learniix.com © 2024</p>
 
 </div>
 </body>

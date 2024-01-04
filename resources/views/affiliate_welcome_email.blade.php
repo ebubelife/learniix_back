@@ -20,7 +20,7 @@
 		
 	<p style="margin-top:20px; color:red">Did you receive this email in error? Please ignore it or you can contact Learniix at learniix@gmail.com</p>
 
-	<div style="width:100%;padding-top:10px; padding-bottom:10px;  text-align:center">	<p style="margin-top:20px; color:#000000; display:inline-block;"> learniix.com © 2024</p>
+	<div style="width:100%;padding-top:10px; padding-bottom:10px;  text-align:center">	<p style="margin-top:20px; color:#32cd32; display:inline-block;"> learniix.com © 2024</p>
 </div>
 
 </div>

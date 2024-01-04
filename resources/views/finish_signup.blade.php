@@ -24,7 +24,7 @@
 
 <br>
 
-	<p style="margin-top:20px; color:#B2BEB5"> learniix.com © 2024</p>
+	<p style="margin-top:20px; color:#32CD32"> Learniix.com © 2024</p>
 
 </div>
 </body>
