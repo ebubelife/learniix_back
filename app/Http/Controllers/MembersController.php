@@ -327,7 +327,11 @@ else if($validated["req_source"] == "ADMIN"){
     $user->save();
 
     $lastInsertedId = $user->id;
-    $user_email = $user->email;
+
+    $user_added = Members::find($user->id);
+
+
+    $user_email = $user_added->email;
 
     // Generate a new API token for the user...
     $token = $user->createToken('auth_token')->plainTextToken;
