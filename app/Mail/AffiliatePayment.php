@@ -41,6 +41,6 @@ class AffiliatePayment extends Mailable
                     ->with(['affiliate_name'=> $this->affiliate_name, 'amount'=> $this->amount])
                    
                     ->from('Learniix@learniix.com')
-                    ->subject('Holy Sunday, Alert!🥳');
+                    ->subject('Ping!Ping!!💵🥳');
     }
 }

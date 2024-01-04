@@ -41,6 +41,6 @@ class FinishReg extends Mailable
                     ->with(['tx_id'=> $this->tx_id, 'firstName'=>$this->firstName])
                    
                     ->from('Learniix@learniix.com')
-                    ->subject('Complete your registration as an affiliate');
+                    ->subject('Finish up your registration');
     }
 }

@@ -37,6 +37,6 @@ class Contest extends Mailable
                     ->with(['firstName'=> $this->firstName])
                    
                     ->from('Learniix@learniix.com')
-                    ->subject('Hello Hurray 🥳🥳!!');
+                    ->subject('New Challenge 🥳🥳!!');
     }
 }

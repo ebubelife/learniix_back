@@ -41,6 +41,6 @@ class ConfirmEmail extends Mailable
                     ->with(['emailCode'=> $this->emailCode, 'firstName'=>$this->firstName])
                    
                     ->from('Learniix@learniix.com')
-                    ->subject('Confirm Your Email');
+                    ->subject('Verify Your Email');
     }
 }

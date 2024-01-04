@@ -75,8 +75,7 @@
 Zenithstake's team.✍🏼</p>
 
 
-	<div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#E5E4E2; text-align:center">
-	<p style="margin-top:20px; color:#000000; display:inline-block;"> learniix.com © 2024</p>
+	<div style="width:100%;padding-top:10px; padding-bottom:10px;  text-align:center">	<p style="margin-top:20px; color:#000000; display:inline-block;"> learniix.com © 2024</p>
 </div>
 	
 

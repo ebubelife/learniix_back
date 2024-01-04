@@ -42,7 +42,7 @@ class CourseAccess extends Mailable
         return $this->view('access_course', ['message' => $message])
                     ->with(['productTYLink'=> $this->productTYLink, 'customerName'=>$this->customerName, 'productName'=>$this->productName])
                    
-                    ->from('Zenithstake@zenithstake.com')
+                    ->from('Learniix@learniix.com')
                     ->subject('Access your course');
     }
 }

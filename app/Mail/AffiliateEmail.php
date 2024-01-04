@@ -53,6 +53,6 @@ class AffiliateEmail extends Mailable
                     ->with(['affiliate_email'=> $this->affiliate_email,'firstName'=>$this->firstName,'productPrice'=>$this->productPrice,'commission'=>$this->commission, "customer_name"=>$this->customer_name, "productName"=>$this->productName])
                    
                     ->from('Learniix@learniix.com')
-                    ->subject('Congratulations🥳🥳 on your new sale!🥳');
+                    ->subject('Ping! 💵🥳🥳 A new sale!🥳');
     }
 }

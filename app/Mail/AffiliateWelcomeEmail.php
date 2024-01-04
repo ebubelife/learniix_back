@@ -37,6 +37,6 @@ class AffiliateWelcomeEmail extends Mailable
                     ->with(['email'=> $this->email])
                    
                     ->from('Learniix@learniix.com')
-                    ->subject('Welcome!🥳🥳 To ZenithStake!🥳');
+                    ->subject('Welcome!🥳🥳 To Learniix!🥳');
     }
 }

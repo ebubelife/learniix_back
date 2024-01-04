@@ -46,6 +46,6 @@ class VendorEmail extends Mailable
                     ->with(['vendor_email'=> $this->vendor_email,'firstName'=>$this->firstName,'productPrice'=>$this->productPrice,'commission'=>$this->commission, 'customerName'=>$this->customerName,'productName'=>$this->productName])
                    
                     ->from('Learniix@learniix.com')
-                    ->subject('Congratulations🥳🥳 on your new sale!🥳');
+                    ->subject('Ping! 💵🥳🥳 A new sale!🥳');
     }
 }
