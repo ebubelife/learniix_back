@@ -5,7 +5,7 @@
 </head>
 <body>
 	<div style="padding:10px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius:20px; font-size:16px;">
-	<img src="https://www.learniix.com/images/logo.jpeg" alt="logo" height="80" width="270" />
+	<img src="https://learniix.com/images/logo.jpeg" alt="logo" height="80" width="270" />
 
 
 	<p style="color:#696969; font-size:21px;">Hi  {{ $firstName }}, </h3>
