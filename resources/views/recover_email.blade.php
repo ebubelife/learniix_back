@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Account Recovery</title>
+	<title>Recover Your Account</title>
 </head>
 <body>
 	<div style="padding:10px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius:20px; font-size:16px;">
@@ -15,7 +15,7 @@
 
 		<h3 style="color:#5B2C6F;">{{ $emailCode }}</h3>
 
-	<p style="margin-top:20px; color:red">If you're not the one who made this request and you're not aware of it, disregard this message.</p>
+	<p style="margin-top:20px; color:red">If you're not the one who made this request and you're not aware of it, ignore this message. If you feel your account was compromised, please contact Learniix - <b>learniix@gmail.com</b></p>
 
 	<div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#E5E4E2; text-align:center">
 	<p style="margin-top:20px; color:#000000; display:inline-block;"> learniix.com © 2023</p>

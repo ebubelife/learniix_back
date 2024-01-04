@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Congratulations 🎉🥳 on your new sale!</title>
+	<title>Notice!!!</title>
 </head>
 <body>
 	<div style="padding:10px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius:20px; font-size:16px;">
@@ -45,14 +45,14 @@ Kindly send the screenshot of the transfer you made to <b>Mr. Chinaza </b> or se
 <br>
 <p>Thank you all,</p>
 
-<p>Zenithstake's Team💡</p>
+<p></p>
 
 
 
 
 		
 	<div style="width:100%;padding-top:10px; padding-bottom:10px; background-color:#E5E4E2; text-align:center">
-	<p style="margin-top:20px; color:#000000; display:inline-block;"> zenithstake.com © 2023</p>
+	<p style="margin-top:20px; color:#000000; display:inline-block;"> learniix.com © 2024</p>
 </div>
 	
 
