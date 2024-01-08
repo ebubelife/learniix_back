@@ -13,7 +13,7 @@
 	<p style="color:#696969; font-size:21px;">Hi  {{ $firstName }}, </h3>
 	<p style="margin-top:20px; color:#696969;">You have successfully purchased the <b>LIB Course</b> which also qualifies you for a 1 year membership on Learniix as an affiliate. </p>
 
-    	<p style="margin-top:20px; color:#696969;">Click the link below to complete your registration as an affiliate and gain access to our marketplace and training materials </p>
+    	<p style="margin-top:20px; color:#696969;">Click the link below to complete your registration as an affiliate USING THE SAME EMAIL THAT YOU BOUGHT THE COURSE WITH and gain access to our marketplace and training materials </p>
 
 
 	<br>
