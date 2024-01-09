@@ -18,8 +18,8 @@
 
 	<br>
 
-	<a href="https://learniix.com/new/affiliate" style="background-color: #FFA500; color: black; padding: 10px 20px; border-radius: 5px; text-decoration: none; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
-  Complete Registration
+	<a href="https://learniix.com/affiliates/new" style="background-color: #000000; color: white; padding: 10px 20px; border-radius:15px; text-decoration: none; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);">
+  Finish Registration
 </a>
 
 <br>
