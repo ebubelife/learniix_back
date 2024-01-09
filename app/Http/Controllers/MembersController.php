@@ -164,6 +164,15 @@ class MembersController extends Controller
 
         $customer_exists = Sales::where('customer_email', $validated["email"])->first();
 
+        if( !$customer_exists && $validated["req_TYPE"]=="AFFILIATE" ){
+
+            
+
+                return response()->json(['message'=>'Please use a valid email that has been used to make a purchase for the LIB product.'],405);
+            
+            
+        }
+
         if(  $validated["req_source"]=="USER" ){
 
 
@@ -400,98 +409,7 @@ else if($validated["req_source"] == "ADMIN"){
 
 }
 
-//check if request is from vendor
 
-else if($validated["reg_type"]=="VENDOR"){
-
-   // return "done";
-
-    $user = new Members();
-    $user->firstName = ($validated["firstName"]);
-    $user->lastName = ($validated["lastName"]);
-    $user->is_payed = $validated["is_payed"];
-    $user->currency = $validated["currency"];
-
-    $reg_type = $validated["reg_type"];
-
-   
-
-    $user->is_vendor = true;
-
-
-  
-  
-    $user->phone = $validated["phone"];
-    $user->email = strtolower($validated["email"]);
-
-    $checkEmailValid = $this->checkEmailValid($user->email);
-
-    //generate 4 digit email otp
-    $otp = $random_number = rand(1000, 9999);
-
-
-    $user->email_code =  $otp;
-    $user->email_verified = false;
-  
-  
-    $user->password = Hash::make($validated["password"]);
-
-    //generate affiliate id
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $random_string = substr(str_shuffle($characters), 0, 6);
-    $user->affiliate_id = $random_string;
-
-    $checkEmailValid = $this->checkEmailValid(strtolower($validated["email"]));
-    $checkEmailExists = $this->checkEmailExists(strtolower($validated["email"]));
-    $checkPhoneExists = $this->checkPhoneExists($user->phone);
-
-    if($checkEmailValid && !$checkEmailExists && !$checkPhoneExists ){
-
-    $user->save();
-
-    $lastInsertedId = $user->id;
-
-    // Generate a new API token for the user...
-    $token = $user->createToken('auth_token')->plainTextToken;
-
-    $send_verification_email = $this->send_mail_verify_code($user->email,$user->email_code,$user->firstName );
-
-   // if($send_verification_email){
-
-
-        return response()->json(['message'=>'success','user_id'=>$lastInsertedId ],200);
-  //  }
-
-}
-else if(!$checkEmailValid){
-
-    return response()->json(['message'=>'Please use a valid email'],405);
-
-
-}
-
-else if($checkEmailExists){
-
-    return response()->json(['message'=>'That email is in use already, please try another'],405);
-
-
-}
-
-else if( $checkPhoneExists){
-
-    return response()->json(['message'=>'That phone number is in use already, please try another'],405);
-
-
-
-
-}
-
-}
-else {
-
-    return response()->json(['message'=>'Could not find that email in our system. Contact support.'],405);
-
-}
 
 
 }
