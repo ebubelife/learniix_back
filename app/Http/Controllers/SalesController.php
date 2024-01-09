@@ -246,7 +246,7 @@ class SalesController extends Controller
     
                     Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"]/$naira_exchange_rate->value,$aff_commision/$naira_exchange_rate->value, $validated["customer_name"], $productName));
     
-                    Mail::to($getVendor->email )->send(new VendorEmail($getVendor->email,$getVendor->firstName,$validated["product_price"],$vendor_comission/$naira_exchange_rate->value,$validated["customer_name"],$productName));
+                    Mail::to($getVendor->email )->send(new VendorEmail($getVendor->email,$getVendor->firstName,$validated["product_price"],$vendor_comission,$validated["customer_name"],$productName));
     
                   /*  if(Mail::to($getAffiliate->email )->send(new AffiliateEmail( $getAffiliate->email, $getAffiliate->firstName, $validated["product_price"],strval($aff_commision ), $validated["customer_name"], $productName))){
     
