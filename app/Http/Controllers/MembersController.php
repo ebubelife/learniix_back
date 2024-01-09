@@ -164,7 +164,7 @@ class MembersController extends Controller
 
         $customer_exists = Sales::where('customer_email', $validated["email"])->first();
 
-        if( !$customer_exists && $validated["req_TYPE"]=="AFFILIATE" ){
+        if( !$customer_exists && $validated["reg_type"]=="AFFILIATE" ){
 
             
 
