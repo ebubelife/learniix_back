@@ -15,7 +15,7 @@
 
 	<p style="margin-top:20px; color:#696969;">You have now been activated as a full member of Learniix platform and your account is ready to be used. Please use the link below to login.  </p>
 
-	<a href="https://zenithstake.com/signin" style="margin-top:20px; color:#32CD32;">Enter Dashboard </a>
+	<a href="https://learniix.com/" style="margin-top:20px; color:#32CD32;">Sign In Now </a>
 
 		
 	<p style="margin-top:20px; color:red">Did you receive this email in error? Please ignore it or you can contact Learniix at learniix@gmail.com</p>
