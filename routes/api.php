@@ -489,7 +489,7 @@ Route::get('vendors/view', function () {
         $user = Members::find($vendors[$i]['vendor_id']);
 
         $vendors[$i]['vendor_details'] = $user;
-        $vendors[$i]["image_path"] = asset('https://back.zenithstake.com/storage/images/vendor_images/' . $vendors[$i]["image"]);
+        $vendors[$i]["image_path"] = asset('https://back.learniix.com/storage/images/vendor_images/' . $vendors[$i]["image"]);
 
     }
 
@@ -543,7 +543,7 @@ Route::controller(ProductsController::class)->group(function(){
     }
 
     // Update the sales_page column
-    $product->productSalesPageLink = 'https://zenithstake.com/smac/smac';
+    $product->productSalesPageLink = 'https://learniix.com/smac/smac';
    // $product->vendor_id = "54";
     //$product->productCommission ="50";
 

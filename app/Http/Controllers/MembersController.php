@@ -796,7 +796,7 @@ public function checkPhoneExists($phone)
 
         ]);
 
-        $user =  $this->checkEmailExists( $request->email);
+        $user =  Members::where("email", $request->email)->first();
 
         if($user){
 

@@ -107,6 +107,8 @@ class SalesController extends Controller
 
              $sale = new Sales();
 
+       
+
              
 
             
