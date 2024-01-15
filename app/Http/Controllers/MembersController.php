@@ -643,7 +643,7 @@ public function checkPhoneExists($phone)
 
            
 
-               if($api_data["status"] == true){
+             
 
                 $user->firstName = $request->firstName;
                 $user->lastName = $request->lastName;
@@ -654,12 +654,8 @@ public function checkPhoneExists($phone)
                 $user->payment_reference_paystack = "--";
                 $user->save();
 
-               }
-
-               else{
-
-
-                return response()->json(['message'=>'Sorry! We could not validate your bank details. Please ensure they are correct. '],405);
+             
+                return response()->json(['message'=>'Your account details have been saved'],200);
 
                }
                
