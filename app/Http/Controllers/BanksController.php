@@ -300,11 +300,11 @@ class BanksController extends Controller
         );
 
 
-        $jsonbanks = json_decode($banks);
+       // $jsonbanks = json_decode($banks);
     
         // return  count($banks->data);
   
-        for ($i = 0; $i < count($banks->data); $i++) {
+        for ($i = 0; $i < count($banks); $i++) {
  
                 $bank_list = new Banks();       
   
