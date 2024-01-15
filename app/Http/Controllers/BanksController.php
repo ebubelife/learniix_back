@@ -308,7 +308,7 @@ class BanksController extends Controller
  
                 $bank_list = new Banks();       
   
-                $bank_list->bank= $banks[$i]->name;
+                $bank_list->bank= $banks[$i]->bank;
                 $bank_list->code= $banks[$i]->code;
                 $bank_list->country= $banks[$i]->country;
  
