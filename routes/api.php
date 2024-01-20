@@ -247,50 +247,70 @@ return response()->json(['download_link' => $downloadLink]);
 
     Route::get('view/payable_affiliates', function () {
 
-        $unpaid_affiliates = Members::where("is_vendor", false)
-            ->where("payment_reference_paystack", "!=", null)
-            ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200 ")
-            ->where("weekly_withdrawal", true)
-            ->get();
-    
-        // Generate a unique file name
-        $fileName = 'data_' . Str::random(10) . '.csv';
-    
-        // Create a new file in the storage directory
-        $filePath = storage_path('app/' . $fileName);
-    
-        // Open the file in write mode
-        $file = fopen($filePath, 'w');
-    
-        // Write the CSV header
-        $header = ['Account Number', 'Bank', 'Amount', 'Narration'];
-        fputcsv($file, $header);
-    
-        // Fetch data from the database or any other source
-        $data = [];
-    
-        foreach ($unpaid_affiliates as $unpaid_affiliate) {
-            array_push($data, [$unpaid_affiliate->bank_account_number, $unpaid_affiliate->bank, $unpaid_affiliate->unpaid_balance, "ZENITHSTAKE ENTERPRISE - " . $unpaid_affiliate->firstName]);
-        }
-    
-        // Write the data rows to the CSV file
-        foreach ($data as $row) {
-            fputcsv($file, $row);
-        }
-    
-        // Close the file
-        fclose($file);
-    
-        // Optionally, you can delete the temporary file
-        //unlink($filePath);
-    
-        // Return a response with the download link
-        $publicPath = 'public/csv/' . $fileName;
-        Storage::disk('local')->put($publicPath, file_get_contents($filePath));
-    
-        // Return the CSV file as a download response
-        return response()->download($filePath, $fileName)->deleteFileAfterSend();
-    
+    $unpaid_affiliates = Members::where("is_vendor", false)
+    ->where("payment_reference_paystack","!=",null)
+    ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200 ")
+    ->where("weekly_withdrawal", true)
+   /* ->whereIn("email", [
+        "nonsojoshua001@gmail.com",
+        "aimchinaza3039@gmail.com",
+        "johnadetunji92@gmail.com",
+        "belovedprinz@gmail.com",
+        "blessingochiemen01@gmail.com"
+    ])*/
+    ->get();
+
+    // Generate a unique file name
+$fileName = 'data_' . Str::random(10) . '.csv';
+
+// Create a new file in the storage directory
+$filePath = storage_path('app/' . $fileName);
+
+// Open the file in write mode
+$file = fopen($filePath, 'w');
+
+// Write the CSV header
+$header = ['Account Number', 'Bank', 'Amount', 'Narration'];
+fputcsv($file, $header);
+
+// Fetch data from the database or any other source
+
+$data = array();
+
+foreach($unpaid_affiliates as $unpaid_affiliate){
+
+    array_push($data, array($unpaid_affiliate->bank_account_number, $unpaid_affiliate->bank, $unpaid_affiliate->unpaid_balance,"ZENITHSTAKE ENTERPRISE - ".$unpaid_affiliate->firstName));
+
+}
+
+
+// Write the data rows to the CSV file
+foreach ($data as $row) {
+    fputcsv($file, $row);
+}
+
+// Close the file
+fclose($file);
+
+// Store the CSV file in a public directory (optional)
+$publicPath = 'public/csv/' . $fileName;
+Storage::disk('local')->put($publicPath, file_get_contents($filePath));
+
+// Optionally, you can delete the temporary file
+unlink($filePath);
+
+// Return a response with the download link
+$downloadLink = Storage::url($publicPath);
+
+
+
+
+
+return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates]);
+
+
+   // return response()->json($unpaid_affiliates );
+
     });
 
 
