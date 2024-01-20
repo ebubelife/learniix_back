@@ -250,7 +250,7 @@ return response()->json(['download_link' => $downloadLink]);
     $unpaid_affiliates = Members::where("is_vendor", false)
     ->where("payment_reference_paystack","!=",null)
     ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200 ")
-    ->where("withdrawal_settings", true)
+    ->where("weekly_withdrawal", true)
    /* ->whereIn("email", [
         "nonsojoshua001@gmail.com",
         "aimchinaza3039@gmail.com",
@@ -312,6 +312,12 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
    // return response()->json($unpaid_affiliates );
 
     });
+
+
+
+
+
+
 
 
     Route::get('view/all', 'show');

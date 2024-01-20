@@ -208,17 +208,33 @@ class TransactionsController extends Controller
 
                 $amount = $unpaid_user->unpaid_balance;
 
+
+              
+
+   
+
           
             $url = "https://api.flutterwave.com/v3/transfers";
 
-            $fields = array(
+          /*  $fields = array(
               "account_bank" => $unpaid_user->bank,
               "amount" =>$amount,
              
               "account_number"=> $unpaid_user->bank_account_number,
               "narration" => "ZENITHSTAKE ENTERPRISE",
               "currency"=> "NGN",
-            );
+            );*/
+
+            $fields = array(
+
+                "remark"=> "Learniix payment",
+                "amount" =>$amount,
+                "bank_code" => $unpaid_user->bank,
+                "transaction_reference"=>"SBABCKDY_12345",
+                "account_number"=> $unpaid_user->bank_account_number,
+                "narration" => "LEARNIIX PAYMENT",
+                "currency_id"=> "NGN",
+              );
 
           
           
@@ -245,12 +261,12 @@ class TransactionsController extends Controller
             
          
                 curl_setopt_array($curl, [
-                    CURLOPT_URL => 'https://api.flutterwave.com/v3/transfers',
+                    CURLOPT_URL => 'https://api-d.squadco.com/payout/transfer',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => $jsonData,
                     CURLOPT_HTTPHEADER => [
-                        'Authorization: Bearer '.env('FLW_API_KEY'),
+                        'Authorization: Bearer '.env('SQUAD_API_KEY'),
                         'Content-Type: application/json',
                     ],
                 ]);
@@ -261,7 +277,7 @@ class TransactionsController extends Controller
 
            $res = json_decode($result, true);
 
-           if($res["status"]=="success"){
+           if($res["message"]=="success"){
 
             $update_user = Members::find($unpaid_user->id);
 
