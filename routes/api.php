@@ -248,16 +248,10 @@ return response()->json(['download_link' => $downloadLink]);
     Route::get('view/payable_affiliates', function () {
 
     $unpaid_affiliates = Members::where("is_vendor", false)
-  //  ->where("payment_reference_paystack","!=",null)
+    ->join('banks', 'members.bank', '=', 'banks.code')
+ 
     ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200 ")
-   // ->where("weekly_withdrawal", true)
-   /* ->whereIn("email", [
-        "nonsojoshua001@gmail.com",
-        "aimchinaza3039@gmail.com",
-        "johnadetunji92@gmail.com",
-        "belovedprinz@gmail.com",
-        "blessingochiemen01@gmail.com"
-    ])*/
+   
     ->get();
 
     // Generate a unique file name
