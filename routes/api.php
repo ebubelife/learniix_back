@@ -412,7 +412,7 @@ Route::get('view/affiliates/order', function () {
         $user = Members::findOrFail($id);
     
     // Toggle the withdrawal_setting value
-    $user->withdrawal_settings = !$user->withdrawal_settings;
+    $user->weekly_withdrawal = !$user->weekly_withdrawal;
     $user->save();
 
     return response()->json(["message" => "Withdrawal setting updated successfully"]);
