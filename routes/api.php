@@ -248,7 +248,7 @@ return response()->json(['download_link' => $downloadLink]);
     Route::get('view/payable_affiliates', function () {
 
     $unpaid_affiliates = Members::where("is_vendor", false)
-    ->join('banks', 'members.bank', '=', 'banks.code')
+   // ->join('banks', 'members.bank', '=', 'banks.code')
  
     ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200 ")
    
@@ -264,7 +264,7 @@ $filePath = storage_path('app/' . $fileName);
 $file = fopen($filePath, 'w');
 
 // Write the CSV header
-$header = ['Account Number', 'Bank', 'Amount', 'Narration'];
+$header = ['BENEFICIARY NAME','BENEFICIARY ACCOUNT NUMBER', 'PAY AMOUNT', 'BENEFICIARY BANK CODE',];
 fputcsv($file, $header);
 
 // Fetch data from the database or any other source
@@ -273,7 +273,7 @@ $data = array();
 
 foreach($unpaid_affiliates as $unpaid_affiliate){
 
-    array_push($data, array($unpaid_affiliate->bank_account_number, $unpaid_affiliate->bank, $unpaid_affiliate->unpaid_balance,"ZENITHSTAKE ENTERPRISE - ".$unpaid_affiliate->firstName));
+    array_push($data, array($unpaid_affiliate->firstName." ".$unpaid_affiliate->lastName,$unpaid_affiliate->bank_account_number, $unpaid_affiliate->unpaid_balance,$unpaid_affiliate->bank));
 
 }
 
