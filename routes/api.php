@@ -290,27 +290,27 @@ fclose($file);
 $publicPath = 'public/csv/' . $fileName;
 Storage::disk('local')->put($publicPath, file_get_contents($filePath));
 
-
+// Optionally, you can delete the temporary file
+unlink($filePath);
 
 // Return a response with the download link
 $downloadLink = Storage::url($publicPath);
 
-$headers = [
-    'Content-Type' => 'text/csv',
-    'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
-];
 
 
 
-// Return the CSV file as a response for automatic download
-return response()->download($filePath, $fileName, $headers);
 
-//return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates]);
+return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates]);
 
 
    // return response()->json($unpaid_affiliates );
 
     });
+
+
+
+
+
 
 
 
