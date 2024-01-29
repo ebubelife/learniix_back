@@ -282,7 +282,7 @@ $data = array();
 
 foreach($unpaid_affiliates as $unpaid_affiliate){
 
-    array_push($data, array($unpaid_affiliate->firstName." ".$unpaid_affiliate->lastName,$unpaid_affiliate->bank_account_number, $unpaid_affiliate->unpaid_balance,$unpaid_affiliate->bank,$unpaid_affiliate->bank_code ));
+    array_push($data, array($unpaid_affiliate->firstName." ".$unpaid_affiliate->lastName,$unpaid_affiliate->bank_account_number, $unpaid_affiliate->unpaid_balance,$unpaid_affiliate->bank,$unpaid_affiliate->bank_name ));
 
 }
 
