@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 use App\Mail\MessageEmail;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /*
 |--------------------------------------------------------------------------
@@ -287,13 +286,7 @@ foreach ($data as $row) {
 // Close the file
 fclose($file);
 
- // Return a BinaryFileResponse with the download link
- return new BinaryFileResponse($filePath, 200, [
-    'Content-Type' => 'text/csv',
-    'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
-]);
-
-/*// Store the CSV file in a public directory (optional)
+// Store the CSV file in a public directory (optional)
 $publicPath = 'public/csv/' . $fileName;
 Storage::disk('local')->put($publicPath, file_get_contents($filePath));
 
@@ -307,7 +300,7 @@ $downloadLink = Storage::url($publicPath);
 
 
 
-return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates]);*/
+return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates]);
 
 
    // return response()->json($unpaid_affiliates );
