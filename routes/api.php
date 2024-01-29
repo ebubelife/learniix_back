@@ -288,7 +288,7 @@ foreach ($data as $row) {
 fclose($file);
 
  // Return a BinaryFileResponse with the download link
- return new BinaryFileResponse($csvFilePath, 200, [
+ return new BinaryFileResponse($filePath, 200, [
     'Content-Type' => 'text/csv',
     'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
 ]);
