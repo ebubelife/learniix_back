@@ -286,7 +286,11 @@ foreach ($data as $row) {
 // Close the file
 fclose($file);
 
-return response()->download($filePath, $fileName);
+ // Return a BinaryFileResponse with the download link
+ return new BinaryFileResponse($csvFilePath, 200, [
+    'Content-Type' => 'text/csv',
+    'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+]);
 
 /*// Store the CSV file in a public directory (optional)
 $publicPath = 'public/csv/' . $fileName;
