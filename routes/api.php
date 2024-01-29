@@ -286,10 +286,7 @@ foreach ($data as $row) {
 // Close the file
 fclose($file);
 
-return response()->download($filePath, $fileName, [
-    'Content-Type' => 'text/csv',
-    'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
-]);
+return response()->download($filePath, $fileName);
 
 /*// Store the CSV file in a public directory (optional)
 $publicPath = 'public/csv/' . $fileName;
