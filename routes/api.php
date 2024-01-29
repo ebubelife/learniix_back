@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 use App\Mail\MessageEmail;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /*
 |--------------------------------------------------------------------------
