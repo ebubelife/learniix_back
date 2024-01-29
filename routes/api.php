@@ -247,13 +247,22 @@ return response()->json(['download_link' => $downloadLink]);
 
     Route::get('view/payable_affiliates', function () {
 
-    $unpaid_affiliates = Members::where("is_vendor", false)
-   // ->join('banks', 'members.bank', '=', 'banks.code')
- 
-    ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200 ")
-   
-    ->get();
-
+        $unpaid_affiliates = Members::join('banks', 'members.bank', '=', 'banks.code')
+        ->where("members.is_vendor", false)
+        ->whereRaw("CAST(members.unpaid_balance AS UNSIGNED) > 200")
+        ->select(
+            'members.firstName',
+            'members.lastName',
+            'members.bank_account_number',
+            'members.unpaid_balance',
+           // 'members.bank'
+            // Add other columns you need from the 'members' table
+        )
+        ->addSelect(
+            'banks.name as bank'
+            // Add other columns you need from the 'banks' table with an alias
+        )
+        ->get();
     // Generate a unique file name
 $fileName = 'data_' . Str::random(10) . '.csv';
 
@@ -264,7 +273,7 @@ $filePath = storage_path('app/' . $fileName);
 $file = fopen($filePath, 'w');
 
 // Write the CSV header
-$header = ['BENEFICIARY NAME','BENEFICIARY ACCOUNT NUMBER', 'PAY AMOUNT', 'BENEFICIARY BANK CODE',];
+$header = ['BENEFICIARY NAME','BENEFICIARY ACCOUNT NUMBER', 'PAY AMOUNT', 'BENEFICIARY BANK CODE', 'BANK NAME'];
 fputcsv($file, $header);
 
 // Fetch data from the database or any other source
@@ -273,7 +282,7 @@ $data = array();
 
 foreach($unpaid_affiliates as $unpaid_affiliate){
 
-    array_push($data, array($unpaid_affiliate->firstName." ".$unpaid_affiliate->lastName,$unpaid_affiliate->bank_account_number, $unpaid_affiliate->unpaid_balance,$unpaid_affiliate->bank));
+    array_push($data, array($unpaid_affiliate->firstName." ".$unpaid_affiliate->lastName,$unpaid_affiliate->bank_account_number, $unpaid_affiliate->unpaid_balance,$unpaid_affiliate->bank, ));
 
 }
 
