@@ -255,11 +255,11 @@ return response()->json(['download_link' => $downloadLink]);
             'members.lastName',
             'members.bank_account_number',
             'members.unpaid_balance',
-           // 'members.bank'
+            'members.bank'
             // Add other columns you need from the 'members' table
         )
         ->addSelect(
-            'banks.bank as bank'
+            'banks.bank as bank_name'
             // Add other columns you need from the 'banks' table with an alias
         )
         ->get();
@@ -282,7 +282,7 @@ $data = array();
 
 foreach($unpaid_affiliates as $unpaid_affiliate){
 
-    array_push($data, array($unpaid_affiliate->firstName." ".$unpaid_affiliate->lastName,$unpaid_affiliate->bank_account_number, $unpaid_affiliate->unpaid_balance,$unpaid_affiliate->bank, ));
+    array_push($data, array($unpaid_affiliate->firstName." ".$unpaid_affiliate->lastName,$unpaid_affiliate->bank_account_number, $unpaid_affiliate->unpaid_balance,$unpaid_affiliate->bank,$unpaid_affiliate->bank_code ));
 
 }
 
