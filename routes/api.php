@@ -259,7 +259,7 @@ return response()->json(['download_link' => $downloadLink]);
             // Add other columns you need from the 'members' table
         )
         ->addSelect(
-            'banks.name as bank'
+            'banks.bank as bank'
             // Add other columns you need from the 'banks' table with an alias
         )
         ->get();
