@@ -13,6 +13,8 @@ use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\FinishReg;
 use App\Mail\AffiliateWelcomeEmail;
+use App\Mail\AffiliatePayment;
+
 
 use App\Mail\MyEmail;
 
@@ -46,6 +48,32 @@ class MembersController extends Controller
     public function create()
     {
         //
+    }
+
+    public function send_alert_email(){
+
+        $users = array(
+          /*  array("email"=>"roselineonyeleonu@gmail.com", "amount"=>"10000", "name"=>"Roseline"),
+            array("email"=>"aforebright@gmail.com", "amount"=>"5000", "name"=>"Bright"),
+            array("email"=>"okoyomercy4@gmail.com", "amount"=>"165000", "name"=>"Mercy"),
+            array("email"=>"udemezuevivian18@gmail.com", "amount"=>"20000", "name"=>"Vivian"),
+            array("email"=>"priscachijindu@gmail.com", "amount"=>"60000", "name"=>"Prisca"),*/
+
+            array("email"=>"ebubeemeka19@gmail.com", "amount"=>"60000", "name"=>"Kodeblooded")
+            
+
+        );
+
+        foreach($users as $user){
+            Mail::to($user->email)->send(new AffiliatePayment( intval($user->amount)/intval(500),$user->name));
+       
+
+
+        }
+
+       
+
+
     }
 
 
