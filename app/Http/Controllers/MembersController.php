@@ -53,13 +53,17 @@ class MembersController extends Controller
     public function send_alert_email(){
 
         $users = array(
-          /*  array("email"=>"roselineonyeleonu@gmail.com", "amount"=>"10000", "name"=>"Roseline"),
+            array("email"=>"roselineonyeleonu@gmail.com", "amount"=>"10000", "name"=>"Roseline"),
             array("email"=>"aforebright@gmail.com", "amount"=>"5000", "name"=>"Bright"),
             array("email"=>"okoyomercy4@gmail.com", "amount"=>"165000", "name"=>"Mercy"),
             array("email"=>"udemezuevivian18@gmail.com", "amount"=>"20000", "name"=>"Vivian"),
-            array("email"=>"priscachijindu@gmail.com", "amount"=>"60000", "name"=>"Prisca"),*/
+            array("email"=>"priscachijindu@gmail.com", "amount"=>"60000", "name"=>"Prisca"),
 
-            array("email"=>"ebubeemeka19@gmail.com", "amount"=>"60000", "name"=>"Kodeblooded")
+            array("email"=>"smartnonnik@gmail.com", "amount"=>"205000", "name"=>"Anselm"),
+
+            array("email"=>"ebubeemeka19@gmail.com", "amount"=>"60000", "name"=>"Kodeblooded"),
+
+            array("email"=>"leslieeunice01@gmail.com", "amount"=>"15000", "name"=>"Eunice")
             
 
         );
