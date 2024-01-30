@@ -65,7 +65,7 @@ class MembersController extends Controller
         );
 
         foreach($users as $user){
-            Mail::to($user->email)->send(new AffiliatePayment( intval($user->amount)/intval(500),$user->name));
+            Mail::to($user["email"])->send(new AffiliatePayment( intval($user["amount"])/intval(500),$user["name"]));
        
 
 
