@@ -436,6 +436,14 @@ Route::get('view/affiliates/order', function () {
         return response()->json(["message" => "successfully deleted"]);
     });
 
+    Route::get('sale/remove/{id}', function ($id) {
+        $user = Sales::destroy($id);
+
+        return response()->json(["message" => "successfully deleted"]);
+    });
+
+
+
     Route::post('member/update','update');
 
     Route::get('member/update_withdrawal/{id}', function ($id) {
