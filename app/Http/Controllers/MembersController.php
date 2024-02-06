@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\RecoverAccountMail;
 use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\AffiliatePayment;
 use App\Mail\FinishReg;
 use App\Mail\AffiliateWelcomeEmail;
-use App\Mail\AffiliatePayment;
+
 
 
 use App\Mail\MyEmail;

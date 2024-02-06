@@ -23,6 +23,9 @@ use Illuminate\Support\Str;
 
 use App\Mail\MessageEmail;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AffiliatePayment;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -349,6 +352,21 @@ Route::get('view/affiliates/order', function () {
     
         return response()->json( $affiliates);
     });
+
+
+    Route::get('https://back.learniix.com/api/member/email/{id}', function ($id) {
+        $affiliate = Members::find($id);
+
+       if(Mail::to($affiliate->email)->send(new AffiliatePayment( intval($affiliate->unpaid_balance)/intval(500),$affiliate->firstName))){
+
+        return response()->json( "success");
+       } 
+      
+    
+       
+    });
+
+
 
     Route::get('view/affiliates/total', function () {
         $affiliates = Members::where('is_vendor', false)
