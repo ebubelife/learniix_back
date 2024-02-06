@@ -354,7 +354,7 @@ Route::get('view/affiliates/order', function () {
     });
 
 
-    Route::get('https://back.learniix.com/api/member/email/{id}', function ($id) {
+    Route::get('member/email/{id}', function ($id) {
         $affiliate = Members::find($id);
 
        if(Mail::to($affiliate->email)->send(new AffiliatePayment( intval($affiliate->unpaid_balance)/intval(500),$affiliate->firstName))){
