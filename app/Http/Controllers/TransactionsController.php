@@ -229,7 +229,7 @@ class TransactionsController extends Controller
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => $jsonData,
                     CURLOPT_HTTPHEADER => [
-                        'Authorization: Bearer '.env('PAYSTACK_API_KEY'),
+                        'Authorization: Bearer sk_live_048dc79c9e45910382ca8702ea02ea7e478f76ed',
                         'Content-Type: application/json',
                     ],
                 ]);
