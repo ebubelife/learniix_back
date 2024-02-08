@@ -193,12 +193,12 @@ class TransactionsController extends Controller
               //get affiliate
 
               $unpaid_users = Members::where("is_vendor", false)
-              ->where("affiliate_id","!=" ,"DN3jYz")
-              -> where ("id", "!=",3642)
-              ->where("payment_reference_paystack","!=",null)
-              ->where("withdrawal_settings",true)
+            
+              -> where ("id", "=",1)
+            //  ->where("payment_reference_paystack","!=",null)
+          //    ->where("withdrawal_settings",true)
              // ->whereIn("email", [ "ebubeemeka19@gmail.com","aimchinaza3039@gmail.com" ])
-              ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200")
+            //  ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200")
               ->get();
 
 
@@ -216,16 +216,15 @@ class TransactionsController extends Controller
           
             $url = "https://api.flutterwave.com/v3/transfers";
 
-          /*  $fields = array(
-              "account_bank" => $unpaid_user->bank,
-              "amount" =>$amount,
-             
-              "account_number"=> $unpaid_user->bank_account_number,
-              "narration" => "ZENITHSTAKE ENTERPRISE",
-              "currency"=> "NGN",
-            );*/
+           $fields = array(
+              "source" => "balance",
+              "reason" =>"test transfer",
+              "amount"=>"10000",
+              "recipient"=>"RCP_vezlro9kkr7nb6b",
+     
+            );
 
-            $fields = array(
+          /*  $fields = array(
 
                 "remark"=> "Learniix payment",
                 "amount" =>$amount,
@@ -234,7 +233,7 @@ class TransactionsController extends Controller
                 "account_number"=> $unpaid_user->bank_account_number,
                 "narration" => "LEARNIIX PAYMENT",
                 "currency_id"=> "NGN",
-              );
+              );*/
 
           
           
@@ -261,12 +260,12 @@ class TransactionsController extends Controller
             
          
                 curl_setopt_array($curl, [
-                    CURLOPT_URL => 'https://api-d.squadco.com/payout/transfer',
+                    CURLOPT_URL => 'https://api.paystack.co/transfer',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => $jsonData,
                     CURLOPT_HTTPHEADER => [
-                        'Authorization: Bearer '.env('SQUAD_API_KEY'),
+                        'Authorization: Bearer '.env('PAYSTACK_API_KEY'),
                         'Content-Type: application/json',
                     ],
                 ]);
