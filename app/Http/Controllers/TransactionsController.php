@@ -200,9 +200,7 @@ class TransactionsController extends Controller
              // ->whereIn("email", [ "ebubeemeka19@gmail.com","aimchinaza3039@gmail.com" ])
             //  ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200")
               ->get();
-              return response()->json(['message'=> "done","tx_result"=>$unpaid_users],200);
-
-
+            
 
             foreach( $unpaid_users as  $unpaid_user){
 
@@ -211,10 +209,6 @@ class TransactionsController extends Controller
 
               
 
-   
-
-          
-            $url = "https://api.flutterwave.com/v3/transfers";
 
            $fields = array(
               "source" => "balance",
@@ -224,37 +218,7 @@ class TransactionsController extends Controller
      
             );
 
-          /*  $fields = array(
-
-                "remark"=> "Learniix payment",
-                "amount" =>$amount,
-                "bank_code" => $unpaid_user->bank,
-                "transaction_reference"=>"SBABCKDY_12345",
-                "account_number"=> $unpaid_user->bank_account_number,
-                "narration" => "LEARNIIX PAYMENT",
-                "currency_id"=> "NGN",
-              );*/
-
-          
-          
-         /*   $fields_string = http_build_query($fields);
-          
-            //open connection
-            $ch = curl_init();
-            
-            //set the url, number of POST vars, POST data
-            curl_setopt($ch,CURLOPT_URL, $url);
-            curl_setopt($ch,CURLOPT_POST, true);
-            curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-              "Authorization: Bearer TOKEN HERE",
-              "Cache-Control: no-cache",
-            ));
-            
-            //So that curl_exec returns the contents of the cURL; rather than echoing it
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);*/
-
-            $jsonData = json_encode($fields);
+                  $jsonData = json_encode($fields);
 
             $curl = curl_init();
             
@@ -272,6 +236,11 @@ class TransactionsController extends Controller
             
             //execute post
             $result = curl_exec($curl);
+
+            return response()->json(['message'=> "done","tx_result"=>$result],200);
+       
+
+            
            // echo $result;
 
            $res = json_decode($result, true);
