@@ -200,7 +200,7 @@ class TransactionsController extends Controller
              // ->whereIn("email", [ "ebubeemeka19@gmail.com","aimchinaza3039@gmail.com" ])
             //  ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200")
               ->get();
-
+              return response()->json(['message'=> "done","tx_result"=>$unpaid_users],200);
 
 
 
