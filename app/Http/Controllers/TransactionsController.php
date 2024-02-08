@@ -213,7 +213,7 @@ class TransactionsController extends Controller
            $fields = array(
               "source" => "balance",
               "reason" =>"test transfer",
-              "amount"=>"1000",
+              "amount"=>"10",
               "recipient"=>"RCP_vezlro9kkr7nb6b",
      
             );
