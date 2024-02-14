@@ -24,7 +24,7 @@
 
 
 
-    <p style="color:#000000; font-size:18px; margin-top:20px; ">You won yourself a whooping sum of <b> {{ $amount }}</b> for making <b>{{ $sales }}</b> of sales</p>
+    <p style="color:#000000; font-size:18px; margin-top:20px; ">You won yourself a whooping sum of <b> {{ $amount }}</b> for making <b>{{ $sales }}</b> sales</p>
 
     <p style="color:#000000; font-size:18px; margin-top:20px; ">This is just the beginning of what you can do on Learniix because we are rooting for you.
  </p>

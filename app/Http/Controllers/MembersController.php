@@ -62,7 +62,7 @@ class MembersController extends Controller
         );
 
         foreach($users as $user){
-            Mail::to($user["email"])->send(new Contest( intval($user["amount"]),$user["name"], $user["sales"]));
+            Mail::to($user["email"])->send(new Contest( $user["amount"],$user["name"], $user["sales"]));
        
 
 
