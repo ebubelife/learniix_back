@@ -55,10 +55,10 @@ class MembersController extends Controller
     public function send_alert_email(){
 
         $users = array(
-           // array("email"=>"okoyomercy4@gmail.com", "amount"=>"100000", "name"=>"Mercy", "sales"=>"65"),
-         //   array("email"=>"leslieeunice01@gmail.com", "amount"=>"10000", "name"=>"Leslie", "sales"=>"5"),
+            array("email"=>"okoyomercy4@gmail.com", "amount"=>"One Hundred Thousand Naira", "name"=>"Mercy", "sales"=>"65"),
+           array("email"=>"leslieeunice01@gmail.com", "amount"=>"Ten Thousand Naira", "name"=>"Leslie", "sales"=>"5"),
               
-         array("email"=>"ebubeemeka19@gmail.com", "amount"=>"10000", "name"=>"Ebube", "sales"=>"5"),
+      //   array("email"=>"ebubeemeka19@gmail.com", "amount"=>"", "name"=>"Ebube", "sales"=>"5"),
         );
 
         foreach($users as $user){
