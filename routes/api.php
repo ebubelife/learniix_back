@@ -105,7 +105,7 @@ Route::controller(MembersController::class)->group(function(){
     Route::post('update/isvendor','update');
     Route::get('email/test','test_email');
 
-    Route::get('affiliate/payment/email', 'send_alert_email' );
+    Route::get('affiliate/send_email', 'send_alert_email' );
 
     Route::post('account/recover','send_mail_code');
 
