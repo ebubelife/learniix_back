@@ -18,10 +18,14 @@ class Contest extends Mailable
      */
 
      public $firstName;
-    public function __construct($firstName)
+    public function __construct( $amount,$firstName, $sales)
     {
         //
         $this->firstName = $firstName;
+
+        $this->amount = $amount;
+
+        $this->sales = $sales;
     }
 
     /**
@@ -35,8 +39,11 @@ class Contest extends Mailable
         $message = 'This is an example email sent from Laravel.';
         return $this->view('contest', ['message' => $message])
                     ->with(['firstName'=> $this->firstName])
+                    ->with(['amount'=> $this->amount])
+
+                    ->with(['sales'=> $this->sales])
                    
                     ->from('Learniix@learniix.com')
-                    ->subject('New Challenge 🥳🥳!!');
+                    ->subject('CONGRATULATIONS, CHAMP 🏆 🎉');
     }
 }

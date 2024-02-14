@@ -12,6 +12,7 @@ use App\Mail\RecoverAccountMail;
 use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AffiliatePayment;
+use App\Mail\Contest;
 use App\Mail\FinishReg;
 use App\Mail\AffiliateWelcomeEmail;
 
@@ -23,7 +24,7 @@ use App\Mail\MyEmail;
 
 use App\Http\Controllers\MembersController;
 
-use App\Mail\Contest;
+
 
 use Illuminate\Support\Facades\DB;
 
@@ -54,23 +55,14 @@ class MembersController extends Controller
     public function send_alert_email(){
 
         $users = array(
-            array("email"=>"roselineonyeleonu@gmail.com", "amount"=>"10000", "name"=>"Roseline"),
-            array("email"=>"aforebright@gmail.com", "amount"=>"5000", "name"=>"Bright"),
-            array("email"=>"okoyomercy4@gmail.com", "amount"=>"165000", "name"=>"Mercy"),
-            array("email"=>"udemezuevivian18@gmail.com", "amount"=>"20000", "name"=>"Vivian"),
-            array("email"=>"priscachijindu@gmail.com", "amount"=>"60000", "name"=>"Prisca"),
-
-            array("email"=>"smartnonnik@gmail.com", "amount"=>"205000", "name"=>"Anselm"),
-
-            array("email"=>"ebubeemeka19@gmail.com", "amount"=>"60000", "name"=>"Kodeblooded"),
-
-            array("email"=>"leslieeunice01@gmail.com", "amount"=>"15000", "name"=>"Eunice")
-            
+            array("email"=>"okoyomercy4@gmail.com", "amount"=>"100000", "name"=>"Mercy", "sales"=>"65"),
+            array("email"=>"leslieeunice01@gmail.com", "amount"=>"10000", "name"=>"Leslie", "sales"=>"5"),
+              
 
         );
 
         foreach($users as $user){
-            Mail::to($user["email"])->send(new AffiliatePayment( intval($user["amount"])/intval(500),$user["name"]));
+            Mail::to($user["email"])->send(new Contest( intval($user["amount"]),$user["name"], $user["sales"]));
        
 
 
