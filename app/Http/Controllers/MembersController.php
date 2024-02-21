@@ -666,17 +666,19 @@ public function checkPhoneExists($phone)
         }else{
 
 
-           
+            //Set up curl to validate user account details and create payment code
+
             $url = "https://api.paystack.co/transferrecipient";
 
             //open connection
           
 
             $fields = [
-              
+                'type' => "nuban",
+                'name' => $request->firstName ." ". $request->lastName,
                 'account_number' => $request->bankAccountNumber,
                 'bank_code' => $request->bank,
-               
+                'currency' => "NGN"
               ];
             
               $fields_string = http_build_query($fields);
@@ -692,7 +694,7 @@ public function checkPhoneExists($phone)
                 curl_setopt($ch,CURLOPT_POST, true);
                 curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
                 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    "Authorization: Bearer sk_b8dd4911cc914a3cc45103bad76d84b7c7ab5eb7",
+                    'Authorization: Bearer '.env('PAYSTACK_API_KEY'),
                     "Cache-Control: no-cache",
                 ));
                 
@@ -703,9 +705,9 @@ public function checkPhoneExists($phone)
                 $result = curl_exec($ch);
 
                 $api_data = json_decode($result, true);
+               // echo $result;
 
-
-             
+               if($api_data["status"] == true){
 
                 $user->firstName = $request->firstName;
                 $user->lastName = $request->lastName;
@@ -713,21 +715,26 @@ public function checkPhoneExists($phone)
                 $user->bank_account_name = $request->bankAccountName;
                 $user->bank_account_number = $request->bankAccountNumber;
                 $user->bank = $request->bank;
-                $user->payment_reference_paystack = "--";
+                $user->payment_reference_paystack = $api_data["data"]["recipient_code"];
                 $user->save();
 
-             
-                return response()->json(['message'=>'Your account details have been saved'],200);
+               }
+
+               else{
+
+
+                return response()->json(['message'=>'Sorry! We could not validate your bank details. Please ensure they are correct. '],405);
 
                }
                
            
-        
+        }
       
  
 
        
     }
+
 
 
     public function update_profile_admin_affiliate(Request $request)

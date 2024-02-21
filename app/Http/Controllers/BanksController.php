@@ -33,7 +33,7 @@ class BanksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     public function addSquadBanks(Request $request){
+    /* public function addSquadBanks(Request $request){
 
 
         $banks = array(
@@ -318,7 +318,7 @@ class BanksController extends Controller
                 
   
         }
-     }
+     }*/
 
 
 
