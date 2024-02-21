@@ -451,6 +451,12 @@ Route::get('view/affiliates/order', function () {
     
     // Toggle the withdrawal_setting value
     $user->weekly_withdrawal = !$user->weekly_withdrawal;
+
+    if( $user->weekly_withdrawal == false){
+        $user->weekly_withdrawal = true;
+    }else{
+        $user->weekly_withdrawal = false;
+    }
     $user->save();
 
     return response()->json(["message" => "Withdrawal setting updated successfully"]);
