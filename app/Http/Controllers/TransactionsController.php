@@ -212,7 +212,7 @@ class TransactionsController extends Controller
                 $amount = $unpaid_user->unpaid_balance;
            $fields = array(
               "source" => "balance",
-              "reason" =>"LEARNIIX PAYMENT",
+              "reason" =>"LEARNIIX PAYMENT!",
               "amount"=>$amount * 100,
               "recipient"=>$unpaid_user->payment_reference_paystack,
      
@@ -237,7 +237,7 @@ class TransactionsController extends Controller
             //execute post
             $result = curl_exec($curl);
 
-            return response()->json(['message'=> "done","tx_result"=>$result],200);
+            //return response()->json(['message'=> "done","tx_result"=>$result],200);
        
 
             
