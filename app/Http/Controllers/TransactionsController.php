@@ -54,8 +54,8 @@ class TransactionsController extends Controller
 
               $unpaid_users = Members::where("is_vendor", true)
               ->where("payment_reference_paystack","!=",null)
-              ->where("id","!=",16)
-              ->where("withdrawal_settings",true)
+              ->where("id","!=",2)
+              ->where("weekly_withdrawal",true)
              // ->whereIn("email", [ "ebubeemeka19@gmail.com","aimchinaza3039@gmail.com" ])
               ->whereRaw("CAST(unpaid_balance_vendor AS UNSIGNED) > 200")
              // ->where("id",34 )
@@ -69,16 +69,15 @@ class TransactionsController extends Controller
                 $amount = $unpaid_user->unpaid_balance_vendor;
 
           
-            $url = "https://api.flutterwave.com/v3/transfers";
-
-            $fields = array(
-              "account_bank" => $unpaid_user->bank,
-              "amount" =>$amount,
-             
-              "account_number"=> $unpaid_user->bank_account_number,
-              "narration" => "ZENITHSTAKE ENTERPRISE",
-              "currency"=> "NGN",
-            );
+                $amount = $unpaid_user->unpaid_balance;
+                $fields = array(
+                   "source" => "balance",
+                   "reason" =>"LEARNIIX PAYMENT!",
+                   "amount"=>$amount * 100,
+                   "recipient"=>$unpaid_user->payment_reference_paystack,
+          
+                 );
+     
 
           
           
@@ -105,12 +104,12 @@ class TransactionsController extends Controller
             
          
                 curl_setopt_array($curl, [
-                    CURLOPT_URL => 'https://api.flutterwave.com/v3/transfers',
+                    CURLOPT_URL => 'https://api.paystack.co/transfer',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => $jsonData,
                     CURLOPT_HTTPHEADER => [
-                        'Authorization: Bearer '.env('FLW_API_KEY'),
+                        'Authorization: Bearer '.env('PAYSTACK_API_KEY'),
                         'Content-Type: application/json',
                     ],
                 ]);
@@ -197,8 +196,8 @@ class TransactionsController extends Controller
             //  -> where ("id", "=",1)
               ->where("payment_reference_paystack","!=",null)
               ->where("weekly_withdrawal",true)
-              ->whereIn("email", [ "ebubeemeka19@gmail.com" ])
-            //  ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200")
+             // ->whereIn("email", [ "ebubeemeka19@gmail.com" ])
+              ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200")
               ->get();
             
 
