@@ -245,7 +245,7 @@ class TransactionsController extends Controller
 
            $res = json_decode($result, true);
 
-           if($res["message"]=="success"){
+           if($res["status"]==true){
 
             $update_user = Members::find($unpaid_user->id);
 
