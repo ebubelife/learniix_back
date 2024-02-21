@@ -195,9 +195,9 @@ class TransactionsController extends Controller
               $unpaid_users = Members::where("is_vendor", false)
             
             //  -> where ("id", "=",1)
-            //  ->where("payment_reference_paystack","!=",null)
-          //    ->where("withdrawal_settings",true)
-             // ->whereIn("email", [ "ebubeemeka19@gmail.com","aimchinaza3039@gmail.com" ])
+              ->where("payment_reference_paystack","!=",null)
+              ->where("withdrawal_settings",true)
+              ->whereIn("email", [ "ebubeemeka19@gmail.com" ])
             //  ->whereRaw("CAST(unpaid_balance AS UNSIGNED) > 200")
               ->get();
             
@@ -209,12 +209,12 @@ class TransactionsController extends Controller
 
               
 
-
+                $amount = $unpaid_user->unpaid_balance;
            $fields = array(
               "source" => "balance",
-              "reason" =>"test transfer",
-              "amount"=>"100",
-              "recipient"=>"RCP_vezlro9kkr7nb6b",
+              "reason" =>"LEARNIIX PAYMENT",
+              "amount"=>$amount * 100,
+              "recipient"=>$unpaid_user->payment_reference_paystack,
      
             );
 
