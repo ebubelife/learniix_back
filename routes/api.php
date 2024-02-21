@@ -450,12 +450,14 @@ Route::get('view/affiliates/order', function () {
         $user = Members::findOrFail($id);
     
     // Toggle the withdrawal_setting value
-    $user->weekly_withdrawal = !$user->weekly_withdrawal;
+   // $user->weekly_withdrawal = !$user->weekly_withdrawal;
 
     if( $user->weekly_withdrawal == false){
         $user->weekly_withdrawal = true;
+        $user->save();
     }else{
         $user->weekly_withdrawal = false;
+        $user->save();
     }
     $user->save();
 
