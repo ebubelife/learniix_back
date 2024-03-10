@@ -608,7 +608,7 @@ Route::get('approve/product/{id}', function ($id) {
 
     // Update the sales_page column
     $product->approved = true;
-    $product->approved_date = Carbon::now();
+    $product->approved_at = Carbon::now();
    
     $product->save();
 
