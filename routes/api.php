@@ -625,7 +625,7 @@ Route::get('disable/product/{id}', function ($id) {
 
     // Update the sales_page column
     $product->approved = false;
-    $product->approved_date = null;
+    $product->approved_at = null;
    
     $product->save();
 
