@@ -1100,4 +1100,30 @@ Route::get('notifications/user/{id}', function ($id) {
 
 });
 
+// Get top 5 affiliates with the highest number of sales for a product within the current month
+Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
+    $firstDayOfMonth = now()->firstOfMonth();
+    $current = now();
+
+  
+
+
+    $query = Sales::where('vendor_id', '2')
+    ->selectRaw('sales.affiliate_id, COUNT(*) as count, members.*')
+    ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
+    ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
+    ->where('sales.created_at', '>=', ($firstDayOfMonth))
+    ->where('sales.created_at', '<=', $current)
+    ->limit(10);
+
+
+$sales_by_user = $query->orderBy('count', 'desc')->get();
+
+return response()->json( $sales_by_user);
+
+
+  //  return response()->json($top_affiliates);
+});
+
+
 
