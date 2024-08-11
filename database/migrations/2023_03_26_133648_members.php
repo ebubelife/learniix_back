@@ -48,6 +48,7 @@ class Members extends Migration
             $table->string('last_sale_amount')->nullable();
             $table->timestamp('last_sale_time')->nullable();
             $table->string('last_sale_product')->nullable();
+           
 
             
             
