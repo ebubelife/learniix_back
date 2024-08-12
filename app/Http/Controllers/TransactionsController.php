@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Mail\AffiliatePayment;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use App\Models\Notification;
 
 class TransactionsController extends Controller
 {
@@ -261,6 +262,17 @@ class TransactionsController extends Controller
             $tx->status = "DONE";
     
            if($tx->save()){
+
+            $new_notif = new Notification();
+    
+    
+            $new_notif->type = "NEW_PAYMENT";
+            $new_notif->user_id = $unpaid_user->id;
+
+            $new_notif->header = "Payment Notification";
+            $new_notif->body = "You have recieved payment of ".strval($amount).", your alert is on its way and you should be credited in your bank account. ";
+
+            $new_notif->save();
 
 
             Mail::to($unpaid_user->email)->send(new AffiliatePayment( intval($unpaid_user->unpaid_balance)/intval($naira_exchange_rate->value),$unpaid_user->firstName." ".$unpaid_user->lastName));
