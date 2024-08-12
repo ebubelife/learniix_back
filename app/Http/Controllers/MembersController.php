@@ -657,6 +657,7 @@ public function checkPhoneExists($phone)
             'bankAccountName' => 'string',
             'bankAccountNumber' => 'string',
             'bank' => 'string',
+            'next_withdrawal_amount' => 'string',
             
         ]);
         $user = Members::where('id', $request->id)->first();
@@ -709,12 +710,19 @@ public function checkPhoneExists($phone)
 
                if($api_data["status"] == true){
 
+                if(intval($user->unpaid_balance) < intval( $request->next_withdrawal_amount) ){
+                    return response()->json(['message'=>'Sorry! An error occured! Please try again or contact support '],405);
+
+
+                }
+
                 $user->firstName = $request->firstName;
                 $user->lastName = $request->lastName;
                 $user->phone = $request->phone;
                 $user->bank_account_name = $request->bankAccountName;
                 $user->bank_account_number = $request->bankAccountNumber;
                 $user->bank = $request->bank;
+                $user->next_withdrawal_amount = $request->next_withdrawal_amount;
                 $user->payment_reference_paystack = $api_data["data"]["recipient_code"];
                 $user->save();
 
