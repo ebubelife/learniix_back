@@ -15,7 +15,7 @@ class ModifyMembersTable1 extends Migration
     {
         //
         Schema::table('members', function (Blueprint $table) {
-            $table->timestamp('next_withdrawal_amount')->nullable()->default("0");
+            $table->string('next_withdrawal_amount')->nullable()->default("0");
         });
     }
 
