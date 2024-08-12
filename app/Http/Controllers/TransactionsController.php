@@ -204,12 +204,20 @@ class TransactionsController extends Controller
 
             foreach( $unpaid_users as  $unpaid_user){
 
+               
+
                 $amount = $unpaid_user->unpaid_balance;
+
+                if(intval($unpaid_user->next_withdrawal_amount) > 0){
+
+                    $amount = $unpaid_user->next_withdrawal_amount;
+
+
+                }
+
 
 
               
-
-                $amount = $unpaid_user->unpaid_balance;
            $fields = array(
               "source" => "balance",
               "reason" =>"LEARNIIX PAYMENT!",
