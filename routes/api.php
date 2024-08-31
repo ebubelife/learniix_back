@@ -255,7 +255,9 @@ return response()->json(['download_link' => $downloadLink]);
 
         $unpaid_affiliates = Members::join('banks', 'members.bank', '=', 'banks.code')
         ->where("members.is_vendor", false)
-        ->whereRaw("CAST(members.unpaid_balance AS UNSIGNED) > 200")
+       // ->whereRaw("CAST(members.unpaid_balance AS UNSIGNED) > 200")
+        ->where("unpaid_balance", "!=", "0.00")
+        ->where("unpaid_balance", "!=", "0")
         ->select(
             'members.firstName',
             'members.lastName',
