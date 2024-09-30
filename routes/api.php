@@ -1161,7 +1161,7 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
 
 $sales_by_user = $query->orderBy('count', 'desc')->get();
 
-return "jj";//response()->json( $sales_by_user);
+return response()->json( $sales_by_user);
 
 
   //  return response()->json($top_affiliates);
@@ -1173,7 +1173,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
     $current = now();
 
 
-    $query = Sales::where('vendor_id', '16')
+    $query = Sales::where('vendor_id', '2')
     ->selectRaw('sales.affiliate_id, COUNT(*) as count, members.*')
     ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
     ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
