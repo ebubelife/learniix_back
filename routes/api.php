@@ -1193,7 +1193,9 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
          
         //get sales count from sub affiliates that have made up to 6 sales this month
         $q_sales_by_aff = Sales::where("affiliate_id", $user->affiliate_id)
-        
+        ->where('vendor_id', '2')
+        ->selectRaw('sales.affiliate_id, COUNT(*) as count, members.*')
+        ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
         ->where('sales.created_at', '>=', ($firstDayOfMonth))
         ->where('sales.created_at', '<=', $current)
         ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
@@ -1211,7 +1213,9 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
             //get all sales from this affiliate
              //get sales count from this sub affiliate that have made up to 6 sales this month
             $all_sales_by_this_aff = Sales::where("affiliate_id", $get_user->affiliate_id)
-            
+            ->where('vendor_id', '2')
+            ->selectRaw('sales.affiliate_id, COUNT(*) as count, members.*')
+            ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
             ->where('sales.created_at', '>=', ($firstDayOfMonth))
             ->where('sales.created_at', '<=', $current)
             ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
