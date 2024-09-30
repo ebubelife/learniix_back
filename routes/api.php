@@ -1210,6 +1210,8 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
 
             $get_user = Members::where("email", $aff_sale->customer_email)->first();
 
+            return $get_user;
+
             //get all sales from this affiliate
              //get sales count from this sub affiliate that have made up to 6 sales this month
             $all_sales_by_this_aff = Sales::where("affiliate_id", $get_user->affiliate_id)
