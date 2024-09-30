@@ -951,30 +951,21 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
     $current = now();
 
     // Query to get coaches (affiliates with more than 100 sales)
-    $coaches = Sales::where('vendor_id', '16')
-        ->selectRaw('sales.affiliate_id as coach_id, COUNT(*) as coach_sales, members.*')
-        ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
-        ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
-        ->where('sales.created_at', '>=', $firstDayOfMonth)
-        ->where('sales.created_at', '<=', $current)
-        ->havingRaw('COUNT(*) > 100') // Coaches with more than 100 sales
-        ->get();
-
-        foreach($coaches as $coach){
-
-            //get affiliates under this coach and for each get sales
-        }
-
-         // Sort coaches by the total sales made by their referred affiliates
-    $coaches = $coaches->sortByDesc('referred_sales')->take(10);
-
-    return response()->json($coaches);
-
    
-       // return $coaches;
 
 
-    });
+    $query = Sales::where('vendor_id', '16')
+    ->selectRaw('sales.affiliate_id, COUNT(*) as count, members.*')
+    ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
+    ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
+    ->where('sales.created_at', '>=', ($firstDayOfMonth))
+    ->where('sales.created_at', '<=', $current)
+    ->limit(10);
+
+
+$sales_by_user = $query->orderBy('count', 'desc')->get();
+
+return response()->json( $sales_by_user);
 
    
 });
