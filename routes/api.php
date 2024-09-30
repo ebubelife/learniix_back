@@ -78,10 +78,14 @@ Route::controller(TransactionsController::class)->group(function(){
         return response()->json($vendor_payments);
     });
 
+
+ 
+
     Route::get('pay/affiliates', 'pay_affiliates');
 
     Route::get('pay/vendors', 'pay_vendors');
-  
+
+    
 
 });
 
@@ -945,7 +949,6 @@ return response()->json( $sales_by_user);
   //  return response()->json($top_affiliates);
 });
 
-
 Route::get('top_coach/product/view/{product_id}', function ($product_id) {
     $firstDayOfMonth = now()->firstOfMonth();
     $current = now();
@@ -969,7 +972,6 @@ return response()->json( $sales_by_user);
 
    
 });
-
 
 
 
@@ -1016,7 +1018,7 @@ return response()->json( $sales_by_user);
 
     
   
-
+});
 
 //get vendor affiliates
 
