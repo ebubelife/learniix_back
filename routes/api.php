@@ -1025,7 +1025,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
 
     
   
-});
+
 
 //get vendor affiliates
 
