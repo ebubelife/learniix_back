@@ -1156,6 +1156,7 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
     ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
     ->where('sales.created_at', '>=', ($firstDayOfMonth))
     ->where('sales.created_at', '<=', $current)
+    ->havingRaw('COUNT(*) > 100')
     ->limit(10);
 
 
@@ -1179,6 +1180,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
     ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
     ->where('sales.created_at', '>=', ($firstDayOfMonth))
     ->where('sales.created_at', '<=', $current)
+    ->havingRaw('COUNT(*) > 100')
     ->limit(10);
 
 
