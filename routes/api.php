@@ -1185,9 +1185,54 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
 
 
     $sales_by_user = $query->orderBy('count', 'desc')->get();
-    
+  
 
-    return response()->json( ["total_sales_by_aff"=> $sales_by_user, ] );
+    foreach($sales_by_user as $user){
+
+       
+         
+        //get sales count from sub affiliates that have made up to 6 sales this month
+        $q_sales_by_aff = Sales::where("affiliate_id", $user->affiliate_id)
+        
+        ->where('sales.created_at', '>=', ($firstDayOfMonth))
+        ->where('sales.created_at', '<=', $current)
+        ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
+        ->havingRaw('COUNT(*) > 5')
+        ->get();
+
+       
+        $all_affiliate_sales = 0;
+        $total_q_sales_by_affiliates = 0;
+
+        foreach( $q_sales_by_aff as $aff_sale){
+
+            $get_user = Members::where("email", $aff_sale->customer_email)->first();
+
+            //get all sales from this affiliate
+             //get sales count from this sub affiliate that have made up to 6 sales this month
+            $all_sales_by_this_aff = Sales::where("affiliate_id", $get_user->affiliate_id)
+            
+            ->where('sales.created_at', '>=', ($firstDayOfMonth))
+            ->where('sales.created_at', '<=', $current)
+            ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
+            ->havingRaw('COUNT(*) > 5')
+            ->count();
+
+            $total_q_sales_by_affiliates  = count($all_sales_by_this_aff) + $all_affiliate_sales;
+
+
+
+        }
+      
+       
+ 
+
+
+       
+          
+    }
+
+    return response()->json( ["total_sales_by_aff"=> $total_q_sales_by_affiliates, "all_affiliate_sales"=>$all_affiliate_sales] );
 
    
 });
