@@ -1185,22 +1185,26 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
 
 
     $sales_by_user = $query->orderBy('count', 'desc')->get();
-    $total_sales_by_affiliates = 0;
+    $total_q_sales_by_affiliates = 0;
+    $all_affiliate_sales = 0;
 
     foreach($sales_by_user as $user){
          
-        $all_sales_by_aff = Sales::where("affiliate_id", $user->affiliate_id)
+        //get sales count from sub affiliates that have made up to 6 sales this month
+        $q_sales_by_aff = Sales::where("affiliate_id", $user->affiliate_id)
         
         ->where('sales.created_at', '>=', ($firstDayOfMonth))
         ->where('sales.created_at', '<=', $current)
-        
+       // ->havingRaw('COUNT(*) > 5')
         ->get();
-        $total_sales_by_affiliates  = count($all_sales_by_aff) + $total_sales_by_affiliates;
+        $total_sales_by_affiliates  = count($q_sales_by_aff) + $total_q_sales_by_affiliates;
 
+
+       
           
     }
 
-    return response()->json( $total_sales_by_affiliates );
+    return response()->json( ["total_sales_by_aff"=>$total_sales_by_affiliates, "all_affiliate_sales"=>$all_affiliate_sales] );
 
    
 });
