@@ -1198,7 +1198,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
         ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
         ->where('sales.created_at', '>=', ($firstDayOfMonth))
         ->where('sales.created_at', '<=', $current)
-        ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
+        ->groupBy('sales.affiliate_id',  'members.affiliate_id')
         ->havingRaw('COUNT(*) > 5')
         ->get();
 
@@ -1218,7 +1218,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
             ->join('members', 'members.affiliate_id', '=', 'sales.affiliate_id')
             ->where('sales.created_at', '>=', ($firstDayOfMonth))
             ->where('sales.created_at', '<=', $current)
-            ->groupBy('sales.affiliate_id', 'members.id', 'members.affiliate_id')
+            ->groupBy('sales.affiliate_id',  'members.affiliate_id')
             ->havingRaw('COUNT(*) > 5')
             ->count();
 
