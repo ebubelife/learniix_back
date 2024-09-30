@@ -943,7 +943,7 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
 
     $sales_by_user = $query->orderBy('count', 'desc')->get();
 
-    return response()->json( $sales_by_user);
+    return "k";
 
 
   //  return response()->json($top_affiliates);
