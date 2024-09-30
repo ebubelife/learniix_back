@@ -1187,7 +1187,11 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
 
     foreach($sales_by_user as $user){
          
-        $all_sales_by_aff = Sales::where("affiliate_id", $user->affiliate_id)->get();
+        $all_sales_by_aff = Sales::where("affiliate_id", $user->affiliate_id)
+        
+        ->where('sales.created_at', '>=', ($firstDayOfMonth))
+        ->where('sales.created_at', '<=', $current)
+        ->get();
         $total_sales_by_affiliates  = count($all_sales_by_aff) + $total_sales_by_affiliates;
 
           
