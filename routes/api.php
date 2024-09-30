@@ -1193,7 +1193,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
         
         ->where('sales.created_at', '>=', ($firstDayOfMonth))
         ->where('sales.created_at', '<=', $current)
-        ->havingRaw('COUNT(*) > 5')
+        
         ->get();
         $total_sales_by_affiliates  = count($all_sales_by_aff) + $total_sales_by_affiliates;
 
