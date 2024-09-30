@@ -960,19 +960,8 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
         ->havingRaw('COUNT(*) > 100') // Coaches with more than 100 sales
         ->get();
 
-    // For each coach, calculate the total sales made by the affiliates they referred
-    $coaches = $coaches->map(function ($coach) use ($firstDayOfMonth, $current) {
-        $referredSalesCount = Sales::where('vendor_id', '16')
-            ->whereHas('affiliate', function($query) use ($coach) {
-                $query->where('affiliate_id', $coach->affiliate_id); // Affiliates referred by the coach
-            })
-            ->where('sales.created_at', '>=', $firstDayOfMonth)
-            ->where('sales.created_at', '<=', $current)
-            ->count();
-
-        // Add the sales count of referred affiliates to the coach object
-        $coach->referred_sales = $referredSalesCount;
-        return $coach;
+   
+        return $coaches;
     });
 
     // Sort coaches by the total sales made by their referred affiliates
