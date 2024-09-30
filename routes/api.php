@@ -966,9 +966,9 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
     ->limit(10);
 
 
-$sales_by_user = $query->orderBy('count', 'desc')->get();
+    $sales_by_user = $query->orderBy('count', 'desc')->get();
 
-return response()->json( $sales_by_user);
+    return response()->json( $sales_by_user);
 
    
 });
