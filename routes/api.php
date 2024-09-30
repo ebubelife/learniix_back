@@ -1199,6 +1199,16 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
         ->get();
         $total_sales_by_affiliates  = count($q_sales_by_aff) + $total_q_sales_by_affiliates;
 
+         //get sales count from all sub affiliates
+         $all_sales_by_aff = Sales::where("affiliate_id", $user->affiliate_id)
+        
+         ->where('sales.created_at', '>=', ($firstDayOfMonth))
+         ->where('sales.created_at', '<=', $current)
+         //->havingRaw('COUNT(*) > 5')
+         ->get();
+         $all_affiliate_sales  = count($all_sales_by_aff) + $all_affiliate_sales;
+ 
+
 
        
           
