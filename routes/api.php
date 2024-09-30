@@ -960,14 +960,23 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
         ->havingRaw('COUNT(*) > 100') // Coaches with more than 100 sales
         ->get();
 
-   
-        return $coaches;
-    });
+        foreach($coaches as $coach){
 
-    // Sort coaches by the total sales made by their referred affiliates
+            //get affiliates under this coach and for each get sales
+        }
+
+         // Sort coaches by the total sales made by their referred affiliates
     $coaches = $coaches->sortByDesc('referred_sales')->take(10);
 
     return response()->json($coaches);
+
+   
+       // return $coaches;
+
+
+    });
+
+   
 });
 
 
