@@ -941,9 +941,9 @@ Route::get('top_affiliate/product/view/{product_id}', function ($product_id) {
     ->limit(10);
 
 
-$sales_by_user = $query->orderBy('count', 'desc')->get();
+    $sales_by_user = $query->orderBy('count', 'desc')->get();
 
-return response()->json( $sales_by_user);
+    return response()->json( $sales_by_user);
 
 
   //  return response()->json($top_affiliates);
@@ -952,9 +952,6 @@ return response()->json( $sales_by_user);
 Route::get('top_coach/product/view/{product_id}', function ($product_id) {
     $firstDayOfMonth = now()->firstOfMonth();
     $current = now();
-
-    // Query to get coaches (affiliates with more than 100 sales)
-   
 
 
     $query = Sales::where('vendor_id', '16')
@@ -976,7 +973,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
 
 
     //get top affiliates for a vendor
-    Route::get('top_affiliate/view/{vendor_id}', function ($vendor_id) {
+Route::get('top_affiliate/view/{vendor_id}', function ($vendor_id) {
         $top_affiliates = Sales::where('vendor_id', $vendor_id)->get();
     
         for($i=0; $i < count($top_affiliates); $i++){
