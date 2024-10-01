@@ -1226,7 +1226,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
             ->havingRaw('COUNT(*) > 1') 
             ->count();
 
-            $total_q_sales_by_affiliates  = count($all_sales_by_this_aff) + $all_affiliate_sales;
+            $total_q_sales_by_affiliates  = $all_sales_by_this_aff + $total_q_sales_by_affiliates;
 
 
 
