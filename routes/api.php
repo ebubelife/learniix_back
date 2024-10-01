@@ -1185,6 +1185,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
 
 
     $sales_by_user = $query->orderBy('count', 'desc')->get();
+    return $sales_by_user;
   
 
     foreach($sales_by_user as $user){
@@ -1205,7 +1206,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
        
         $all_affiliate_sales = 0;
         $total_q_sales_by_affiliates = 0;
-        return $q_sales_by_aff;
+        
 
         foreach( $q_sales_by_aff as $aff_sale){
 
