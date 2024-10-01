@@ -1185,7 +1185,7 @@ Route::get('top_coach/product/view/{product_id}', function ($product_id) {
 
 
     $sales_by_user = $query->orderBy('count', 'desc')->get();
-    return $sales_by_user;
+   
   
 
     foreach($sales_by_user as $user){
