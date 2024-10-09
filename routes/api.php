@@ -1085,7 +1085,7 @@ Route::get('admin_sales/view', function () {
 
     }
 
-    $startDateTime = Carbon::today(); // Get the start of today (12am)
+        $startDateTime = Carbon::today(); // Get the start of today (12am)
         $endDateTime = Carbon::now(); // Get the current date and time
     
         $sales_today = Sales::whereBetween('created_at', [$startDateTime, $endDateTime])
@@ -1098,10 +1098,28 @@ Route::get('admin_sales/view', function () {
         
         
             }
+
+           //calculate total sales since begining of the month
+
+           // Get the start of the current month and the current time
+            $startDateTime = Carbon::now()->startOfMonth(); // Start of the current month
+            $endDateTime = Carbon::now(); // Current date and time
+
+            // Fetch sales for the current month
+            $sales_this_month = Sales::whereBetween('created_at', [$startDateTime, $endDateTime])->get();
+
+            // Initialize total earnings
+            $total_earnings_this_month = 0;
+
+            // Sum up the product prices
+            foreach ($sales_this_month as $sale) {
+                $total_earnings_this_month += intval($sale->product_price);
+            }
+
     
 
 
-    return response()->json(["total_earnings"=>$total_sales,"sales_today"=>count($sales_today),"total_earnings_today"=>$total_earnings_today]);
+    return response()->json(["total_earnings"=>$total_sales,"sales_today"=>count($sales_today),"total_earnings_today"=>$total_earnings_today, "earnings_this_month"=>$total_earnings_this_month, "sales_this_month"=>count($sales_this_month)]);
 
 
 });
