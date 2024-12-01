@@ -258,6 +258,7 @@ return response()->json(['download_link' => $downloadLink]);
        // ->whereRaw("CAST(members.unpaid_balance AS UNSIGNED) > 200")
         ->where("unpaid_balance", "!=", "0.00")
         ->where("unpaid_balance", "!=", "0")
+        ->where("weekly_withdrawal",  true)
         ->select(
             'members.firstName',
             'members.lastName',
@@ -336,6 +337,7 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
        // ->whereRaw("CAST(members.unpaid_balance AS UNSIGNED) > 200")
         ->where("unpaid_balance", "!=", "0.00")
         ->where("unpaid_balance", "!=", "0")
+        ->where("weekly_withdrawal",  true)
         ->select(
             'members.firstName',
             'members.lastName',
