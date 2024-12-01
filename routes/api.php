@@ -263,7 +263,8 @@ return response()->json(['download_link' => $downloadLink]);
             'members.lastName',
             'members.bank_account_number',
             'members.unpaid_balance',
-            'members.bank'
+            'members.bank',
+            'members.email'
             // Add other columns you need from the 'members' table
         )
         ->addSelect(
@@ -281,7 +282,7 @@ $filePath = storage_path('app/' . $fileName);
 $file = fopen($filePath, 'w');
 
 // Write the CSV header
-$header = ['BENEFICIARY NAME','BENEFICIARY ACCOUNT NUMBER', 'PAY AMOUNT', 'BENEFICIARY BANK CODE', 'BANK NAME'];
+$header = ['BENEFICIARY NAME','BENEFICIARY ACCOUNT NUMBER', 'PAY AMOUNT', 'BENEFICIARY BANK CODE', 'BANK NAME', 'EMAIL'];
 fputcsv($file, $header);
 
 // Fetch data from the database or any other source
@@ -290,7 +291,7 @@ $data = array();
 
 foreach($unpaid_affiliates as $unpaid_affiliate){
 
-    array_push($data, array($unpaid_affiliate->firstName." ".$unpaid_affiliate->lastName,$unpaid_affiliate->bank_account_number, $unpaid_affiliate->unpaid_balance,$unpaid_affiliate->bank,$unpaid_affiliate->bank_name ));
+    array_push($data, array($unpaid_affiliate->firstName." ".$unpaid_affiliate->lastName,$unpaid_affiliate->bank_account_number, $unpaid_affiliate->unpaid_balance,$unpaid_affiliate->bank,$unpaid_affiliate->bank_name, $unpaid_affiliate->email ));
 
 }
 
