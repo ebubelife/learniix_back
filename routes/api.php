@@ -249,6 +249,82 @@ return response()->json(['download_link' => $downloadLink]);
 
     
 
+    //get affiliates with pending payment
+
+    Route::get('view/payable_affiliates', function () {
+
+        $unpaid_affiliates = Members::join('banks', 'members.bank', '=', 'banks.code')
+        ->where("members.is_vendor", false)
+       // ->whereRaw("CAST(members.unpaid_balance AS UNSIGNED) > 200")
+        ->where("unpaid_balance", "!=", "0.00")
+        ->where("unpaid_balance", "!=", "0")
+        ->select(
+            'members.firstName',
+            'members.lastName',
+            'members.bank_account_number',
+            'members.unpaid_balance',
+            'members.bank',
+            'members.email'
+            // Add other columns you need from the 'members' table
+        )
+        ->addSelect(
+            'banks.bank as bank_name'
+            // Add other columns you need from the 'banks' table with an alias
+        )
+        ->get();
+    // Generate a unique file name
+$fileName = 'data_' . Str::random(10) . '.csv';
+
+// Create a new file in the storage directory
+$filePath = storage_path('app/' . $fileName);
+
+// Open the file in write mode
+$file = fopen($filePath, 'w');
+
+// Write the CSV header
+$header = ['BENEFICIARY NAME','BENEFICIARY ACCOUNT NUMBER', 'PAY AMOUNT', 'BENEFICIARY BANK CODE', 'BANK NAME', 'EMAIL'];
+fputcsv($file, $header);
+
+// Fetch data from the database or any other source
+
+$data = array();
+
+foreach($unpaid_affiliates as $unpaid_affiliate){
+
+    array_push($data, array($unpaid_affiliate->firstName." ".$unpaid_affiliate->lastName,$unpaid_affiliate->bank_account_number, $unpaid_affiliate->unpaid_balance,$unpaid_affiliate->bank,$unpaid_affiliate->bank_name, $unpaid_affiliate->email ));
+
+}
+
+
+// Write the data rows to the CSV file
+foreach ($data as $row) {
+    fputcsv($file, $row);
+}
+
+// Close the file
+fclose($file);
+
+// Store the CSV file in a public directory (optional)
+$publicPath = 'public/csv/' . $fileName;
+Storage::disk('local')->put($publicPath, file_get_contents($filePath));
+
+// Optionally, you can delete the temporary file
+unlink($filePath);
+
+// Return a response with the download link
+$downloadLink = Storage::url($publicPath);
+
+
+
+
+
+return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" => $unpaid_affiliates]);
+
+
+   // return response()->json($unpaid_affiliates );
+
+    });
+
 
 
      //get affiliates with pending payment
