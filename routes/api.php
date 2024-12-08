@@ -254,19 +254,22 @@ return response()->json(['download_link' => $downloadLink]);
     Route::get('view/payable_affiliates', function () {
 
         $unpaid_affiliates = Members::join('banks', 'members.bank', '=', 'banks.code')
-       // ->where("members.is_vendor", false)
-       // ->whereRaw("CAST(members.unpaid_balance AS UNSIGNED) > 200")
-        ->where("unpaid_balance", "!=", "0.00")
-        ->where("unpaid_balance", "!=", "0")
-        ->where("weekly_withdrawal",  true)
+        ->where(function ($query) {
+            $query->where('unpaid_balance', '!=', '0.00')
+                  ->where('unpaid_balance', '!=', '0');
+        })
+        ->orWhere(function ($query) {
+            $query->where('unpaid_balance_vendor', '!=', '0.00')
+                  ->where('unpaid_balance_vendor', '!=', '0');
+        })
+        ->where('weekly_withdrawal', true)
         ->select(
             'members.firstName',
             'members.lastName',
             'members.bank_account_number',
             'members.unpaid_balance',
             'members.bank',
-            'members.email',
-            //'members.is_vendor'
+            'members.email'
             // Add other columns you need from the 'members' table
         )
         ->addSelect(
@@ -274,6 +277,7 @@ return response()->json(['download_link' => $downloadLink]);
             // Add other columns you need from the 'banks' table with an alias
         )
         ->get();
+    
     // Generate a unique file name
 $fileName = 'data_' . Str::random(10) . '.csv';
 
@@ -334,11 +338,15 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
      Route::get('view/payable_affiliates_now', function () {
 
         $unpaid_affiliates = Members::join('banks', 'members.bank', '=', 'banks.code')
-       // ->where("members.is_vendor", false)
-       // ->whereRaw("CAST(members.unpaid_balance AS UNSIGNED) > 200")
-        ->where("unpaid_balance", "!=", "0.00")
-        ->where("unpaid_balance", "!=", "0")
-        ->where("weekly_withdrawal",  true)
+        ->where(function ($query) {
+            $query->where('unpaid_balance', '!=', '0.00')
+                  ->where('unpaid_balance', '!=', '0');
+        })
+        ->orWhere(function ($query) {
+            $query->where('unpaid_balance_vendor', '!=', '0.00')
+                  ->where('unpaid_balance_vendor', '!=', '0');
+        })
+        ->where('weekly_withdrawal', true)
         ->select(
             'members.firstName',
             'members.lastName',
@@ -353,6 +361,7 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
             // Add other columns you need from the 'banks' table with an alias
         )
         ->get();
+    
     // Generate a unique file name
 $fileName = 'data_' . Str::random(10) . '.csv';
 
