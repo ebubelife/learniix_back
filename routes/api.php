@@ -254,7 +254,7 @@ return response()->json(['download_link' => $downloadLink]);
     Route::get('view/payable_affiliates', function () {
 
         $unpaid_affiliates = Members::join('banks', 'members.bank', '=', 'banks.code')
-        ->where("members.is_vendor", false)
+       // ->where("members.is_vendor", false)
        // ->whereRaw("CAST(members.unpaid_balance AS UNSIGNED) > 200")
         ->where("unpaid_balance", "!=", "0.00")
         ->where("unpaid_balance", "!=", "0")
@@ -265,7 +265,8 @@ return response()->json(['download_link' => $downloadLink]);
             'members.bank_account_number',
             'members.unpaid_balance',
             'members.bank',
-            'members.email'
+            'members.email',
+            //'members.is_vendor'
             // Add other columns you need from the 'members' table
         )
         ->addSelect(
@@ -333,7 +334,7 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
      Route::get('view/payable_affiliates_now', function () {
 
         $unpaid_affiliates = Members::join('banks', 'members.bank', '=', 'banks.code')
-        ->where("members.is_vendor", false)
+       // ->where("members.is_vendor", false)
        // ->whereRaw("CAST(members.unpaid_balance AS UNSIGNED) > 200")
         ->where("unpaid_balance", "!=", "0.00")
         ->where("unpaid_balance", "!=", "0")
