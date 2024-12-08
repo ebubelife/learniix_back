@@ -338,14 +338,14 @@ return response()->json(['download_link' => $downloadLink,"unpaid_affiliates" =>
      Route::get('view/payable_affiliates_now', function () {
 
         $unpaid_affiliates = Members::join('banks', 'members.bank', '=', 'banks.code')
-        ->where(function ($query) {
+       /* ->where(function ($query) {
             $query->where('unpaid_balance', '!=', '0.00')
                   ->where('unpaid_balance', '!=', '0');
         })
         ->orWhere(function ($query) {
             $query->where('unpaid_balance_vendor', '!=', '0.00')
                   ->where('unpaid_balance_vendor', '!=', '0');
-        })
+        })*/
         ->where('weekly_withdrawal', true)
         ->select(
             'members.firstName',
